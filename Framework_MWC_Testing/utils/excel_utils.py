@@ -1,26 +1,33 @@
-import os, time
+import os
+import pandas as pd
 from typing import List, Dict, Any, DefaultDict
 from collections import defaultdict
 from openpyxl import load_workbook
-import pandas as pd
 
+# --- HÀM TIỆN ÍCH CƠ BẢN ---
 def ensure_dir(path: str):
+    """Tạo thư mục nếu chưa tồn tại."""
     os.makedirs(path, exist_ok=True)
 
 def _norm(s) -> str:
+    """Chuẩn hóa dữ liệu đọc từ Excel (xóa None, strip())."""
     return "" if s is None else str(s).strip()
 
 def _norm_key(s) -> str:
+    """Đưa header về dạng thường, không phân biệt hoa/thường."""
     return _norm(s).lower()
 
+
+# --- HÀM ĐỌC FILE DỮ LIỆU TEST ---
 def load_sheet(path: str, sheet_name: str) -> List[Dict[str, Any]]:
     """
-    Đọc 1 sheet từ Excel (header KHÔNG phân biệt hoa/thường).
-    Trả về list dict với 4 cột chuẩn: testcase, username, password, expected
+    Đọc dữ liệu từ 1 sheet Excel (Data-Driven).
+    Trả về danh sách dict: [{"testcase": ..., "username": ..., "password": ...}, ...]
     """
     wb = load_workbook(path)
     if sheet_name not in wb.sheetnames:
-        raise ValueError(f"Sheet '{sheet_name}' không tồn tại trong file {path}. Sheet có: {wb.sheetnames}")
+        raise ValueError(f"❌ Sheet '{sheet_name}' không tồn tại trong file {path}. "
+                         f"Các sheet hiện có: {wb.sheetnames}")
     ws = wb[sheet_name]
 
     rows = list(ws.iter_rows(values_only=True))
@@ -33,74 +40,54 @@ def load_sheet(path: str, sheet_name: str) -> List[Dict[str, Any]]:
     for r in rows[1:]:
         if not r:
             continue
-        row_raw = {header[i]: _norm(r[i]) for i in range(min(len(header), len(r)))}
-        row = {
-            "testcase": row_raw.get("testcase", ""),
-            "username": row_raw.get("username", ""),
-            "password": row_raw.get("password", ""),
-            "expected": row_raw.get("expected", ""),
-        }
-        if row["testcase"]:
+        row = {header[i]: _norm(r[i]) for i in range(min(len(header), len(r)))}
+        if row.get("testcase"):  # chỉ lấy dòng có Testcase
             data.append(row)
 
     print(f"[INFO] Loaded {len(data)} rows from '{os.path.basename(path)}' sheet '{sheet_name}'")
     return data
 
+
+# --- LỚP GHI KẾT QUẢ TEST RA FILE EXCEL ---
 class ResultBook:
-    def __init__(self, out_dir: str, file_name: str = "Results_Data.xlsx"):
+    """
+    Lưu kết quả test vào Excel.
+    ✔️ Ghi đè sheet hiện tại (VD: 'Login')
+    ✔️ Giữ nguyên các sheet khác (VD: 'Register', 'Search')
+    """
+    def __init__(self, out_dir: str, file_name: str = "ResultsData.xlsx"):
         ensure_dir(out_dir)
         self.path = os.path.join(out_dir, file_name)
         self._sheets: DefaultDict[str, list[dict]] = defaultdict(list)
 
     def add_row(self, sheet: str, row: Dict[str, Any]):
+        """Thêm 1 dòng kết quả vào bộ nhớ tạm."""
         self._sheets[sheet].append(row)
 
-    def _overwrite_by_testcase(self, df_old: pd.DataFrame, df_new: pd.DataFrame) -> pd.DataFrame:
-    
-        preferred = ['Testcase', 'Username', 'Password', 'Expected', 'Actual', 'Status', 'Time']
-
-        for col in preferred:
-            if col not in df_old.columns: df_old[col] = ''
-            if col not in df_new.columns: df_new[col] = ''
-
-        old_idx = df_old.set_index('Testcase', drop=False)
-        new_idx = df_new.set_index('Testcase', drop=False)
-
-        # bỏ các testcase trùng trong old rồi nối new vào
-        old_kept = old_idx[~old_idx.index.isin(new_idx.index)]
-        final = pd.concat([old_kept, new_idx], axis=0).reset_index(drop=True)
-
-        # sắp xếp cột theo preferred (những cột thừa – nếu có – đưa ra sau)
-        ordered = [c for c in preferred if c in final.columns] + [c for c in final.columns if c not in preferred]
-        return final[ordered]
-
     def save(self):
-        # tải sheet cũ (nếu file tồn tại) để giữ lại các sheet không ghi lần này
+        """Ghi dữ liệu ra file Excel — chỉ ghi đè sheet đang test."""
         existing = {}
+
+        # ✅ Đọc toàn bộ sheet cũ nếu file tồn tại
         if os.path.exists(self.path):
-            xls = pd.ExcelFile(self.path, engine="openpyxl")
-            for s in xls.sheet_names:
-                existing[s] = xls.parse(s)
+            try:
+                xls = pd.ExcelFile(self.path, engine="openpyxl")
+                for s in xls.sheet_names:
+                    existing[s] = xls.parse(s)
+            except Exception as e:
+                print(f"[WARN] Không thể đọc file cũ: {e}")
 
+        # ✅ Ghi lại toàn bộ file (sheet mới ghi đè, sheet cũ giữ nguyên)
         with pd.ExcelWriter(self.path, engine="openpyxl", mode="w") as writer:
-            # ghi lại các sheet cũ mà lần này không động tới
-            for s, df in existing.items():
+            # Ghi lại các sheet cũ KHÔNG bị ghi đè
+            for s, df_old in existing.items():
                 if s not in self._sheets:
-                    df.to_excel(writer, sheet_name=s, index=False)
+                    df_old.to_excel(writer, sheet_name=s, index=False)
 
-            # ghi/ghi đè các sheet mới
+            # Ghi sheet mới hoặc sheet vừa test xong (ghi đè)
             for s, rows in self._sheets.items():
                 df_new = pd.DataFrame(rows)
-                if s in existing and not existing[s].empty and 'Testcase' in existing[s].columns:
-                    final = self._overwrite_by_testcase(existing[s], df_new)
-                else:
-                    # sheet mới hoàn toàn
-                    preferred = ['Testcase', 'Username', 'Password', 'Expected', 'Actual', 'Status', 'Time']
-                    for col in preferred:
-                        if col not in df_new.columns: df_new[col] = ''
-                    final = df_new[preferred]
-                final.to_excel(writer, sheet_name=s, index=False)
-        return self.path
+                df_new.to_excel(writer, sheet_name=s, index=False)
 
-# re-export (tuỳ chọn)
-from .expected import Exp, normalize_expected  # noqa: E402
+        print(f"[RESULT SAVED]: {self.path}")
+        return self.path

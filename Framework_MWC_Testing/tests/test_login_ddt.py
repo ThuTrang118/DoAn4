@@ -1,4 +1,4 @@
-# tests/test_login_ddt.py
+import os
 import pytest
 from datetime import datetime
 from pages.login_page import MWCLoginPage
@@ -7,73 +7,98 @@ from utils.excel_utils import load_sheet
 from utils.expected import Exp, normalize_expected
 
 DATA_PATH = "data/TestData.xlsx"
-SHEET = "Login" 
-
-def rows():
-    data = load_sheet(DATA_PATH, SHEET)
-    out = []
-    for r in data:
-        tc = r.get("testcase")
-        if not tc:
-            continue
-        u = r.get("username", "")
-        p = r.get("password", "")
-        expected_raw = r.get("expected", "")   # giữ nguyên
-        exp_type, exp_value = normalize_expected(expected_raw, u, p)
-        out.append(pytest.param(tc, u, p, expected_raw, exp_type, exp_value, id=str(tc)))
-    return out
-
-@pytest.mark.parametrize("tc,username,password,expected_raw,exp,exp_value", rows())
-def test_login_ddt(driver, result_writer, tc, username, password, expected_raw, exp: Exp, exp_value: str):
+SHEET = "Login"
+@pytest.mark.parametrize("tc,username,password,expected_raw,exp,exp_value", [
+    pytest.param(
+        r["testcase"],
+        r.get("username", ""),
+        r.get("password", ""),
+        r.get("expected", ""),
+        *normalize_expected(r.get("expected", ""), r.get("username", ""), r.get("password", "")),
+        id=str(r["testcase"])
+    )
+    for r in load_sheet(DATA_PATH, SHEET) if r.get("testcase")
+])
+def test_login_ddt(driver, result_writer, tc, username, password, expected_raw, exp, exp_value):
     page = MWCLoginPage(driver)
     page.open()
+    page.login(username, password)
 
-    if username: page.set_username(username)
-    if password: page.set_password(password)
-    page.click_login()
-
-    status = "FAIL"
-    actual = ""
+    status, actual = "FAIL", ""
 
     try:
-        if exp is Exp.SUCCESS:
-            assert page.at_home(), "Không chuyển về trang chủ sau khi đăng nhập thành công."
-            profile = ProfilePage(driver)
-            profile.open_profile()
-            assert profile.profile_username_present(), "Không thấy #UserName trên trang Profile."
-            actual = profile.read_profile_username()
-            if exp_value:
-                assert exp_value.lower() in (actual or "").lower(), \
-                    f"Tên hiển thị không khớp. Expect~ '{exp_value}', actual~ '{actual}'"
-            status = "PASS"
+        # 1 HTML5 VALIDATION — form chưa gửi được
+        html5_messages = []
+        try:
+            if not username:
+                msg_u = page.get_validation_message(page.USERNAME)
+                if msg_u:
+                    html5_messages.append(msg_u)
+            if not password:
+                msg_p = page.get_validation_message(page.PASSWORD)
+                if msg_p:
+                    html5_messages.append(msg_p)
+        except Exception:
+            pass
 
-        elif exp in {Exp.REQ_USER, Exp.REQ_PASS, Exp.REQ_BOTH}:
-            need_user = exp in {Exp.REQ_USER, Exp.REQ_BOTH}
-            need_pass = exp in {Exp.REQ_PASS, Exp.REQ_BOTH}
-            ok = True
-            if need_user: ok = ok and page.username_value_missing()
-            if need_pass: ok = ok and page.password_value_missing()
-            actual = page.get_username_validation() or page.get_password_validation()
-            assert ok, f"Expected required; u='{page.get_username_validation()}', p='{page.get_password_validation()}'"
-            status = "PASS"
+        if html5_messages:
+            actual = " | ".join(html5_messages)
+            # Đánh giá theo expected
+            if "vui lòng điền" in actual.lower() and "vui lòng điền" in expected_raw.lower():
+                status = "PASS"
+            else:
+                status = "FAIL"
+        # 2 ALERT LỖI ĐĂNG NHẬP SAI — chỉ kiểm tra nếu không có HTML5
+        elif True:  # kiểm tra tiếp nếu không bị HTML5
+            alert_text = (page.get_alert_text() or "").strip().lower()
+            if alert_text:
+                actual = alert_text
+                if "tên đăng nhập hoặc mật khẩu không đúng" in alert_text:
+                    if "tên đăng nhập hoặc mật khẩu không đúng" in expected_raw.lower():
+                        status = "PASS"
+                    else:
+                        status = "FAIL"
+                else:
+                    # Nếu có alert khác
+                    status = "FAIL"
+            # 3 ĐĂNG NHẬP THÀNH CÔNG — chỉ kiểm tra khi không có alert
+            elif page.at_home():
+                profile = ProfilePage(driver)
+                profile.open_profile()
+                if profile.profile_username_present():
+                    actual = profile.read_profile_username()
+                    if username.lower() in (actual or "").lower():
+                        status = "PASS"
+                    else:
+                        actual = f"Không tìm thấy thông báo."
+                        status = "FAIL"
+                else:
+                    actual = "Không thấy #UserName trên trang Profile."
+                    status = "FAIL"
+            # 4 FALLBACK — nếu không rơi vào các trường hợp trên
+            else:
+                actual = "Đăng nhập không thành công"
+                status = "FAIL"
 
-        elif exp is Exp.INVALID:
-            actual = page.get_alert_text()
-            assert "Tên đăng nhập hoặc mật khẩu không đúng!" in actual, \
-                f"Expect 'Tên đăng nhập hoặc mật khẩu không đúng!', got '{actual}'"
-            status = "PASS"
-
-        else:
-            pytest.skip(f"Unknown expectation: {exp}")
+    except Exception as e:
+        actual = f"Lỗi khi chạy testcase: {e}"
+        status = "FAIL"
 
     finally:
-        timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        # Ghi kết quả vào Excel
         result_writer.add_row(SHEET, {
             "Testcase": tc,
             "Username": username,
             "Password": password,
-            "Expected": expected_raw,     
+            "Expected": expected_raw,
             "Actual": actual,
             "Status": status,
-            "Time": timestamp             
+            "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
         })
+
+    # Nếu FAIL thật → pytest fail để kích hoạt chụp ảnh trong conftest.py
+    if status == "FAIL":
+        pytest.fail(
+            f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'",
+            pytrace=False
+        )

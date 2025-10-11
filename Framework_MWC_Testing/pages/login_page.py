@@ -1,4 +1,3 @@
-# pages/login_page.py
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -19,43 +18,29 @@ class MWCLoginPage:
     def open(self):
         self.driver.get(self.URL)
 
-    def set_username(self, username: str):
-        el = self.wait.until(EC.presence_of_element_located(self.USERNAME))
-        el.clear(); el.send_keys(username)
+    def login(self, username: str, password: str):
+        self.set_username(username)
+        self.set_password(password)
+        self.click_login()
 
-    def set_password(self, password: str):
+    def set_username(self, val: str):
+        el = self.wait.until(EC.presence_of_element_located(self.USERNAME))
+        el.clear(); el.send_keys(val)
+
+    def set_password(self, val: str):
         el = self.wait.until(EC.presence_of_element_located(self.PASSWORD))
-        el.clear(); el.send_keys(password)
+        el.clear(); el.send_keys(val)
 
     def click_login(self):
         self.wait.until(EC.element_to_be_clickable(self.LOGIN_BTN)).click()
 
-    # --- required checks (ngôn ngữ-agnostic) ---
-    def _value_missing(self, locator) -> bool:
-        el = self.driver.find_element(*locator)
+    def get_validation_message(self, locator) -> str:
+        """Trả về thông báo HTML5 validationMessage."""
         try:
-            return bool(self.driver.execute_script(
-                "return arguments[0].validity ? arguments[0].validity.valueMissing : false;", el
-            ))
+            el = self.driver.find_element(*locator)
+            return (el.get_attribute("validationMessage") or "").strip()
         except Exception:
-            required = el.get_attribute("required")
-            value = el.get_attribute("value") or ""
-            return (required is not None) and (value.strip() == "")
-
-    def username_value_missing(self) -> bool:
-        return self._value_missing(self.USERNAME)
-
-    def password_value_missing(self) -> bool:
-        return self._value_missing(self.PASSWORD)
-    # -------------------------------------------
-
-    def get_username_validation(self) -> str:
-        el = self.driver.find_element(*self.USERNAME)
-        return (el.get_attribute("validationMessage") or "").strip()
-
-    def get_password_validation(self) -> str:
-        el = self.driver.find_element(*self.PASSWORD)
-        return (el.get_attribute("validationMessage") or "").strip()
+            return ""
 
     def get_alert_text(self) -> str:
         try:
