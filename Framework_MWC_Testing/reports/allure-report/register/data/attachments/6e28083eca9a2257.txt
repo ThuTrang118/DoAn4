@@ -1,0 +1,11 @@
+[32mINFO    [0m register:test_register_ddt.py:32 
+=== Bắt đầu Testcase DK4 ===
+[32mINFO    [0m register:test_register_ddt.py:33 Dữ liệu: Username='user_demo_3', Phone='0912345678', Expected='Vui lòng điền vào trường này.'
+[32mINFO    [0m register:register_page.py:20 Mở trang đăng ký tài khoản MWC.
+[32mINFO    [0m register:register_page.py:24 Điền thông tin: Username='user_demo_3', Phone='0912345678', Password='***', RePass='***'
+[32mINFO    [0m register:register_page.py:33 Click nút 'Đăng ký'.
+[32mINFO    [0m register:register_page.py:50 Kiểm tra về trang chủ sau đăng ký: True
+[32mINFO    [0m register:test_register_ddt.py:92 Expected: Vui lòng điền vào trường này.
+[32mINFO    [0m register:test_register_ddt.py:93 Actual:   Không có thông báo hiển thị.
+[32mINFO    [0m register:test_register_ddt.py:94 Status:   FAIL
+[32mINFO    [0m register:test_register_ddt.py:95 === Kết thúc testcase DK4 ===

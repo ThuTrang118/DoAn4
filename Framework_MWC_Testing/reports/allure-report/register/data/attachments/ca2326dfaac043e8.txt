@@ -1,0 +1,12 @@
+[32mINFO    [0m register:test_register_ddt.py:32 
+=== Bắt đầu Testcase DK12 ===
+[32mINFO    [0m register:test_register_ddt.py:33 Dữ liệu: Username='Ánh Dương Phạm', Phone='035214679', Expected='tài khoản đã tồn tại trong hệ thống'
+[32mINFO    [0m register:register_page.py:20 Mở trang đăng ký tài khoản MWC.
+[32mINFO    [0m register:register_page.py:24 Điền thông tin: Username='Ánh Dương Phạm', Phone='035214679', Password='***', RePass='***'
+[32mINFO    [0m register:register_page.py:33 Click nút 'Đăng ký'.
+[32mINFO    [0m register:register_page.py:42 Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[32mINFO    [0m register:test_register_ddt.py:64 Alert hiển thị: tài khoản đã tồn tại trong hệ thống
+[32mINFO    [0m register:test_register_ddt.py:92 Expected: tài khoản đã tồn tại trong hệ thống
+[32mINFO    [0m register:test_register_ddt.py:93 Actual:   tài khoản đã tồn tại trong hệ thống
+[32mINFO    [0m register:test_register_ddt.py:94 Status:   PASS
+[32mINFO    [0m register:test_register_ddt.py:95 === Kết thúc testcase DK12 ===

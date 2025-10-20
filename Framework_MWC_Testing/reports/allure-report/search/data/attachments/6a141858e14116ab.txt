@@ -1,0 +1,13 @@
+[32mINFO    [0m search:test_search_ddt.py:32 
+=== Bắt đầu Testcase TK1 ===
+[32mINFO    [0m search:test_search_ddt.py:33 Input | Keyword='Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái.' | Expected='Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái.'
+[32mINFO    [0m search:search_page.py:33 Mở trang chủ MWC.
+[32mINFO    [0m search:search_page.py:41 Thực hiện tìm kiếm với từ khóa: 'Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái.'
+[32mINFO    [0m search:search_page.py:48 Sản phẩm đầu tiên: Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái.
+195.000 đ
+[32mINFO    [0m search:search_page.py:74 Từ khóa 'Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái.' xuất hiện trong sản phẩm đầu tiên.
+[32mINFO    [0m search:test_search_ddt.py:63 Expected: Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái.
+[32mINFO    [0m search:test_search_ddt.py:64 Actual:   Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái.
+195.000 đ
+[32mINFO    [0m search:test_search_ddt.py:65 Status:   PASS
+[32mINFO    [0m search:test_search_ddt.py:66 === Kết thúc testcase TK1 ===

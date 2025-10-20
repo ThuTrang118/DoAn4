@@ -1,0 +1,644 @@
+[20/10/2025 15:12:23] [INFO] === Logger khởi tạo cho chức năng: PROFILEUPDATE ===
+[20/10/2025 15:12:23] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_profileupdate_20251020.log
+[20/10/2025 15:12:25] [INFO] ================================================================================
+[20/10/2025 15:12:25] [INFO] BẮT ĐẦU TESTCASE TT1
+[20/10/2025 15:12:25] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:12:28] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:12:29] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:12:29] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:12:29] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:12:29] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:12:29] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:12:29] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:12:29] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:12:30] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:12:30] [INFO] Chọn ngày sinh: 1-1-2000
+[20/10/2025 15:12:30] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:12:32] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:12:33] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:12:33] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:12:35] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:12:35] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:12:35] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:12:35] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:12:35] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:12:35] [INFO] Status:   PASS
+[20/10/2025 15:12:35] [INFO] KẾT THÚC TESTCASE TT1
+[20/10/2025 15:12:35] [INFO] ================================================================================
+
+[20/10/2025 15:12:38] [INFO] ================================================================================
+[20/10/2025 15:12:38] [INFO] BẮT ĐẦU TESTCASE TT2
+[20/10/2025 15:12:38] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:12:45] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:12:46] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:12:46] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:12:46] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:12:46] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:12:47] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:12:47] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:12:47] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:12:47] [INFO] Đã chọn giới tính: nam
+[20/10/2025 15:12:47] [INFO] Chọn ngày sinh: 10-10-2000
+[20/10/2025 15:12:47] [WARNING] Không chọn được địa chỉ hành chính (bỏ qua).
+[20/10/2025 15:12:47] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:12:49] [WARNING] Không thể click nút Lưu (bỏ qua).
+[20/10/2025 15:13:14] [WARNING] Không thấy thông báo sau khi lưu.
+[20/10/2025 15:13:14] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:13:14] [INFO] Actual:   Không thấy thông báo sau khi lưu.
+[20/10/2025 15:13:14] [INFO] Status:   FAIL
+[20/10/2025 15:13:14] [ERROR] Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT2_.png
+[20/10/2025 15:13:19] [INFO] ================================================================================
+[20/10/2025 15:13:19] [INFO] BẮT ĐẦU TESTCASE TT3
+[20/10/2025 15:13:19] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156790', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:13:22] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:13:23] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:13:23] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:13:23] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:13:24] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:13:24] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:13:24] [INFO] Nhập vào ('id', 'Phone'): 03321156790
+[20/10/2025 15:13:24] [INFO] Đã chọn giới tính: nữ
+[20/10/2025 15:13:24] [INFO] Chọn ngày sinh: 11-11-2001
+[20/10/2025 15:13:24] [WARNING] Không chọn được địa chỉ hành chính (bỏ qua).
+[20/10/2025 15:13:24] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:13:25] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:13:25] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:13:25] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:13:25] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:13:25] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:13:25] [INFO] Status:   PASS
+[20/10/2025 15:13:25] [INFO] KẾT THÚC TESTCASE TT3
+[20/10/2025 15:13:25] [INFO] ================================================================================
+
+[20/10/2025 15:13:29] [INFO] ================================================================================
+[20/10/2025 15:13:29] [INFO] BẮT ĐẦU TESTCASE TT4
+[20/10/2025 15:13:29] [INFO] Input → Username='Ánh Dương Phạm', Email='', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:13:31] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:13:32] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:13:32] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:13:32] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:13:32] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:13:32] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:13:32] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:13:32] [INFO] Đã chọn giới tính: khác
+[20/10/2025 15:13:33] [INFO] Chọn ngày sinh: 2-2-2001
+[20/10/2025 15:13:33] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:13:34] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:13:35] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:13:35] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:13:36] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:13:36] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:13:36] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:13:36] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:13:36] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:13:36] [INFO] Status:   PASS
+[20/10/2025 15:13:36] [INFO] KẾT THÚC TESTCASE TT4
+[20/10/2025 15:13:36] [INFO] ================================================================================
+
+[20/10/2025 15:13:40] [INFO] ================================================================================
+[20/10/2025 15:13:40] [INFO] BẮT ĐẦU TESTCASE TT5
+[20/10/2025 15:13:40] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:13:43] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:13:44] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:13:44] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:13:44] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:13:44] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:13:44] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:13:44] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:13:44] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:13:45] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:13:45] [INFO] Chọn ngày sinh: 2-2-2001
+[20/10/2025 15:13:46] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:13:47] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:13:48] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:13:49] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:13:49] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:13:49] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:13:49] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:13:49] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:13:49] [INFO] Status:   PASS
+[20/10/2025 15:13:49] [INFO] KẾT THÚC TESTCASE TT5
+[20/10/2025 15:13:49] [INFO] ================================================================================
+
+[20/10/2025 15:13:53] [INFO] ================================================================================
+[20/10/2025 15:13:53] [INFO] BẮT ĐẦU TESTCASE TT6
+[20/10/2025 15:13:53] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:13:55] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:13:56] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:13:56] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:13:56] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:13:56] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:13:56] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:13:56] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:13:56] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:13:56] [INFO] Đã chọn giới tính: nam
+[20/10/2025 15:13:56] [INFO] Chọn ngày sinh: 2-2-2001
+[20/10/2025 15:13:56] [INFO] Đã chọn Tỉnh/TP: Chọn Tỉnh/Thành
+[20/10/2025 15:14:08] [WARNING] Không chọn được địa chỉ hành chính (bỏ qua).
+[20/10/2025 15:14:09] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:14:09] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:14:09] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:14:09] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:14:09] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:14:09] [INFO] Status:   PASS
+[20/10/2025 15:14:09] [INFO] KẾT THÚC TESTCASE TT6
+[20/10/2025 15:14:09] [INFO] ================================================================================
+
+[20/10/2025 15:14:13] [INFO] ================================================================================
+[20/10/2025 15:14:13] [INFO] BẮT ĐẦU TESTCASE TT7
+[20/10/2025 15:14:13] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@', Phone='03321156789', Expected='Vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.'
+[20/10/2025 15:14:15] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:14:16] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:14:16] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:14:16] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:14:16] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:14:16] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:14:16] [INFO] Nhập vào ('id', 'Email'): anh1@
+[20/10/2025 15:14:16] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:14:16] [INFO] Đã chọn giới tính: khác
+[20/10/2025 15:14:16] [INFO] Chọn ngày sinh: 2-2-2001
+[20/10/2025 15:14:16] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:14:17] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:14:19] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:14:19] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:14:19] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:14:29] [INFO] HTML5 validation: vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+[20/10/2025 15:14:29] [INFO] HTML5 validation: vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+[20/10/2025 15:14:29] [INFO] Expected: Vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+[20/10/2025 15:14:29] [INFO] Actual:   vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+[20/10/2025 15:14:29] [INFO] Status:   PASS
+[20/10/2025 15:14:29] [INFO] KẾT THÚC TESTCASE TT7
+[20/10/2025 15:14:29] [INFO] ================================================================================
+
+[20/10/2025 15:14:32] [INFO] ================================================================================
+[20/10/2025 15:14:32] [INFO] BẮT ĐẦU TESTCASE TT8
+[20/10/2025 15:14:32] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@@', Phone='03321156790', Expected='Phần đứng sau '@' không được chứa biểu tượng '@'.'
+[20/10/2025 15:14:35] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:14:35] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:14:35] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:14:50] [WARNING] Không thể clear ('id', 'FullName') (bỏ qua).
+[20/10/2025 15:15:06] [WARNING] Không thể clear ('id', 'Email') (bỏ qua).
+[20/10/2025 15:15:21] [WARNING] Không thể clear ('id', 'Address') (bỏ qua).
+[20/10/2025 15:15:21] [INFO] Nhập vào ('id', 'UserName'): Ánh Dương Phạm
+[20/10/2025 15:15:37] [WARNING] Không thể nhập ('id', 'FullName') (bỏ qua).
+[20/10/2025 15:15:52] [WARNING] Không thể nhập ('id', 'Email') (bỏ qua).
+[20/10/2025 15:15:52] [INFO] Nhập vào ('id', 'Phone'): 03321156790
+[20/10/2025 15:15:52] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:15:52] [WARNING] Không chọn được ngày/tháng/năm sinh (bỏ qua).
+[20/10/2025 15:16:03] [WARNING] Không chọn được địa chỉ hành chính (bỏ qua).
+[20/10/2025 15:16:18] [WARNING] Không thể nhập ('id', 'Address') (bỏ qua).
+[20/10/2025 15:16:33] [WARNING] Không thể click nút Lưu (bỏ qua).
+[20/10/2025 15:16:59] [WARNING] Không thấy thông báo sau khi lưu.
+[20/10/2025 15:16:59] [INFO] Expected: Phần đứng sau '@' không được chứa biểu tượng '@'.
+[20/10/2025 15:16:59] [INFO] Actual:   Không thấy thông báo sau khi lưu.
+[20/10/2025 15:16:59] [INFO] Status:   FAIL
+[20/10/2025 15:16:59] [ERROR] Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT8_.png
+[20/10/2025 15:17:03] [INFO] ================================================================================
+[20/10/2025 15:17:03] [INFO] BẮT ĐẦU TESTCASE TT9
+[20/10/2025 15:17:03] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.', Phone='03321156789', Expected='.' bị sử dụng sai vị trí trong 'gmail.'.'
+[20/10/2025 15:17:05] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:17:06] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:17:06] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:17:06] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:17:06] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:17:06] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:17:06] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.
+[20/10/2025 15:17:06] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:17:06] [INFO] Đã chọn giới tính: nữ
+[20/10/2025 15:17:06] [INFO] Chọn ngày sinh: 5-5-2003
+[20/10/2025 15:17:06] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:17:08] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:17:09] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:17:09] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:17:09] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:17:19] [INFO] HTML5 validation: '.' bị sử dụng sai vị trí trong 'gmail.'.
+[20/10/2025 15:17:19] [INFO] HTML5 validation: '.' bị sử dụng sai vị trí trong 'gmail.'.
+[20/10/2025 15:17:19] [INFO] Expected: .' bị sử dụng sai vị trí trong 'gmail.'.
+[20/10/2025 15:17:19] [INFO] Actual:   '.' bị sử dụng sai vị trí trong 'gmail.'.
+[20/10/2025 15:17:19] [INFO] Status:   PASS
+[20/10/2025 15:17:19] [INFO] KẾT THÚC TESTCASE TT9
+[20/10/2025 15:17:19] [INFO] ================================================================================
+
+[20/10/2025 15:17:23] [INFO] ================================================================================
+[20/10/2025 15:17:23] [INFO] BẮT ĐẦU TESTCASE TT10
+[20/10/2025 15:17:23] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='', Expected='Vui lòng điền vào trường này.'
+[20/10/2025 15:17:25] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:17:26] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:17:26] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:17:26] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:17:26] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:17:26] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:17:26] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:17:26] [INFO] Đã chọn giới tính: khác
+[20/10/2025 15:17:27] [INFO] Chọn ngày sinh: 1-1-2004
+[20/10/2025 15:17:27] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:17:28] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:17:29] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:17:29] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:17:29] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:17:39] [INFO] HTML5 validation: vui lòng điền vào trường này.
+[20/10/2025 15:17:39] [INFO] HTML5 validation: Vui lòng điền vào trường này.
+[20/10/2025 15:17:39] [INFO] Expected: Vui lòng điền vào trường này.
+[20/10/2025 15:17:39] [INFO] Actual:   Vui lòng điền vào trường này.
+[20/10/2025 15:17:39] [INFO] Status:   PASS
+[20/10/2025 15:17:39] [INFO] KẾT THÚC TESTCASE TT10
+[20/10/2025 15:17:39] [INFO] ================================================================================
+
+[20/10/2025 15:17:43] [INFO] ================================================================================
+[20/10/2025 15:17:43] [INFO] BẮT ĐẦU TESTCASE TT11
+[20/10/2025 15:17:43] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='abcd', Expected='Số điện thoại không hợp lệ.'
+[20/10/2025 15:17:45] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:17:46] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:17:46] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:17:46] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:17:46] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:17:46] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:17:46] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:17:46] [INFO] Nhập vào ('id', 'Phone'): abcd
+[20/10/2025 15:17:46] [INFO] Đã chọn giới tính: nam
+[20/10/2025 15:17:47] [INFO] Chọn ngày sinh: 1-1-2005
+[20/10/2025 15:17:47] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:17:48] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:17:49] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:17:49] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:17:50] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:17:50] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:17:50] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:17:50] [INFO] Expected: Số điện thoại không hợp lệ.
+[20/10/2025 15:17:50] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:17:50] [INFO] Status:   FAIL
+[20/10/2025 15:17:51] [ERROR] Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT11_.png
+[20/10/2025 15:17:54] [INFO] ================================================================================
+[20/10/2025 15:17:54] [INFO] BẮT ĐẦU TESTCASE TT12
+[20/10/2025 15:17:54] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='345', Expected='Số điện thoại không hợp lệ.'
+[20/10/2025 15:17:57] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:17:57] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:17:57] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:17:58] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:17:58] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:17:58] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:17:58] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:17:58] [INFO] Nhập vào ('id', 'Phone'): 345
+[20/10/2025 15:17:59] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:17:59] [INFO] Chọn ngày sinh: 2-2-2006
+[20/10/2025 15:17:59] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:18:00] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:18:02] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:18:02] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:18:03] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:18:03] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:18:03] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:18:03] [INFO] Expected: Số điện thoại không hợp lệ.
+[20/10/2025 15:18:03] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:18:03] [INFO] Status:   FAIL
+[20/10/2025 15:18:03] [ERROR] Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT12_.png
+[20/10/2025 15:18:06] [INFO] ================================================================================
+[20/10/2025 15:18:06] [INFO] BẮT ĐẦU TESTCASE TT13
+[20/10/2025 15:18:06] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='0332115678987', Expected='Số điện thoại không hợp lệ.'
+[20/10/2025 15:18:10] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:18:10] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:18:10] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:18:11] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:18:11] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:18:11] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:18:11] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:18:11] [INFO] Nhập vào ('id', 'Phone'): 0332115678987
+[20/10/2025 15:18:12] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:18:12] [INFO] Chọn ngày sinh: 3-3-2007
+[20/10/2025 15:18:12] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:18:13] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:18:15] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:18:15] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:18:16] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:18:16] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:18:16] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:18:16] [INFO] Expected: Số điện thoại không hợp lệ.
+[20/10/2025 15:18:16] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:18:16] [INFO] Status:   FAIL
+[20/10/2025 15:18:16] [ERROR] Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT13_.png
+[20/10/2025 15:18:44] [INFO] === Logger khởi tạo cho chức năng: PROFILEUPDATE ===
+[20/10/2025 15:18:44] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_profileupdate_20251020.log
+[20/10/2025 15:18:45] [INFO] ================================================================================
+[20/10/2025 15:18:45] [INFO] BẮT ĐẦU TESTCASE TT1
+[20/10/2025 15:18:45] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:18:48] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:18:49] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:18:49] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:18:49] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:18:49] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:18:50] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:18:50] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:18:50] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:18:51] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:18:51] [INFO] Chọn ngày sinh: 1-1-2000
+[20/10/2025 15:18:51] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:18:52] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:18:54] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:18:54] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:18:55] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:18:55] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:18:55] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:18:55] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:18:55] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:18:55] [INFO] Status:   PASS
+[20/10/2025 15:18:55] [INFO] KẾT THÚC TESTCASE TT1
+[20/10/2025 15:18:55] [INFO] ================================================================================
+
+[20/10/2025 15:18:59] [INFO] ================================================================================
+[20/10/2025 15:18:59] [INFO] BẮT ĐẦU TESTCASE TT2
+[20/10/2025 15:18:59] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:19:01] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:19:02] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:19:02] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:19:02] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:19:02] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:19:02] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:19:02] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:19:02] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:19:04] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:19:04] [INFO] Chọn ngày sinh: 10-10-2000
+[20/10/2025 15:19:04] [WARNING] Không chọn được địa chỉ hành chính (bỏ qua).
+[20/10/2025 15:19:04] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:19:05] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:19:05] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:19:05] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:05] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:05] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:19:05] [INFO] Status:   PASS
+[20/10/2025 15:19:05] [INFO] KẾT THÚC TESTCASE TT2
+[20/10/2025 15:19:05] [INFO] ================================================================================
+
+[20/10/2025 15:19:08] [INFO] ================================================================================
+[20/10/2025 15:19:08] [INFO] BẮT ĐẦU TESTCASE TT3
+[20/10/2025 15:19:08] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156790', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:19:11] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:19:11] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:19:11] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:19:12] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:19:12] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:19:12] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:19:12] [INFO] Nhập vào ('id', 'Phone'): 03321156790
+[20/10/2025 15:19:12] [INFO] Đã chọn giới tính: nữ
+[20/10/2025 15:19:12] [INFO] Chọn ngày sinh: 11-11-2001
+[20/10/2025 15:19:12] [WARNING] Không chọn được địa chỉ hành chính (bỏ qua).
+[20/10/2025 15:19:12] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:19:13] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:19:13] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:19:13] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:13] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:13] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:19:13] [INFO] Status:   PASS
+[20/10/2025 15:19:13] [INFO] KẾT THÚC TESTCASE TT3
+[20/10/2025 15:19:13] [INFO] ================================================================================
+
+[20/10/2025 15:19:16] [INFO] ================================================================================
+[20/10/2025 15:19:16] [INFO] BẮT ĐẦU TESTCASE TT4
+[20/10/2025 15:19:16] [INFO] Input → Username='Ánh Dương Phạm', Email='', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:19:19] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:19:20] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:19:20] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:19:20] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:19:20] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:19:20] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:19:20] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:19:22] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:19:22] [INFO] Chọn ngày sinh: 2-2-2001
+[20/10/2025 15:19:22] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:19:23] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:19:24] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:19:24] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:19:25] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:19:25] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:19:25] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:25] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:25] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:19:25] [INFO] Status:   PASS
+[20/10/2025 15:19:25] [INFO] KẾT THÚC TESTCASE TT4
+[20/10/2025 15:19:25] [INFO] ================================================================================
+
+[20/10/2025 15:19:29] [INFO] ================================================================================
+[20/10/2025 15:19:29] [INFO] BẮT ĐẦU TESTCASE TT5
+[20/10/2025 15:19:29] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:19:31] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:19:32] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:19:32] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:19:32] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:19:32] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:19:32] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:19:32] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:19:32] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:19:34] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:19:34] [INFO] Chọn ngày sinh: 2-2-2001
+[20/10/2025 15:19:34] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:19:35] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:19:36] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:19:37] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:19:37] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:19:37] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:37] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:37] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:19:37] [INFO] Status:   PASS
+[20/10/2025 15:19:37] [INFO] KẾT THÚC TESTCASE TT5
+[20/10/2025 15:19:37] [INFO] ================================================================================
+
+[20/10/2025 15:19:41] [INFO] ================================================================================
+[20/10/2025 15:19:41] [INFO] BẮT ĐẦU TESTCASE TT6
+[20/10/2025 15:19:41] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='03321156789', Expected='Cập nhập tài khoản thành công!'
+[20/10/2025 15:19:44] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:19:44] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:19:44] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:19:44] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:19:44] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:19:45] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:19:45] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:19:45] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:19:46] [WARNING] Không chọn được giới tính (bỏ qua).
+[20/10/2025 15:19:46] [INFO] Chọn ngày sinh: 2-2-2001
+[20/10/2025 15:19:46] [INFO] Đã chọn Tỉnh/TP: Chọn Tỉnh/Thành
+[20/10/2025 15:19:57] [WARNING] Không chọn được địa chỉ hành chính (bỏ qua).
+[20/10/2025 15:19:58] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:19:58] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:19:58] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:58] [INFO] Expected: Cập nhập tài khoản thành công!
+[20/10/2025 15:19:58] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:19:58] [INFO] Status:   PASS
+[20/10/2025 15:19:58] [INFO] KẾT THÚC TESTCASE TT6
+[20/10/2025 15:19:58] [INFO] ================================================================================
+
+[20/10/2025 15:20:01] [INFO] ================================================================================
+[20/10/2025 15:20:01] [INFO] BẮT ĐẦU TESTCASE TT7
+[20/10/2025 15:20:01] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@', Phone='03321156789', Expected='Vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.'
+[20/10/2025 15:20:05] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:20:06] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:20:06] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:20:06] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:20:06] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:20:06] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:20:06] [INFO] Nhập vào ('id', 'Email'): anh1@
+[20/10/2025 15:20:06] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:20:06] [INFO] Đã chọn giới tính: khác
+[20/10/2025 15:20:06] [INFO] Chọn ngày sinh: 2-2-2001
+[20/10/2025 15:20:06] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:20:08] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:20:09] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:20:09] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:20:09] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:20:19] [INFO] HTML5 validation: vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+[20/10/2025 15:20:19] [INFO] HTML5 validation: vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+[20/10/2025 15:20:19] [INFO] Expected: Vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+[20/10/2025 15:20:19] [INFO] Actual:   vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+[20/10/2025 15:20:19] [INFO] Status:   PASS
+[20/10/2025 15:20:19] [INFO] KẾT THÚC TESTCASE TT7
+[20/10/2025 15:20:19] [INFO] ================================================================================
+
+[20/10/2025 15:20:22] [INFO] ================================================================================
+[20/10/2025 15:20:22] [INFO] BẮT ĐẦU TESTCASE TT8
+[20/10/2025 15:20:22] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@@', Phone='03321156790', Expected='Phần đứng sau '@' không được chứa biểu tượng '@'.'
+[20/10/2025 15:20:25] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:20:26] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:20:26] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:20:26] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:20:26] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:20:26] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:20:26] [INFO] Nhập vào ('id', 'Email'): anh1@@
+[20/10/2025 15:20:26] [INFO] Nhập vào ('id', 'Phone'): 03321156790
+[20/10/2025 15:20:26] [INFO] Đã chọn giới tính: nam
+[20/10/2025 15:20:26] [INFO] Chọn ngày sinh: 1-1-2002
+[20/10/2025 15:20:26] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:20:28] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:20:29] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:20:29] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:20:29] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:20:39] [INFO] HTML5 validation: phần đứng sau '@' không được chứa biểu tượng '@'.
+[20/10/2025 15:20:39] [INFO] HTML5 validation: phần đứng sau '@' không được chứa biểu tượng '@'.
+[20/10/2025 15:20:39] [INFO] Expected: Phần đứng sau '@' không được chứa biểu tượng '@'.
+[20/10/2025 15:20:39] [INFO] Actual:   phần đứng sau '@' không được chứa biểu tượng '@'.
+[20/10/2025 15:20:39] [INFO] Status:   PASS
+[20/10/2025 15:20:39] [INFO] KẾT THÚC TESTCASE TT8
+[20/10/2025 15:20:39] [INFO] ================================================================================
+
+[20/10/2025 15:20:43] [INFO] ================================================================================
+[20/10/2025 15:20:43] [INFO] BẮT ĐẦU TESTCASE TT9
+[20/10/2025 15:20:43] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.', Phone='03321156789', Expected='.' bị sử dụng sai vị trí trong 'gmail.'.'
+[20/10/2025 15:20:46] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:20:47] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:20:47] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:20:47] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:20:47] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:20:47] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:20:47] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.
+[20/10/2025 15:20:47] [INFO] Nhập vào ('id', 'Phone'): 03321156789
+[20/10/2025 15:20:47] [INFO] Đã chọn giới tính: nữ
+[20/10/2025 15:20:47] [INFO] Chọn ngày sinh: 5-5-2003
+[20/10/2025 15:20:47] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:20:48] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:20:50] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:20:50] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:20:50] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:21:00] [INFO] HTML5 validation: '.' bị sử dụng sai vị trí trong 'gmail.'.
+[20/10/2025 15:21:00] [INFO] HTML5 validation: '.' bị sử dụng sai vị trí trong 'gmail.'.
+[20/10/2025 15:21:00] [INFO] Expected: .' bị sử dụng sai vị trí trong 'gmail.'.
+[20/10/2025 15:21:00] [INFO] Actual:   '.' bị sử dụng sai vị trí trong 'gmail.'.
+[20/10/2025 15:21:00] [INFO] Status:   PASS
+[20/10/2025 15:21:00] [INFO] KẾT THÚC TESTCASE TT9
+[20/10/2025 15:21:00] [INFO] ================================================================================
+
+[20/10/2025 15:21:03] [INFO] ================================================================================
+[20/10/2025 15:21:03] [INFO] BẮT ĐẦU TESTCASE TT10
+[20/10/2025 15:21:03] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='', Expected='Vui lòng điền vào trường này.'
+[20/10/2025 15:21:06] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:21:07] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:21:07] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:21:07] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:21:07] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:21:07] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:21:07] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:21:07] [INFO] Đã chọn giới tính: khác
+[20/10/2025 15:21:07] [INFO] Chọn ngày sinh: 1-1-2004
+[20/10/2025 15:21:07] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:21:09] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:21:10] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:21:10] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:21:10] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:21:20] [INFO] HTML5 validation: vui lòng điền vào trường này.
+[20/10/2025 15:21:20] [INFO] HTML5 validation: Vui lòng điền vào trường này.
+[20/10/2025 15:21:20] [INFO] Expected: Vui lòng điền vào trường này.
+[20/10/2025 15:21:20] [INFO] Actual:   Vui lòng điền vào trường này.
+[20/10/2025 15:21:20] [INFO] Status:   PASS
+[20/10/2025 15:21:20] [INFO] KẾT THÚC TESTCASE TT10
+[20/10/2025 15:21:20] [INFO] ================================================================================
+
+[20/10/2025 15:21:24] [INFO] ================================================================================
+[20/10/2025 15:21:24] [INFO] BẮT ĐẦU TESTCASE TT11
+[20/10/2025 15:21:24] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='abcd', Expected='Số điện thoại không hợp lệ.'
+[20/10/2025 15:21:26] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:21:27] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:21:27] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:21:27] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:21:27] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:21:27] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:21:27] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:21:27] [INFO] Nhập vào ('id', 'Phone'): abcd
+[20/10/2025 15:21:28] [INFO] Đã chọn giới tính: nam
+[20/10/2025 15:21:28] [INFO] Chọn ngày sinh: 1-1-2005
+[20/10/2025 15:21:28] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:21:29] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:21:30] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:21:30] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:21:32] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:21:32] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:21:32] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:21:32] [INFO] Expected: Số điện thoại không hợp lệ.
+[20/10/2025 15:21:32] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:21:32] [INFO] Status:   FAIL
+[20/10/2025 15:21:32] [ERROR] Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT11_.png
+[20/10/2025 15:21:36] [INFO] ================================================================================
+[20/10/2025 15:21:36] [INFO] BẮT ĐẦU TESTCASE TT12
+[20/10/2025 15:21:36] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='345', Expected='Số điện thoại không hợp lệ.'
+[20/10/2025 15:21:39] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:21:39] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:21:39] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:21:40] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:21:40] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:21:40] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:21:40] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:21:40] [INFO] Nhập vào ('id', 'Phone'): 345
+[20/10/2025 15:21:40] [INFO] Đã chọn giới tính: nữ
+[20/10/2025 15:21:40] [INFO] Chọn ngày sinh: 2-2-2006
+[20/10/2025 15:21:40] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:21:41] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:21:43] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:21:43] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:21:44] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:21:44] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:21:44] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:21:44] [INFO] Expected: Số điện thoại không hợp lệ.
+[20/10/2025 15:21:44] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:21:44] [INFO] Status:   FAIL
+[20/10/2025 15:21:44] [ERROR] Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT12_.png
+[20/10/2025 15:21:47] [INFO] ================================================================================
+[20/10/2025 15:21:47] [INFO] BẮT ĐẦU TESTCASE TT13
+[20/10/2025 15:21:47] [INFO] Input → Username='Ánh Dương Phạm', Email='anh1@gmail.com', Phone='0332115678987', Expected='Số điện thoại không hợp lệ.'
+[20/10/2025 15:21:51] [INFO] Đăng nhập thành công bằng tài khoản cố định.
+[20/10/2025 15:21:51] [INFO] Mở trang hồ sơ cá nhân.
+[20/10/2025 15:21:51] [INFO] Bắt đầu điền form hồ sơ người dùng.
+[20/10/2025 15:21:52] [INFO] Đã reset 3 dropdown địa chỉ.
+[20/10/2025 15:21:52] [INFO] Field ('id', 'UserName') bị khóa, bỏ qua.
+[20/10/2025 15:21:52] [INFO] Nhập vào ('id', 'FullName'): Phạm Thị Ánh Dương
+[20/10/2025 15:21:52] [INFO] Nhập vào ('id', 'Email'): anh1@gmail.com
+[20/10/2025 15:21:52] [INFO] Nhập vào ('id', 'Phone'): 0332115678987
+[20/10/2025 15:21:52] [INFO] Đã chọn giới tính: nam
+[20/10/2025 15:21:52] [INFO] Chọn ngày sinh: 3-3-2007
+[20/10/2025 15:21:52] [INFO] Đã chọn Tỉnh/TP: Hậu Giang
+[20/10/2025 15:21:53] [INFO] Đã chọn Quận/Huyện: Huyện Châu Thành
+[20/10/2025 15:21:55] [INFO] Đã chọn Phường/Xã: Xã Đông Phước A
+[20/10/2025 15:21:55] [INFO] Nhập vào ('id', 'Address'): abc
+[20/10/2025 15:21:56] [INFO] Click nút Lưu thông tin.
+[20/10/2025 15:21:56] [INFO] Phát hiện thông báo toast thành công.
+[20/10/2025 15:21:56] [INFO] Thông báo TOAST: Cập nhập tài khoản thành công!
+[20/10/2025 15:21:56] [INFO] Expected: Số điện thoại không hợp lệ.
+[20/10/2025 15:21:56] [INFO] Actual:   Cập nhập tài khoản thành công!
+[20/10/2025 15:21:56] [INFO] Status:   FAIL
+[20/10/2025 15:21:56] [ERROR] Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT13_.png
+[20/10/2025 15:25:00] [INFO] === Logger khởi tạo cho chức năng: PROFILEUPDATE ===
+[20/10/2025 15:25:00] [INFO] Ghi log tại: c:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_profileupdate_20251020.log

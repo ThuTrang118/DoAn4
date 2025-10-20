@@ -1,0 +1,13 @@
+[32mINFO    [0m search:test_search_ddt.py:32 
+=== Bắt đầu Testcase TK8 ===
+[32mINFO    [0m search:test_search_ddt.py:33 Input | Keyword='Màu đen' | Expected='Màu đen'
+[32mINFO    [0m search:search_page.py:33 Mở trang chủ MWC.
+[32mINFO    [0m search:search_page.py:41 Thực hiện tìm kiếm với từ khóa: 'Màu đen'
+[32mINFO    [0m search:search_page.py:48 Sản phẩm đầu tiên: Dép Nam MWC 9200 - Dép Nam Da Vân Hai Quai Chéo Hình Chữ X Màu Đen Tuyền Huyền Bí, Lịch Lãm, Sang Trọng.
+225.000 đ
+[32mINFO    [0m search:search_page.py:74 Từ khóa 'Màu đen' xuất hiện trong sản phẩm đầu tiên.
+[32mINFO    [0m search:test_search_ddt.py:63 Expected: Màu đen
+[32mINFO    [0m search:test_search_ddt.py:64 Actual:   Dép Nam MWC 9200 - Dép Nam Da Vân Hai Quai Chéo Hình Chữ X Màu Đen Tuyền Huyền Bí, Lịch Lãm, Sang Trọng.
+225.000 đ
+[32mINFO    [0m search:test_search_ddt.py:65 Status:   PASS
+[32mINFO    [0m search:test_search_ddt.py:66 === Kết thúc testcase TK8 ===

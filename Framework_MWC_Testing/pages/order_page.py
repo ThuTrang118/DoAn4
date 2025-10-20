@@ -5,8 +5,6 @@ import time
 
 
 class MWCOrderPage:
-    """Trang đặt hàng (Buy Now) — MWC."""
-
     HOME_URL = "https://mwc.com.vn/"
 
     # --- B1–B3: Tìm kiếm và mở sản phẩm ---

@@ -26,7 +26,7 @@ def load_sheet(path: str, sheet_name: str) -> List[Dict[str, Any]]:
     """
     wb = load_workbook(path)
     if sheet_name not in wb.sheetnames:
-        raise ValueError(f"❌ Sheet '{sheet_name}' không tồn tại trong file {path}. "
+        raise ValueError(f"Sheet '{sheet_name}' không tồn tại trong file {path}. "
                          f"Các sheet hiện có: {wb.sheetnames}")
     ws = wb[sheet_name]
 
@@ -50,11 +50,6 @@ def load_sheet(path: str, sheet_name: str) -> List[Dict[str, Any]]:
 
 # --- LỚP GHI KẾT QUẢ TEST RA FILE EXCEL ---
 class ResultBook:
-    """
-    Lưu kết quả test vào Excel.
-    ✔️ Ghi đè sheet hiện tại (VD: 'Login')
-    ✔️ Giữ nguyên các sheet khác (VD: 'Register', 'Search')
-    """
     def __init__(self, out_dir: str, file_name: str = "ResultsData.xlsx"):
         ensure_dir(out_dir)
         self.path = os.path.join(out_dir, file_name)
@@ -68,7 +63,7 @@ class ResultBook:
         """Ghi dữ liệu ra file Excel — chỉ ghi đè sheet đang test."""
         existing = {}
 
-        # ✅ Đọc toàn bộ sheet cũ nếu file tồn tại
+        # Đọc toàn bộ sheet cũ nếu file tồn tại
         if os.path.exists(self.path):
             try:
                 xls = pd.ExcelFile(self.path, engine="openpyxl")
@@ -77,7 +72,7 @@ class ResultBook:
             except Exception as e:
                 print(f"[WARN] Không thể đọc file cũ: {e}")
 
-        # ✅ Ghi lại toàn bộ file (sheet mới ghi đè, sheet cũ giữ nguyên)
+        # Ghi lại toàn bộ file (sheet mới ghi đè, sheet cũ giữ nguyên)
         with pd.ExcelWriter(self.path, engine="openpyxl", mode="w") as writer:
             # Ghi lại các sheet cũ KHÔNG bị ghi đè
             for s, df_old in existing.items():

@@ -1,0 +1,12 @@
+[32mINFO    [0m search:test_search_ddt.py:32 
+=== Bắt đầu Testcase TK3 ===
+[32mINFO    [0m search:test_search_ddt.py:33 Input | Keyword='Giày' | Expected='Giày'
+[32mINFO    [0m search:search_page.py:33 Mở trang chủ MWC.
+[32mINFO    [0m search:search_page.py:41 Thực hiện tìm kiếm với từ khóa: 'Giày'
+[33mWARNING [0m search:search_page.py:52 Không tìm thấy sản phẩm đầu tiên (bỏ qua).
+[32mINFO    [0m search:search_page.py:61 Đã lấy 1 sản phẩm hiển thị.
+[32mINFO    [0m search:search_page.py:81 Từ khóa 'Giày' tìm thấy trong sản phẩm: Giày Cao Gót MWC G231 - Dép Sục Cao Gót Nữ 4cm, Mũi Nhọn Đính Hoa Trà Kim Loại Qúy Phái, Sang Chảnh Kiểu Pháp.
+[32mINFO    [0m search:test_search_ddt.py:63 Expected: Giày
+[32mINFO    [0m search:test_search_ddt.py:64 Actual:   Giày Cao Gót MWC G231 - Dép Sục Cao Gót Nữ 4cm, Mũi Nhọn Đính Hoa Trà Kim Loại Qúy Phái, Sang Chảnh Kiểu Pháp.
+[32mINFO    [0m search:test_search_ddt.py:65 Status:   PASS
+[32mINFO    [0m search:test_search_ddt.py:66 === Kết thúc testcase TK3 ===

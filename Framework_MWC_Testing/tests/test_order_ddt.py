@@ -70,6 +70,6 @@ def test_order_product(driver, result_writer, tc, keyword, color, size, fullname
 
     if status == "FAIL":
         pytest.fail(
-            f"❌ Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'",
+            f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'",
             pytrace=False
         )

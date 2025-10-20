@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Kiểm thử chức năng Đăng nhập MWC.","17560","test_login_ddt[DN3]","tests","Mon Oct 20 14:38:25 ICT 2025","passed","Mon Oct 20 14:38:43 ICT 2025","","test_login_ddt","",""
+"Kiểm thử chức năng Đăng nhập MWC.","2897","test_login_ddt[DN6]","tests","Mon Oct 20 14:39:10 ICT 2025","passed","Mon Oct 20 14:39:13 ICT 2025","","test_login_ddt","",""
+"Kiểm thử chức năng Đăng nhập MWC.","17701","test_login_ddt[DN1]","tests","Mon Oct 20 14:37:43 ICT 2025","passed","Mon Oct 20 14:38:00 ICT 2025","","test_login_ddt","",""
+"Kiểm thử chức năng Đăng nhập MWC.","15574","test_login_ddt[DN5]","tests","Mon Oct 20 14:38:51 ICT 2025","failed","Mon Oct 20 14:39:07 ICT 2025","","test_login_ddt","",""
+"Kiểm thử chức năng Đăng nhập MWC.","17976","test_login_ddt[DN2]","tests","Mon Oct 20 14:38:04 ICT 2025","passed","Mon Oct 20 14:38:22 ICT 2025","","test_login_ddt","",""
+"Kiểm thử chức năng Đăng nhập MWC.","1700","test_login_ddt[DN4]","tests","Mon Oct 20 14:38:46 ICT 2025","passed","Mon Oct 20 14:38:48 ICT 2025","","test_login_ddt","",""
+"Kiểm thử chức năng Đăng nhập MWC.","2685","test_login_ddt[DN7]","tests","Mon Oct 20 14:39:16 ICT 2025","passed","Mon Oct 20 14:39:19 ICT 2025","","test_login_ddt","",""

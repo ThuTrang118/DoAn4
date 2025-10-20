@@ -1,8 +1,11 @@
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-import time
+from utils.logger_utils import create_logger
+
+logger = create_logger("ProfileUpdatePage")
 
 
 class MWCProfileUpdatePage:
@@ -38,19 +41,19 @@ class MWCProfileUpdatePage:
         self.driver = driver
         self.wait = WebDriverWait(driver, timeout)
 
+    # ------------------ HÀM CHÍNH ------------------
     def open(self):
-        """Mở trang hồ sơ cá nhân."""
         self.driver.get(self.PROFILE_URL)
+        logger.info("Mở trang hồ sơ cá nhân.")
 
-    # ------------------ HÀM TIỆN ÍCH ------------------
     def clear_text_field(self, locator):
         """Xóa nội dung trong text field."""
         try:
             el = self.wait.until(EC.presence_of_element_located(locator))
             if el.is_enabled() and el.get_attribute("readonly") not in ("true", "readonly"):
                 el.clear()
-        except Exception as e:
-            print(f"[WARN] Không thể clear {locator}: {e}")
+        except Exception:
+            logger.warning(f"Không thể clear {locator} (bỏ qua).")
 
     def safe_type(self, locator, value):
         """Nhập dữ liệu an toàn — luôn clear trước khi nhập."""
@@ -60,10 +63,11 @@ class MWCProfileUpdatePage:
                 el.clear()
                 if value:
                     el.send_keys(value)
+                    logger.info(f"Nhập vào {locator}: {value}")
             else:
-                print(f"[INFO] Field {locator} bị khóa, bỏ qua.")
-        except Exception as e:
-            print(f"[WARN] Không thể nhập {locator}: {e}")
+                logger.info(f"Field {locator} bị khóa, bỏ qua.")
+        except Exception:
+            logger.warning(f"Không thể nhập {locator} (bỏ qua).")
 
     def reset_address_dropdowns(self):
         """Reset dropdown địa chỉ về mặc định (None)."""
@@ -71,16 +75,16 @@ class MWCProfileUpdatePage:
             for loc in [self.PROVINCE, self.DISTRICT, self.WARD]:
                 el = self.driver.find_element(*loc)
                 Select(el).select_by_index(0)
+            logger.info("Đã reset 3 dropdown địa chỉ.")
         except Exception:
             pass
 
-    # ------------------ CHỨC NĂNG CHÍNH ------------------
-    def fill_profile(
-        self, username, fullname, email, phone,
-        gender, day, month, year,
-        province, district, ward, address
-    ):
+    def fill_profile(self, username, fullname, email, phone,
+                     gender, day, month, year,
+                     province, district, ward, address):
         """Điền toàn bộ thông tin cá nhân."""
+        logger.info("Bắt đầu điền form hồ sơ người dùng.")
+
         # Xóa dữ liệu cũ
         for field in [self.USERNAME, self.FULLNAME, self.EMAIL, self.PHONE, self.ADDRESS]:
             self.clear_text_field(field)
@@ -93,18 +97,19 @@ class MWCProfileUpdatePage:
         self.safe_type(self.PHONE, phone)
 
         # Giới tính
-        gender = (gender or "").strip().lower()
         try:
+            gender = (gender or "").strip().lower()
             if gender == "nam":
                 self.driver.find_element(*self.GENDER_MALE).click()
             elif gender == "nữ":
                 self.driver.find_element(*self.GENDER_FEMALE).click()
             elif gender == "khác":
                 self.driver.find_element(*self.GENDER_OTHER).click()
+            logger.info(f"Đã chọn giới tính: {gender}")
         except Exception:
-            print("[WARN] Không chọn được giới tính.")
+            logger.warning("Không chọn được giới tính (bỏ qua).")
 
-        # Ngày/Tháng/Năm sinh
+        # Ngày sinh
         try:
             if day:
                 Select(self.driver.find_element(*self.DAY)).select_by_value(str(day))
@@ -112,78 +117,82 @@ class MWCProfileUpdatePage:
                 Select(self.driver.find_element(*self.MONTH)).select_by_value(str(month))
             if year:
                 Select(self.driver.find_element(*self.YEAR)).select_by_value(str(year))
+            logger.info(f"Chọn ngày sinh: {day}-{month}-{year}")
         except Exception:
-            print("[WARN] Không chọn được ngày/tháng/năm sinh.")
+            logger.warning("Không chọn được ngày/tháng/năm sinh (bỏ qua).")
 
-        # --- Chọn địa chỉ hành chính có phụ thuộc động ---
+        # Địa chỉ
         try:
             if province:
                 WebDriverWait(self.driver, 10).until(
                     lambda d: len(Select(d.find_element(*self.PROVINCE)).options) > 1
                 )
                 Select(self.driver.find_element(*self.PROVINCE)).select_by_visible_text(province)
-                print(f"[INFO] Đã chọn Tỉnh/TP: {province}")
-                time.sleep(1.5)
+                logger.info(f"Đã chọn Tỉnh/TP: {province}")
+                time.sleep(1.2)
 
             if district:
                 WebDriverWait(self.driver, 10).until(
                     lambda d: len(Select(d.find_element(*self.DISTRICT)).options) > 1
                 )
                 Select(self.driver.find_element(*self.DISTRICT)).select_by_visible_text(district)
-                print(f"[INFO] Đã chọn Quận/Huyện: {district}")
-                time.sleep(1.5)
+                logger.info(f"Đã chọn Quận/Huyện: {district}")
+                time.sleep(1.2)
 
             if ward:
                 WebDriverWait(self.driver, 10).until(
                     lambda d: len(Select(d.find_element(*self.WARD)).options) > 1
                 )
                 Select(self.driver.find_element(*self.WARD)).select_by_visible_text(ward)
-                print(f"[INFO] Đã chọn Phường/Xã: {ward}")
+                logger.info(f"Đã chọn Phường/Xã: {ward}")
+        except Exception:
+            logger.warning("Không chọn được địa chỉ hành chính (bỏ qua).")
 
-        except Exception as e:
-            print(f"[WARN] Không chọn được địa chỉ hành chính: {e}")
-
+        # Địa chỉ cụ thể
         self.safe_type(self.ADDRESS, address)
 
     def click_save(self):
-        """Click nút Lưu."""
         try:
             self.wait.until(EC.element_to_be_clickable(self.SAVE_BTN)).click()
-        except Exception as e:
-            print(f"[WARN] Không thể click Lưu: {e}")
+            logger.info("Click nút Lưu thông tin.")
+        except Exception:
+            logger.warning("Không thể click nút Lưu (bỏ qua).")
 
     def get_toast_message(self):
-        """Bắt thông báo toast 'Cập nhập tài khoản thành công!' ổn định hơn."""
+        """Bắt thông báo 'Cập nhập tài khoản thành công!'"""
         try:
-            end_time = time.time() + 10  # chờ tối đa 10 giây
+            end_time = time.time() + 10
             while time.time() < end_time:
                 elements = self.driver.find_elements(*self.TOAST_SUCCESS)
                 for e in elements:
                     inner = (e.get_attribute("innerText") or "").lower()
                     if "cập nhập tài khoản thành công" in inner:
-                        print("[TOAST DETECTED] Cập nhập tài khoản thành công!")
+                        logger.info("Phát hiện thông báo toast thành công.")
                         return "Cập nhập tài khoản thành công!"
                 time.sleep(0.3)
             return ""
-        except Exception as e:
-            print(f"[WARN] Không bắt được toast message: {e}")
+        except Exception:
+            logger.warning("Không bắt được toast message.")
             return ""
 
     def get_alert_text(self):
-        """Đọc thông báo phản hồi trong DOM."""
         try:
             alert = self.wait.until(EC.visibility_of_element_located(self.ALERT))
-            return (alert.text or "").strip()
+            msg = (alert.text or "").strip()
+            if msg:
+                logger.info(f"Alert DOM: {msg}")
+            return msg
         except Exception:
             return ""
 
     def get_html5_validation(self, locator):
-        """Lấy thông báo HTML5 tiếng Việt — đọc qua JavaScript (ổn định hơn)."""
+        """Lấy thông báo HTML5 tiếng Việt (ổn định, qua JS)."""
         try:
             el = self.driver.find_element(*locator)
             msg = self.driver.execute_script("return arguments[0].validationMessage;", el) or ""
             msg = msg.strip().lower()
-
+            if msg:
+                logger.info(f"HTML5 validation: {msg}")
             if "@" in msg and "bao gồm" in msg:
                 return "Vui lòng bao gồm '@' trong địa chỉ email."
             elif "vui lòng điền" in msg:

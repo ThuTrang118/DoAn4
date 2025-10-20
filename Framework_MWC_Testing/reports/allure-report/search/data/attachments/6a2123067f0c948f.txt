@@ -1,0 +1,12 @@
+[32mINFO    [0m search:test_search_ddt.py:32 
+=== Bắt đầu Testcase TK6 ===
+[32mINFO    [0m search:test_search_ddt.py:33 Input | Keyword='Giay th' | Expected='Không tìm thấy sản phẩm'
+[32mINFO    [0m search:search_page.py:33 Mở trang chủ MWC.
+[32mINFO    [0m search:search_page.py:41 Thực hiện tìm kiếm với từ khóa: 'Giay th'
+[32mINFO    [0m search:search_page.py:48 Sản phẩm đầu tiên: 
+[33mWARNING [0m search:search_page.py:64 Không thể lấy danh sách tiêu đề sản phẩm (bỏ qua).
+[33mWARNING [0m search:search_page.py:85 Không tìm thấy sản phẩm nào chứa từ khóa 'Giay th'.
+[32mINFO    [0m search:test_search_ddt.py:63 Expected: Không tìm thấy sản phẩm
+[32mINFO    [0m search:test_search_ddt.py:64 Actual:   Không tìm thấy sản phẩm
+[32mINFO    [0m search:test_search_ddt.py:65 Status:   PASS
+[32mINFO    [0m search:test_search_ddt.py:66 === Kết thúc testcase TK6 ===

@@ -1,0 +1,29 @@
+[32mINFO    [0m profileupdate:test_profile_update_ddt.py:41 ================================================================================
+[32mINFO    [0m profileupdate:test_profile_update_ddt.py:42 BẮT ĐẦU TESTCASE TT8
+[32mINFO    [0m profileupdate:test_profile_update_ddt.py:43 Input → Username='Ánh Dương Phạm', Email='anh1@@', Phone='03321156790', Expected='Phần đứng sau '@' không được chứa biểu tượng '@'.'
+[32mINFO    [0m login:login_page.py:30 Mở trang đăng nhập MWC thành công.
+[32mINFO    [0m login:login_page.py:36 Đăng nhập với Username='Ánh Dương Phạm' | Password='anhduong@123'
+[32mINFO    [0m login:login_page.py:47 Nhập Username: Ánh Dương Phạm
+[32mINFO    [0m login:login_page.py:57 Nhập Password (đã ẩn).
+[32mINFO    [0m login:login_page.py:65 Click nút 'Đăng nhập'.
+[32mINFO    [0m login:login_page.py:95 Trang chủ sau đăng nhập: True
+[32mINFO    [0m profileupdate:test_profile_update_ddt.py:49 Đăng nhập thành công bằng tài khoản cố định.
+[32mINFO    [0m profileupdate:profile_update_page.py:47 Mở trang hồ sơ cá nhân.
+[32mINFO    [0m profileupdate:profile_update_page.py:86 Bắt đầu điền form hồ sơ người dùng.
+[33mWARNING [0m profileupdate:profile_update_page.py:56 Không thể clear ('id', 'FullName') (bỏ qua).
+[33mWARNING [0m profileupdate:profile_update_page.py:56 Không thể clear ('id', 'Email') (bỏ qua).
+[33mWARNING [0m profileupdate:profile_update_page.py:56 Không thể clear ('id', 'Address') (bỏ qua).
+[32mINFO    [0m profileupdate:profile_update_page.py:66 Nhập vào ('id', 'UserName'): Ánh Dương Phạm
+[33mWARNING [0m profileupdate:profile_update_page.py:70 Không thể nhập ('id', 'FullName') (bỏ qua).
+[33mWARNING [0m profileupdate:profile_update_page.py:70 Không thể nhập ('id', 'Email') (bỏ qua).
+[32mINFO    [0m profileupdate:profile_update_page.py:66 Nhập vào ('id', 'Phone'): 03321156790
+[33mWARNING [0m profileupdate:profile_update_page.py:110 Không chọn được giới tính (bỏ qua).
+[33mWARNING [0m profileupdate:profile_update_page.py:122 Không chọn được ngày/tháng/năm sinh (bỏ qua).
+[33mWARNING [0m profileupdate:profile_update_page.py:149 Không chọn được địa chỉ hành chính (bỏ qua).
+[33mWARNING [0m profileupdate:profile_update_page.py:70 Không thể nhập ('id', 'Address') (bỏ qua).
+[33mWARNING [0m profileupdate:profile_update_page.py:159 Không thể click nút Lưu (bỏ qua).
+[33mWARNING [0m profileupdate:test_profile_update_ddt.py:84 Không thấy thông báo sau khi lưu.
+[32mINFO    [0m profileupdate:test_profile_update_ddt.py:122 Expected: Phần đứng sau '@' không được chứa biểu tượng '@'.
+[32mINFO    [0m profileupdate:test_profile_update_ddt.py:123 Actual:   Không thấy thông báo sau khi lưu.
+[32mINFO    [0m profileupdate:test_profile_update_ddt.py:124 Status:   FAIL
+[31m[1mERROR   [0m profileupdate:test_profile_update_ddt.py:131 Đã chụp ảnh lỗi: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\screenshots\test_profile_update_TT8_.png
