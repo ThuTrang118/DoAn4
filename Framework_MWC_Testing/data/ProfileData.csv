@@ -1,0 +1,14 @@
+﻿Testcase,Username,FullName,Email,Phone,Gender,Day,Month,Year,Province,District,Ward,Address,Expected
+TT1,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.com,03321156789,Nữ,1,1,2000,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,Cập nhập tài khoản thành công!
+TT2,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.com,03321156789,Nam,10,10,2000,TP. Hồ Chí Minh,Quận 1,Phường Bến Nghé,abc,Cập nhập tài khoản thành công!
+TT3,Ánh Dương Phạm,,anh1@gmail.com,03321156790,Nữ,11,11,2001,TP. Hồ Chí Minh,Quận 2,Phường Bến Nghé,abc,Cập nhập tài khoản thành công!
+TT4,Ánh Dương Phạm,Phạm Thị Ánh Dương,,03321156789,Khác,2,2,2001,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,Cập nhập tài khoản thành công!
+TT5,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.com,03321156789,Nữ,2,2,2001,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,,Cập nhập tài khoản thành công!
+TT6,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.com,03321156789,Nam,2,2,2001,Chọn Tỉnh/Thành,Chọn Quận/huyện,Chọn Xã/Phường,,Cập nhập tài khoản thành công!
+TT7,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@,03321156789,Khác,2,2,2001,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,Vui lòng nhập phần đứng sau '@'. 'anh1@' không hoàn chỉnh.
+TT8,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@@,03321156790,Nam,1,1,2002,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,Phần đứng sau '@' không được chứa biểu tượng '@'.
+TT9,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.,03321156789,Nữ,5,5,2003,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,.' bị sử dụng sai vị trí trong 'gmail.'.
+TT10,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.com,,Khác,1,1,2004,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,Vui lòng điền vào trường này.
+TT11,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.com,abcd,Nam,1,1,2005,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,Số điện thoại không hợp lệ.
+TT12,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.com,345,Nữ,2,2,2006,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,Số điện thoại không hợp lệ.
+TT13,Ánh Dương Phạm,Phạm Thị Ánh Dương,anh1@gmail.com,0332115678987,Nam,3,3,2007,Hậu Giang,Huyện Châu Thành,Xã Đông Phước A,abc,Số điện thoại không hợp lệ.

@@ -1,0 +1,80 @@
+[
+    {
+        "Testcase":"DH1",
+        "Keyword":"Giày Cao Gót MWC 4444",
+        "Color":"bạc",
+        "Size":37,
+        "Fullname":"Phạm Ánh Dương",
+        "Phone":905123456.0,
+        "Address":"123 Lý Thường Kiệt",
+        "Province":"TP Hồ Chí Minh",
+        "District":"Quận 1",
+        "Ward":"Phường Bến Nghé",
+        "Expected":"Đặt hàng thành công!"
+    },
+    {
+        "Testcase":"DH2",
+        "Keyword":"Giày Cao Gót MWC 4444",
+        "Color":"đen",
+        "Size":38,
+        "Fullname":"",
+        "Phone":905123456.0,
+        "Address":"123 ABC",
+        "Province":"TP Hồ Chí Minh",
+        "District":"Quận 1",
+        "Ward":"Phường Bến Nghé",
+        "Expected":"Bạn chưa nhập thông tin nhận hàng!"
+    },
+    {
+        "Testcase":"DH3",
+        "Keyword":"Giày Cao Gót MWC 4444",
+        "Color":"bạc",
+        "Size":36,
+        "Fullname":"Phạm Ánh Dương",
+        "Phone":"",
+        "Address":"123 ABC",
+        "Province":"TP Hồ Chí Minh",
+        "District":"Quận 1",
+        "Ward":"Phường Bến Nghé",
+        "Expected":"Bạn chưa nhập thông tin nhận hàng!"
+    },
+    {
+        "Testcase":"DH4",
+        "Keyword":"Giày Cao Gót MWC 4444",
+        "Color":"bạc",
+        "Size":36,
+        "Fullname":"Phạm Ánh Dương",
+        "Phone":905123456.0,
+        "Address":"",
+        "Province":"TP Hồ Chí Minh",
+        "District":"Quận 2",
+        "Ward":"Phường An Khánh",
+        "Expected":"Bạn chưa nhập thông tin nhận hàng!"
+    },
+    {
+        "Testcase":"DH5",
+        "Keyword":"Giày Cao Gót MWC 4444",
+        "Color":"bạc",
+        "Size":36,
+        "Fullname":"Phạm Ánh Dương",
+        "Phone":905123456.0,
+        "Address":"123 ABC",
+        "Province":"Chọn Tỉnh\/Thành",
+        "District":"Chọn Quận\/huyện",
+        "Ward":"Chọn Xã\/Phường",
+        "Expected":"Bạn chưa nhập thông tin nhận hàng!"
+    },
+    {
+        "Testcase":"DH6",
+        "Keyword":"Giày Cao Gót MWC 4444",
+        "Color":"bạc",
+        "Size":35,
+        "Fullname":"Nguyễn A",
+        "Phone":3321156.0,
+        "Address":"456 DEF",
+        "Province":"TP Hồ Chí Minh",
+        "District":"Quận 10",
+        "Ward":"Phường 15",
+        "Expected":"SĐT không đúng định dạng"
+    }
+]

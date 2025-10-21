@@ -1,9 +1,0 @@
-[32mINFO    [0m login:test_login_ddt.py:58 
-=== BẮT ĐẦU TESTCASE DN6 ===
-[32mINFO    [0m login:login_page.py:24 Mở trang đăng nhập MWC thành công.
-[32mINFO    [0m login:login_page.py:31 Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
-[32mINFO    [0m login:login_page.py:31 Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
-[32mINFO    [0m login:login_page.py:37 Bắt đầu thao tác đăng nhập...
-[32mINFO    [0m login:login_page.py:41 Nhập Username: anh
-[32mINFO    [0m login:login_page.py:45 Nhập Password (đã ẩn).
-[32mINFO    [0m login:login_page.py:48 Click nút 'Đăng nhập'.

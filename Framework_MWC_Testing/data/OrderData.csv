@@ -1,0 +1,7 @@
+﻿Testcase,Keyword,Color,Size,Fullname,Phone,Address,Province,District,Ward,Expected
+DH1,Giày Cao Gót MWC 4444,bạc,37,Phạm Ánh Dương,905123456.0,123 Lý Thường Kiệt,TP Hồ Chí Minh,Quận 1,Phường Bến Nghé,Đặt hàng thành công!
+DH2,Giày Cao Gót MWC 4444,đen,38,,905123456.0,123 ABC,TP Hồ Chí Minh,Quận 1,Phường Bến Nghé,Bạn chưa nhập thông tin nhận hàng!
+DH3,Giày Cao Gót MWC 4444,bạc,36,Phạm Ánh Dương,,123 ABC,TP Hồ Chí Minh,Quận 1,Phường Bến Nghé,Bạn chưa nhập thông tin nhận hàng!
+DH4,Giày Cao Gót MWC 4444,bạc,36,Phạm Ánh Dương,905123456.0,,TP Hồ Chí Minh,Quận 2,Phường An Khánh,Bạn chưa nhập thông tin nhận hàng!
+DH5,Giày Cao Gót MWC 4444,bạc,36,Phạm Ánh Dương,905123456.0,123 ABC,Chọn Tỉnh/Thành,Chọn Quận/huyện,Chọn Xã/Phường,Bạn chưa nhập thông tin nhận hàng!
+DH6,Giày Cao Gót MWC 4444,bạc,35,Nguyễn A,3321156.0,456 DEF,TP Hồ Chí Minh,Quận 10,Phường 15,SĐT không đúng định dạng

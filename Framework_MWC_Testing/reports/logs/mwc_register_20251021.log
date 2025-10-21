@@ -1,2 +1,555 @@
-[21/10/2025 15:35:08] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
-[21/10/2025 15:35:08] [INFO] Ghi log tại: c:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:02:22] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
+[21/10/2025 17:02:22] [INFO] Ghi log tại: c:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:02:22] [INFO] Đang đọc dữ liệu test (excel)...
+[21/10/2025 17:04:29] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
+[21/10/2025 17:04:29] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:04:29] [INFO] Đang đọc dữ liệu test (excel)...
+[21/10/2025 17:04:32] [INFO] 
+=== BẮT ĐẦU TESTCASE DK1 ===
+[21/10/2025 17:04:33] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:04:33] [INFO] Điền thông tin: Username='MaiQuynhAnh12', Phone='0359694533', Password='***', RePass='***'
+[21/10/2025 17:04:34] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:04:34] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:04:34] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:04:35] [INFO] Expected: MaiQuynhAnh12
+[21/10/2025 17:04:35] [INFO] Actual:   Tên người dùng khác mong đợi: 
+[21/10/2025 17:04:35] [INFO] Status:   FAIL
+[21/10/2025 17:04:35] [INFO] === KẾT THÚC TESTCASE DK1 ===
+
+[21/10/2025 17:04:38] [INFO] 
+=== BẮT ĐẦU TESTCASE DK2 ===
+[21/10/2025 17:04:40] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:04:40] [INFO] Điền thông tin: Username='user_demo_2', Phone='', Password='***', RePass='***'
+[21/10/2025 17:04:41] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:04:41] [INFO] Expected: Vui lòng điền vào trường này.
+[21/10/2025 17:04:41] [INFO] Actual:   Vui lòng điền vào trường này.
+[21/10/2025 17:04:41] [INFO] Status:   PASS
+[21/10/2025 17:04:41] [INFO] === KẾT THÚC TESTCASE DK2 ===
+
+[21/10/2025 17:04:44] [INFO] 
+=== BẮT ĐẦU TESTCASE DK3 ===
+[21/10/2025 17:04:45] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:04:45] [INFO] Điền thông tin: Username='', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:04:46] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:04:46] [INFO] Expected: Vui lòng điền vào trường này.
+[21/10/2025 17:04:46] [INFO] Actual:   Vui lòng điền vào trường này.
+[21/10/2025 17:04:46] [INFO] Status:   PASS
+[21/10/2025 17:04:46] [INFO] === KẾT THÚC TESTCASE DK3 ===
+
+[21/10/2025 17:04:49] [INFO] 
+=== BẮT ĐẦU TESTCASE DK4 ===
+[21/10/2025 17:04:50] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:04:50] [INFO] Điền thông tin: Username='user_demo_3', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:04:51] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:04:51] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:04:52] [INFO] Expected: Vui lòng điền vào trường này.
+[21/10/2025 17:04:52] [INFO] Actual:   Tên người dùng khác mong đợi: 
+[21/10/2025 17:04:52] [INFO] Status:   FAIL
+[21/10/2025 17:04:52] [INFO] === KẾT THÚC TESTCASE DK4 ===
+
+[21/10/2025 17:04:55] [INFO] 
+=== BẮT ĐẦU TESTCASE DK5 ===
+[21/10/2025 17:04:57] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:04:57] [INFO] Điền thông tin: Username='user_demo_4', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:04:57] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:04:57] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:04:58] [INFO] Expected: Vui lòng điền vào trường này.
+[21/10/2025 17:04:58] [INFO] Actual:   Tên người dùng khác mong đợi: 
+[21/10/2025 17:04:58] [INFO] Status:   FAIL
+[21/10/2025 17:04:58] [INFO] === KẾT THÚC TESTCASE DK5 ===
+
+[21/10/2025 17:05:01] [INFO] 
+=== BẮT ĐẦU TESTCASE DK6 ===
+[21/10/2025 17:05:03] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:05:03] [INFO] Điền thông tin: Username='user_demo_5', Phone='091', Password='***', RePass='***'
+[21/10/2025 17:05:04] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:05:04] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:05:04] [INFO] Expected: Số điện thoại không đúng định dạng!
+[21/10/2025 17:05:04] [INFO] Actual:   số điện thoại không đúng định dạng!
+[21/10/2025 17:05:04] [INFO] Status:   PASS
+[21/10/2025 17:05:04] [INFO] === KẾT THÚC TESTCASE DK6 ===
+
+[21/10/2025 17:05:07] [INFO] 
+=== BẮT ĐẦU TESTCASE DK7 ===
+[21/10/2025 17:05:08] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:05:08] [INFO] Điền thông tin: Username='user_demo_6', Phone='abc', Password='***', RePass='***'
+[21/10/2025 17:05:08] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:05:45] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:05:47] [ERROR] Lỗi khi chạy testcase: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=141.0.7390.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+	GetHandleVerifier [0x0x7ff75b4ee9e5+80021]
+	GetHandleVerifier [0x0x7ff75b4eea40+80112]
+	(No symbol) [0x0x7ff75b27060f]
+	(No symbol) [0x0x7ff75b25c145]
+	(No symbol) [0x0x7ff75b28177a]
+	(No symbol) [0x0x7ff75b2f8b06]
+	(No symbol) [0x0x7ff75b318fa2]
+	(No symbol) [0x0x7ff75b2f1003]
+	(No symbol) [0x0x7ff75b2b95d1]
+	(No symbol) [0x0x7ff75b2ba3f3]
+	GetHandleVerifier [0x0x7ff75b7add8d+2960445]
+	GetHandleVerifier [0x0x7ff75b7a804a+2936570]
+	GetHandleVerifier [0x0x7ff75b7c8a87+3070263]
+	GetHandleVerifier [0x0x7ff75b5084ce+185214]
+	GetHandleVerifier [0x0x7ff75b50ff1f+216527]
+	GetHandleVerifier [0x0x7ff75b4f7c24+117460]
+	GetHandleVerifier [0x0x7ff75b4f7ddf+117903]
+	GetHandleVerifier [0x0x7ff75b4ddcb8+11112]
+	BaseThreadInitThunk [0x0x7fffbd70e8d7+23]
+	RtlUserThreadStart [0x0x7fffbf38c53c+44]
+
+[21/10/2025 17:05:47] [INFO] Expected: Số điện thoại không đúng định dạng!
+[21/10/2025 17:05:47] [INFO] Actual:   Lỗi khi chạy testcase: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=141.0.7390.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+	GetHandleVerifier [0x0x7ff75b4ee9e5+80021]
+	GetHandleVerifier [0x0x7ff75b4eea40+80112]
+	(No symbol) [0x0x7ff75b27060f]
+	(No symbol) [0x0x7ff75b25c145]
+	(No symbol) [0x0x7ff75b28177a]
+	(No symbol) [0x0x7ff75b2f8b06]
+	(No symbol) [0x0x7ff75b318fa2]
+	(No symbol) [0x0x7ff75b2f1003]
+	(No symbol) [0x0x7ff75b2b95d1]
+	(No symbol) [0x0x7ff75b2ba3f3]
+	GetHandleVerifier [0x0x7ff75b7add8d+2960445]
+	GetHandleVerifier [0x0x7ff75b7a804a+2936570]
+	GetHandleVerifier [0x0x7ff75b7c8a87+3070263]
+	GetHandleVerifier [0x0x7ff75b5084ce+185214]
+	GetHandleVerifier [0x0x7ff75b50ff1f+216527]
+	GetHandleVerifier [0x0x7ff75b4f7c24+117460]
+	GetHandleVerifier [0x0x7ff75b4f7ddf+117903]
+	GetHandleVerifier [0x0x7ff75b4ddcb8+11112]
+	BaseThreadInitThunk [0x0x7fffbd70e8d7+23]
+	RtlUserThreadStart [0x0x7fffbf38c53c+44]
+
+[21/10/2025 17:05:47] [INFO] Status:   FAIL
+[21/10/2025 17:05:47] [INFO] === KẾT THÚC TESTCASE DK7 ===
+
+[21/10/2025 17:05:50] [INFO] 
+=== BẮT ĐẦU TESTCASE DK8 ===
+[21/10/2025 17:05:52] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:05:52] [INFO] Điền thông tin: Username='user_demo_7', Phone='03!', Password='***', RePass='***'
+[21/10/2025 17:05:54] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:05:54] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:05:54] [INFO] Expected: Số điện thoại không đúng định dạng!
+[21/10/2025 17:05:54] [INFO] Actual:   số điện thoại không đúng định dạng!
+[21/10/2025 17:05:54] [INFO] Status:   PASS
+[21/10/2025 17:05:54] [INFO] === KẾT THÚC TESTCASE DK8 ===
+
+[21/10/2025 17:05:57] [INFO] 
+=== BẮT ĐẦU TESTCASE DK9 ===
+[21/10/2025 17:05:59] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:05:59] [INFO] Điền thông tin: Username='user_demo_8', Phone='03 45216789', Password='***', RePass='***'
+[21/10/2025 17:06:00] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:06:00] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:06:00] [INFO] Expected: Số điện thoại không đúng định dạng!
+[21/10/2025 17:06:00] [INFO] Actual:   số điện thoại không đúng định dạng!
+[21/10/2025 17:06:00] [INFO] Status:   PASS
+[21/10/2025 17:06:00] [INFO] === KẾT THÚC TESTCASE DK9 ===
+
+[21/10/2025 17:06:03] [INFO] 
+=== BẮT ĐẦU TESTCASE DK10 ===
+[21/10/2025 17:06:05] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:06:05] [INFO] Điền thông tin: Username='user_demo_9', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:06:06] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:06:06] [INFO] Thông báo lỗi hiển thị: Mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:06:06] [INFO] Expected: Mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:06:06] [INFO] Actual:   mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:06:06] [INFO] Status:   PASS
+[21/10/2025 17:06:06] [INFO] === KẾT THÚC TESTCASE DK10 ===
+
+[21/10/2025 17:06:09] [INFO] 
+=== BẮT ĐẦU TESTCASE DK11 ===
+[21/10/2025 17:06:11] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:06:11] [INFO] Điền thông tin: Username='user_demo_10', Phone='0912345679', Password='***', RePass='***'
+[21/10/2025 17:06:12] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:06:12] [INFO] Thông báo lỗi hiển thị: Mật khẩu không giống nhau
+[21/10/2025 17:06:12] [INFO] Expected: mật khẩu không giống nhau
+[21/10/2025 17:06:12] [INFO] Actual:   mật khẩu không giống nhau
+[21/10/2025 17:06:12] [INFO] Status:   PASS
+[21/10/2025 17:06:12] [INFO] === KẾT THÚC TESTCASE DK11 ===
+
+[21/10/2025 17:06:15] [INFO] 
+=== BẮT ĐẦU TESTCASE DK12 ===
+[21/10/2025 17:06:16] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:06:16] [INFO] Điền thông tin: Username='Ánh Dương Phạm', Phone='035214679', Password='***', RePass='***'
+[21/10/2025 17:06:17] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:06:17] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:06:17] [INFO] Expected: tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:06:17] [INFO] Actual:   tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:06:17] [INFO] Status:   PASS
+[21/10/2025 17:06:17] [INFO] === KẾT THÚC TESTCASE DK12 ===
+
+[21/10/2025 17:09:31] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
+[21/10/2025 17:09:31] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:09:31] [INFO] Đang đọc dữ liệu test (excel)...
+[21/10/2025 17:09:32] [INFO] 
+=== BẮT ĐẦU TESTCASE DK1 ===
+[21/10/2025 17:09:34] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:09:34] [INFO] Điền thông tin: Username='MaiQuynhAnh12', Phone='0359694533', Password='***', RePass='***'
+[21/10/2025 17:09:36] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:09:36] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:09:36] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:09:37] [INFO] Expected: MaiQuynhAnh12
+[21/10/2025 17:09:37] [INFO] Actual:   Tên người dùng khác mong đợi: 
+[21/10/2025 17:09:37] [INFO] Status:   FAIL
+[21/10/2025 17:09:37] [INFO] === KẾT THÚC TESTCASE DK1 ===
+
+[21/10/2025 17:09:40] [INFO] 
+=== BẮT ĐẦU TESTCASE DK2 ===
+[21/10/2025 17:09:42] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:09:42] [INFO] Điền thông tin: Username='user_demo_2', Phone='', Password='***', RePass='***'
+[21/10/2025 17:09:43] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:09:43] [INFO] Expected: Vui lòng điền vào trường này.
+[21/10/2025 17:09:43] [INFO] Actual:   Vui lòng điền vào trường này.
+[21/10/2025 17:09:43] [INFO] Status:   PASS
+[21/10/2025 17:09:43] [INFO] === KẾT THÚC TESTCASE DK2 ===
+
+[21/10/2025 17:09:46] [INFO] 
+=== BẮT ĐẦU TESTCASE DK3 ===
+[21/10/2025 17:09:47] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:09:47] [INFO] Điền thông tin: Username='', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:09:48] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:09:48] [INFO] Expected: Vui lòng điền vào trường này.
+[21/10/2025 17:09:48] [INFO] Actual:   Vui lòng điền vào trường này.
+[21/10/2025 17:09:48] [INFO] Status:   PASS
+[21/10/2025 17:09:48] [INFO] === KẾT THÚC TESTCASE DK3 ===
+
+[21/10/2025 17:09:51] [INFO] 
+=== BẮT ĐẦU TESTCASE DK4 ===
+[21/10/2025 17:09:52] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:09:52] [INFO] Điền thông tin: Username='user_demo_3', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:09:53] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:09:53] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:09:54] [INFO] Expected: Vui lòng điền vào trường này.
+[21/10/2025 17:09:54] [INFO] Actual:   Tên người dùng khác mong đợi: 
+[21/10/2025 17:09:54] [INFO] Status:   FAIL
+[21/10/2025 17:09:54] [INFO] === KẾT THÚC TESTCASE DK4 ===
+
+[21/10/2025 17:09:57] [INFO] 
+=== BẮT ĐẦU TESTCASE DK5 ===
+[21/10/2025 17:09:59] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:09:59] [INFO] Điền thông tin: Username='user_demo_4', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:09:59] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:10:00] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:10:00] [INFO] Expected: Vui lòng điền vào trường này.
+[21/10/2025 17:10:00] [INFO] Actual:   Tên người dùng khác mong đợi: 
+[21/10/2025 17:10:00] [INFO] Status:   FAIL
+[21/10/2025 17:10:00] [INFO] === KẾT THÚC TESTCASE DK5 ===
+
+[21/10/2025 17:10:03] [INFO] 
+=== BẮT ĐẦU TESTCASE DK6 ===
+[21/10/2025 17:10:05] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:10:05] [INFO] Điền thông tin: Username='user_demo_5', Phone='091', Password='***', RePass='***'
+[21/10/2025 17:10:06] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:10:06] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:10:06] [INFO] Expected: Số điện thoại không đúng định dạng!
+[21/10/2025 17:10:06] [INFO] Actual:   số điện thoại không đúng định dạng!
+[21/10/2025 17:10:06] [INFO] Status:   PASS
+[21/10/2025 17:10:06] [INFO] === KẾT THÚC TESTCASE DK6 ===
+
+[21/10/2025 17:10:09] [INFO] 
+=== BẮT ĐẦU TESTCASE DK7 ===
+[21/10/2025 17:10:11] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:10:11] [INFO] Điền thông tin: Username='user_demo_6', Phone='abc', Password='***', RePass='***'
+[21/10/2025 17:10:12] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:10:12] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:10:12] [INFO] Expected: Số điện thoại không đúng định dạng!
+[21/10/2025 17:10:12] [INFO] Actual:   số điện thoại không đúng định dạng!
+[21/10/2025 17:10:12] [INFO] Status:   PASS
+[21/10/2025 17:10:12] [INFO] === KẾT THÚC TESTCASE DK7 ===
+
+[21/10/2025 17:10:15] [INFO] 
+=== BẮT ĐẦU TESTCASE DK8 ===
+[21/10/2025 17:10:17] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:10:17] [INFO] Điền thông tin: Username='user_demo_7', Phone='03!', Password='***', RePass='***'
+[21/10/2025 17:10:18] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:10:18] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:10:18] [INFO] Expected: Số điện thoại không đúng định dạng!
+[21/10/2025 17:10:18] [INFO] Actual:   số điện thoại không đúng định dạng!
+[21/10/2025 17:10:18] [INFO] Status:   PASS
+[21/10/2025 17:10:18] [INFO] === KẾT THÚC TESTCASE DK8 ===
+
+[21/10/2025 17:10:21] [INFO] 
+=== BẮT ĐẦU TESTCASE DK9 ===
+[21/10/2025 17:10:23] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:10:23] [INFO] Điền thông tin: Username='user_demo_8', Phone='03 45216789', Password='***', RePass='***'
+[21/10/2025 17:10:24] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:10:24] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:10:24] [INFO] Expected: Số điện thoại không đúng định dạng!
+[21/10/2025 17:10:24] [INFO] Actual:   số điện thoại không đúng định dạng!
+[21/10/2025 17:10:24] [INFO] Status:   PASS
+[21/10/2025 17:10:24] [INFO] === KẾT THÚC TESTCASE DK9 ===
+
+[21/10/2025 17:10:27] [INFO] 
+=== BẮT ĐẦU TESTCASE DK10 ===
+[21/10/2025 17:10:28] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:10:28] [INFO] Điền thông tin: Username='user_demo_9', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:10:29] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:10:29] [INFO] Thông báo lỗi hiển thị: Mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:10:29] [INFO] Expected: Mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:10:29] [INFO] Actual:   mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:10:29] [INFO] Status:   PASS
+[21/10/2025 17:10:29] [INFO] === KẾT THÚC TESTCASE DK10 ===
+
+[21/10/2025 17:10:32] [INFO] 
+=== BẮT ĐẦU TESTCASE DK11 ===
+[21/10/2025 17:10:34] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:10:34] [INFO] Điền thông tin: Username='user_demo_10', Phone='0912345679', Password='***', RePass='***'
+[21/10/2025 17:10:35] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:10:35] [INFO] Thông báo lỗi hiển thị: Mật khẩu không giống nhau
+[21/10/2025 17:10:35] [INFO] Expected: mật khẩu không giống nhau
+[21/10/2025 17:10:35] [INFO] Actual:   mật khẩu không giống nhau
+[21/10/2025 17:10:35] [INFO] Status:   PASS
+[21/10/2025 17:10:35] [INFO] === KẾT THÚC TESTCASE DK11 ===
+
+[21/10/2025 17:10:38] [INFO] 
+=== BẮT ĐẦU TESTCASE DK12 ===
+[21/10/2025 17:10:40] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:10:40] [INFO] Điền thông tin: Username='Ánh Dương Phạm', Phone='035214679', Password='***', RePass='***'
+[21/10/2025 17:10:41] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:10:41] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:10:41] [INFO] Expected: tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:10:41] [INFO] Actual:   tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:10:41] [INFO] Status:   PASS
+[21/10/2025 17:10:41] [INFO] === KẾT THÚC TESTCASE DK12 ===
+
+[21/10/2025 17:18:50] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
+[21/10/2025 17:18:50] [INFO] Ghi log tại: c:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:18:50] [INFO] Đang đọc dữ liệu test (excel)...
+[21/10/2025 17:19:03] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
+[21/10/2025 17:19:03] [INFO] Ghi log tại: c:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:19:03] [INFO] Đang đọc dữ liệu test (excel)...
+[21/10/2025 17:19:06] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
+[21/10/2025 17:19:06] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:19:06] [INFO] Đang đọc dữ liệu test (excel)...
+[21/10/2025 17:19:08] [INFO] 
+=== BẮT ĐẦU TESTCASE DK1 ===
+[21/10/2025 17:19:11] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:19:11] [INFO] Điền thông tin: Username='MaiQuynhAnh12', Phone='0359694533', Password='***', RePass='***'
+[21/10/2025 17:19:13] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:19:13] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:19:13] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:19:13] [INFO] Alert hiển thị: tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:28:04] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
+[21/10/2025 17:28:04] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:28:04] [INFO] Đang đọc dữ liệu test (excel)...
+[21/10/2025 17:28:06] [INFO] 
+=== BẮT ĐẦU TESTCASE DK1 ===
+[21/10/2025 17:28:08] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:08] [INFO] Điền thông tin: Username='MaiQuynhAnh12', Phone='0359694533', Password='***', RePass='***'
+[21/10/2025 17:28:09] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:10] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:28:10] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:10] [INFO] Alert hiển thị: tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:28:14] [INFO] 
+=== BẮT ĐẦU TESTCASE DK2 ===
+[21/10/2025 17:28:15] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:15] [INFO] Điền thông tin: Username='user_demo_2', Phone='', Password='***', RePass='***'
+[21/10/2025 17:28:15] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:15] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:15] [INFO] HTML5 validation: Vui lòng điền vào trường này.
+[21/10/2025 17:28:15] [INFO] TESTCASE DK2 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:28:19] [INFO] 
+=== BẮT ĐẦU TESTCASE DK3 ===
+[21/10/2025 17:28:20] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:20] [INFO] Điền thông tin: Username='', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:28:20] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:20] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:20] [INFO] HTML5 validation: Vui lòng điền vào trường này.
+[21/10/2025 17:28:20] [INFO] TESTCASE DK3 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:28:24] [INFO] 
+=== BẮT ĐẦU TESTCASE DK4 ===
+[21/10/2025 17:28:25] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:25] [INFO] Điền thông tin: Username='user_demo_3', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:28:26] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:26] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:30] [INFO] 
+=== BẮT ĐẦU TESTCASE DK5 ===
+[21/10/2025 17:28:32] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:32] [INFO] Điền thông tin: Username='user_demo_4', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:28:33] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:33] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:36] [INFO] 
+=== BẮT ĐẦU TESTCASE DK6 ===
+[21/10/2025 17:28:38] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:38] [INFO] Điền thông tin: Username='user_demo_5', Phone='091', Password='***', RePass='***'
+[21/10/2025 17:28:39] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:39] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:28:39] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:39] [INFO] Alert hiển thị: số điện thoại không đúng định dạng!
+[21/10/2025 17:28:39] [INFO] TESTCASE DK6 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:28:43] [INFO] 
+=== BẮT ĐẦU TESTCASE DK7 ===
+[21/10/2025 17:28:45] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:45] [INFO] Điền thông tin: Username='user_demo_6', Phone='abc', Password='***', RePass='***'
+[21/10/2025 17:28:45] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:46] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:28:46] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:46] [INFO] Alert hiển thị: số điện thoại không đúng định dạng!
+[21/10/2025 17:28:46] [INFO] TESTCASE DK7 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:28:49] [INFO] 
+=== BẮT ĐẦU TESTCASE DK8 ===
+[21/10/2025 17:28:50] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:50] [INFO] Điền thông tin: Username='user_demo_7', Phone='03!', Password='***', RePass='***'
+[21/10/2025 17:28:51] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:51] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:28:51] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:51] [INFO] Alert hiển thị: số điện thoại không đúng định dạng!
+[21/10/2025 17:28:51] [INFO] TESTCASE DK8 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:28:54] [INFO] 
+=== BẮT ĐẦU TESTCASE DK9 ===
+[21/10/2025 17:28:56] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:28:56] [INFO] Điền thông tin: Username='user_demo_8', Phone='03 45216789', Password='***', RePass='***'
+[21/10/2025 17:28:57] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:28:57] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:28:57] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:28:57] [INFO] Alert hiển thị: số điện thoại không đúng định dạng!
+[21/10/2025 17:28:57] [INFO] TESTCASE DK9 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:29:00] [INFO] 
+=== BẮT ĐẦU TESTCASE DK10 ===
+[21/10/2025 17:29:01] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:29:01] [INFO] Điền thông tin: Username='user_demo_9', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:29:02] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:29:02] [INFO] Thông báo lỗi hiển thị: Mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:29:02] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:29:02] [INFO] Alert hiển thị: mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:29:02] [INFO] TESTCASE DK10 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:29:05] [INFO] 
+=== BẮT ĐẦU TESTCASE DK11 ===
+[21/10/2025 17:29:07] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:29:07] [INFO] Điền thông tin: Username='user_demo_10', Phone='0912345679', Password='***', RePass='***'
+[21/10/2025 17:29:07] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:29:56] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:30:12] [INFO] 
+=== BẮT ĐẦU TESTCASE DK12 ===
+[21/10/2025 17:30:13] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:30:13] [INFO] Điền thông tin: Username='Ánh Dương Phạm', Phone='035214679', Password='***', RePass='***'
+[21/10/2025 17:30:15] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:30:15] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:30:15] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:30:15] [INFO] Alert hiển thị: tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:30:15] [INFO] TESTCASE DK12 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:35:23] [INFO] === Logger khởi tạo cho chức năng: REGISTER ===
+[21/10/2025 17:35:23] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_register_20251021.log
+[21/10/2025 17:35:23] [INFO] Đang đọc dữ liệu test (json)...
+[21/10/2025 17:35:24] [INFO] 
+=== BẮT ĐẦU TESTCASE DK1 ===
+[21/10/2025 17:35:26] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:35:26] [INFO] Điền thông tin: Username='MaiQuynhAnh12', Phone='0359694533', Password='***', RePass='***'
+[21/10/2025 17:35:27] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:35:27] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:35:27] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:35:27] [INFO] Alert hiển thị: tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:35:31] [INFO] 
+=== BẮT ĐẦU TESTCASE DK2 ===
+[21/10/2025 17:35:32] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:35:32] [INFO] Điền thông tin: Username='user_demo_2', Phone='', Password='***', RePass='***'
+[21/10/2025 17:35:32] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:35:32] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:35:32] [INFO] HTML5 validation: Vui lòng điền vào trường này.
+[21/10/2025 17:35:32] [INFO] TESTCASE DK2 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:35:36] [INFO] 
+=== BẮT ĐẦU TESTCASE DK3 ===
+[21/10/2025 17:35:37] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:35:37] [INFO] Điền thông tin: Username='', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:35:37] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:35:38] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:35:38] [INFO] HTML5 validation: Vui lòng điền vào trường này.
+[21/10/2025 17:35:38] [INFO] TESTCASE DK3 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:35:41] [INFO] 
+=== BẮT ĐẦU TESTCASE DK4 ===
+[21/10/2025 17:35:42] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:35:42] [INFO] Điền thông tin: Username='user_demo_3', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:35:43] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:35:43] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:35:47] [INFO] 
+=== BẮT ĐẦU TESTCASE DK5 ===
+[21/10/2025 17:35:49] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:35:49] [INFO] Điền thông tin: Username='user_demo_4', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:35:50] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:35:50] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:35:54] [INFO] 
+=== BẮT ĐẦU TESTCASE DK6 ===
+[21/10/2025 17:35:56] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:35:56] [INFO] Điền thông tin: Username='user_demo_5', Phone='091', Password='***', RePass='***'
+[21/10/2025 17:35:56] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:35:56] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:35:56] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:35:56] [INFO] Alert hiển thị: số điện thoại không đúng định dạng!
+[21/10/2025 17:35:56] [INFO] TESTCASE DK6 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:36:00] [INFO] 
+=== BẮT ĐẦU TESTCASE DK7 ===
+[21/10/2025 17:36:01] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:36:01] [INFO] Điền thông tin: Username='user_demo_6', Phone='abc', Password='***', RePass='***'
+[21/10/2025 17:36:02] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:36:02] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:36:02] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:36:02] [INFO] Alert hiển thị: số điện thoại không đúng định dạng!
+[21/10/2025 17:36:02] [INFO] TESTCASE DK7 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:36:06] [INFO] 
+=== BẮT ĐẦU TESTCASE DK8 ===
+[21/10/2025 17:36:08] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:36:08] [INFO] Điền thông tin: Username='user_demo_7', Phone='03!', Password='***', RePass='***'
+[21/10/2025 17:36:08] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:36:09] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:36:09] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:36:09] [INFO] Alert hiển thị: số điện thoại không đúng định dạng!
+[21/10/2025 17:36:09] [INFO] TESTCASE DK8 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:36:12] [INFO] 
+=== BẮT ĐẦU TESTCASE DK9 ===
+[21/10/2025 17:36:14] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:36:14] [INFO] Điền thông tin: Username='user_demo_8', Phone='03 45216789', Password='***', RePass='***'
+[21/10/2025 17:36:15] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:36:15] [INFO] Thông báo lỗi hiển thị: Số điện thoại không đúng định dạng!
+[21/10/2025 17:36:15] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:36:15] [INFO] Alert hiển thị: số điện thoại không đúng định dạng!
+[21/10/2025 17:36:15] [INFO] TESTCASE DK9 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:36:18] [INFO] 
+=== BẮT ĐẦU TESTCASE DK10 ===
+[21/10/2025 17:36:20] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:36:20] [INFO] Điền thông tin: Username='user_demo_9', Phone='0912345678', Password='***', RePass='***'
+[21/10/2025 17:36:20] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:36:20] [INFO] Thông báo lỗi hiển thị: Mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:36:20] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:36:20] [INFO] Alert hiển thị: mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
+[21/10/2025 17:36:20] [INFO] TESTCASE DK10 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:36:24] [INFO] 
+=== BẮT ĐẦU TESTCASE DK11 ===
+[21/10/2025 17:36:26] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:36:26] [INFO] Điền thông tin: Username='user_demo_10', Phone='0912345679', Password='***', RePass='***'
+[21/10/2025 17:36:27] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:36:27] [INFO] Thông báo lỗi hiển thị: Mật khẩu không giống nhau
+[21/10/2025 17:36:27] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:36:27] [INFO] Alert hiển thị: mật khẩu không giống nhau
+[21/10/2025 17:36:27] [INFO] TESTCASE DK11 HOÀN THÀNH THÀNH CÔNG.
+
+[21/10/2025 17:36:30] [INFO] 
+=== BẮT ĐẦU TESTCASE DK12 ===
+[21/10/2025 17:36:32] [INFO] Mở trang đăng ký tài khoản MWC.
+[21/10/2025 17:36:32] [INFO] Điền thông tin: Username='Ánh Dương Phạm', Phone='035214679', Password='***', RePass='***'
+[21/10/2025 17:36:33] [INFO] Click nút 'Đăng ký'.
+[21/10/2025 17:36:33] [INFO] Thông báo lỗi hiển thị: Tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:36:33] [INFO] Kiểm tra về trang chủ sau đăng ký: True
+[21/10/2025 17:36:33] [INFO] Alert hiển thị: tài khoản đã tồn tại trong hệ thống
+[21/10/2025 17:36:33] [INFO] TESTCASE DK12 HOÀN THÀNH THÀNH CÔNG.
+
