@@ -129,3 +129,13 @@ def pytest_sessionfinish(session, exitstatus):
 
     except Exception as e:
         print(f"[ALLURE] Lỗi khi tạo báo cáo: {e}")
+
+# HỖ TRỢ TRUYỀN THAM SỐ DỮ LIỆU ĐẦU VÀO (excel / csv / json)
+def pytest_addoption(parser):
+    """Thêm option --data-mode để chọn loại file dữ liệu."""
+    parser.addoption(
+        "--data-mode",
+        action="store",
+        default="excel",
+        help="Chọn nguồn dữ liệu: excel | csv | json"
+    )

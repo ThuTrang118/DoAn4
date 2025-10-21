@@ -1,0 +1,201 @@
+[21/10/2025 15:21:02] [INFO] === Logger khởi tạo cho chức năng: LOGIN ===
+[21/10/2025 15:21:02] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_login_20251021.log
+[21/10/2025 15:21:02] [INFO] Đang đọc dữ liệu test (json)...
+[21/10/2025 15:21:03] [INFO] 
+=== BẮT ĐẦU TESTCASE DN1 ===
+[21/10/2025 15:21:05] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:21:05] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:21:05] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:21:05] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:21:05] [INFO] Nhập Username: Ánh Duơng Phạm
+[21/10/2025 15:21:05] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:21:08] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:21:25] [INFO] 
+=== BẮT ĐẦU TESTCASE DN2 ===
+[21/10/2025 15:21:27] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:21:27] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:21:28] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:21:28] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:21:28] [INFO] Nhập Username: ÁNH DƯƠNG PHẠM
+[21/10/2025 15:21:28] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:21:30] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:21:47] [INFO] 
+=== BẮT ĐẦU TESTCASE DN3 ===
+[21/10/2025 15:21:49] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:21:49] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:21:49] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:21:49] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:21:49] [INFO] Nhập Username: anhduongpham
+[21/10/2025 15:21:49] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:21:50] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:22:07] [INFO] 
+=== BẮT ĐẦU TESTCASE DN4 ===
+[21/10/2025 15:22:09] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:22:09] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:22:09] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:22:09] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:22:09] [INFO] Nhập Username: 
+[21/10/2025 15:22:09] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:22:09] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:22:12] [INFO] 
+=== BẮT ĐẦU TESTCASE DN5 ===
+[21/10/2025 15:22:14] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:22:14] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:22:14] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:22:14] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:22:14] [INFO] Nhập Username: anhduongpham
+[21/10/2025 15:22:14] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:22:15] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:22:31] [INFO] 
+=== BẮT ĐẦU TESTCASE DN6 ===
+[21/10/2025 15:22:33] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:22:33] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:22:33] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:22:33] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:22:33] [INFO] Nhập Username: anh
+[21/10/2025 15:22:33] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:22:34] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:22:37] [INFO] 
+=== BẮT ĐẦU TESTCASE DN7 ===
+[21/10/2025 15:22:38] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:22:38] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:22:38] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:22:38] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:22:38] [INFO] Nhập Username: Ánh Duơng Phạm
+[21/10/2025 15:22:38] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:22:39] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:25:49] [INFO] === Logger khởi tạo cho chức năng: LOGIN ===
+[21/10/2025 15:25:49] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_login_20251021.log
+[21/10/2025 15:25:49] [INFO] Đang đọc dữ liệu test (excel)...
+[21/10/2025 15:25:50] [INFO] 
+=== BẮT ĐẦU TESTCASE DN1 ===
+[21/10/2025 15:25:51] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:25:51] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:25:51] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:25:51] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:25:52] [INFO] Nhập Username: Ánh Dương Phạm
+[21/10/2025 15:25:52] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:25:53] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:26:10] [INFO] 
+=== BẮT ĐẦU TESTCASE DN2 ===
+[21/10/2025 15:26:12] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:26:12] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:26:12] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:26:12] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:26:12] [INFO] Nhập Username: ÁNH DƯƠNG PHẠM
+[21/10/2025 15:26:12] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:26:13] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:26:30] [INFO] 
+=== BẮT ĐẦU TESTCASE DN3 ===
+[21/10/2025 15:26:31] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:26:32] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:26:32] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:26:32] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:26:32] [INFO] Nhập Username: anhduongpham
+[21/10/2025 15:26:32] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:26:33] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:26:50] [INFO] 
+=== BẮT ĐẦU TESTCASE DN4 ===
+[21/10/2025 15:26:51] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:26:51] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:26:51] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:26:51] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:26:51] [INFO] Nhập Username: 
+[21/10/2025 15:26:51] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:26:51] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:26:55] [INFO] 
+=== BẮT ĐẦU TESTCASE DN5 ===
+[21/10/2025 15:26:56] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:26:56] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:26:56] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:26:56] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:26:56] [INFO] Nhập Username: anhduongpham
+[21/10/2025 15:26:56] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:26:57] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:27:13] [INFO] 
+=== BẮT ĐẦU TESTCASE DN6 ===
+[21/10/2025 15:27:15] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:27:15] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:27:15] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:27:15] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:27:15] [INFO] Nhập Username: anh
+[21/10/2025 15:27:15] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:27:16] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:27:19] [INFO] 
+=== BẮT ĐẦU TESTCASE DN7 ===
+[21/10/2025 15:27:21] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:27:21] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:27:21] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:27:21] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:27:21] [INFO] Nhập Username: Ánh Dương Phạm
+[21/10/2025 15:27:21] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:27:22] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:33:08] [INFO] === Logger khởi tạo cho chức năng: LOGIN ===
+[21/10/2025 15:33:08] [INFO] Ghi log tại: C:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_login_20251021.log
+[21/10/2025 15:33:08] [INFO] Đang đọc dữ liệu test (json)...
+[21/10/2025 15:33:09] [INFO] 
+=== BẮT ĐẦU TESTCASE DN1 ===
+[21/10/2025 15:33:10] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:33:10] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:33:10] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:33:10] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:33:10] [INFO] Nhập Username: Ánh Dương Phạm
+[21/10/2025 15:33:11] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:33:13] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:33:30] [INFO] 
+=== BẮT ĐẦU TESTCASE DN2 ===
+[21/10/2025 15:33:32] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:33:32] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:33:32] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:33:32] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:33:32] [INFO] Nhập Username: ÁNH DƯƠNG PHẠM
+[21/10/2025 15:33:32] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:33:33] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:33:50] [INFO] 
+=== BẮT ĐẦU TESTCASE DN3 ===
+[21/10/2025 15:33:52] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:33:52] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:33:52] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:33:52] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:33:52] [INFO] Nhập Username: anhduongpham
+[21/10/2025 15:33:52] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:33:53] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:34:10] [INFO] 
+=== BẮT ĐẦU TESTCASE DN4 ===
+[21/10/2025 15:34:12] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:34:12] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:34:12] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:34:12] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:34:12] [INFO] Nhập Username: 
+[21/10/2025 15:34:12] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:34:12] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:34:15] [INFO] 
+=== BẮT ĐẦU TESTCASE DN5 ===
+[21/10/2025 15:34:17] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:34:17] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:34:17] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:34:17] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:34:17] [INFO] Nhập Username: anhduongpham
+[21/10/2025 15:34:17] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:34:18] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:34:34] [INFO] 
+=== BẮT ĐẦU TESTCASE DN6 ===
+[21/10/2025 15:34:35] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:34:35] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:34:35] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:34:35] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:34:35] [INFO] Nhập Username: anh
+[21/10/2025 15:34:35] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:34:36] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:34:39] [INFO] 
+=== BẮT ĐẦU TESTCASE DN7 ===
+[21/10/2025 15:34:41] [INFO] Mở trang đăng nhập MWC thành công.
+[21/10/2025 15:34:41] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='UserName'])[1]").
+[21/10/2025 15:34:41] [INFO] Đã xóa dữ liệu cũ trong ('xpath', "(//input[@id='Password'])[1]").
+[21/10/2025 15:34:41] [INFO] Bắt đầu thao tác đăng nhập...
+[21/10/2025 15:34:41] [INFO] Nhập Username: Ánh Duơng Phạm
+[21/10/2025 15:34:41] [INFO] Nhập Password (đã ẩn).
+[21/10/2025 15:34:42] [INFO] Click nút 'Đăng nhập'.
+[21/10/2025 15:35:07] [INFO] === Logger khởi tạo cho chức năng: LOGIN ===
+[21/10/2025 15:35:07] [INFO] Ghi log tại: c:\Users\HP\Desktop\DoAn4\Framework_MWC_Testing\reports\logs\mwc_login_20251021.log
+[21/10/2025 15:35:07] [INFO] Đang đọc dữ liệu test (excel)...

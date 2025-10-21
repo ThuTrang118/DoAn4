@@ -1,4 +1,3 @@
-# utils/logger_utils.py
 import os
 import logging
 from datetime import datetime
@@ -14,7 +13,7 @@ def create_logger(name: str = None) -> logging.Logger:
     """
     global _LOGGER_CACHE
 
-    # --- 1 Xác định tên module gọi ---
+    # --- 1. Xác định tên module gọi ---
     if not name:
         frame = inspect.stack()[1]
         caller_file = os.path.basename(frame.filename)
@@ -25,25 +24,23 @@ def create_logger(name: str = None) -> logging.Logger:
 
     func_name = name.lower()
 
-    # --- 2 Nếu đã có logger trong cache, trả về luôn ---
+    # --- 2. Nếu logger đã tồn tại, trả về luôn ---
     if func_name in _LOGGER_CACHE:
         return _LOGGER_CACHE[func_name]
 
-    # --- 3 Tạo thư mục logs ---
+    # --- 3. Tạo thư mục logs ---
     logs_dir = os.path.join(os.getcwd(), "reports", "logs")
     os.makedirs(logs_dir, exist_ok=True)
 
-    # --- 4 Ghi chung 1 file log cho mỗi chức năng ---
-    # Dùng timestamp chung cho lần đầu khởi tạo
+    # --- 4. Tên file log ---
     timestamp = datetime.now().strftime("%Y%m%d")
     log_filename = f"mwc_{func_name}_{timestamp}.log"
     log_path = os.path.join(logs_dir, log_filename)
 
-    # --- 5 Tạo logger ---
+    # --- 5. Cấu hình logger ---
     logger = logging.getLogger(func_name)
     logger.setLevel(logging.INFO)
 
-    # Tránh gắn nhiều handler (nếu logger cũ tái sử dụng)
     if not logger.handlers:
         file_handler = logging.FileHandler(log_path, encoding="utf-8")
         console_handler = logging.StreamHandler()
@@ -61,6 +58,16 @@ def create_logger(name: str = None) -> logging.Logger:
         logger.info(f"=== Logger khởi tạo cho chức năng: {func_name.upper()} ===")
         logger.info(f"Ghi log tại: {log_path}")
 
-    # --- 6 Lưu cache ---
     _LOGGER_CACHE[func_name] = logger
     return logger
+
+# HÀM PHỤ: GHI NGUỒN DỮ LIỆU ĐẦU VÀO TRƯỚC MỖI TESTCASE
+def log_data_source(logger: logging.Logger, data_mode: str):
+    """
+    Ghi dòng thông tin nguồn dữ liệu đầu vào (Excel / CSV / JSON)
+    vào đầu mỗi testcase để dễ theo dõi log.
+    """
+    mode = str(data_mode).strip().upper()
+    logger.info("=" * 60)
+    logger.info(f"Nguồn dữ liệu đầu vào: {mode}")
+    logger.info("=" * 60)
