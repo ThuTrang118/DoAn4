@@ -3,17 +3,17 @@ import logging
 from datetime import datetime
 import inspect
 
-# Lưu cache logger để tránh tạo nhiều file
+# --- Cache để đảm bảo mỗi chức năng chỉ tạo 1 logger duy nhất ---
 _LOGGER_CACHE = {}
 
 def create_logger(name: str = None) -> logging.Logger:
     """
-    Tạo logger duy nhất cho mỗi chức năng (login, search, order,...).
-    Dù gọi ở nhiều nơi (page/test) cũng chỉ sinh 1 file log duy nhất.
+    Tạo logger duy nhất cho từng chức năng (login, search, register, profileupdate, ...).
+    Dù gọi từ nhiều nơi (page/test) cũng chỉ sinh 1 file log duy nhất trong ngày.
     """
     global _LOGGER_CACHE
 
-    # --- 1. Xác định tên module gọi ---
+    # --- 1. Xác định tên module gọi (nếu không truyền) ---
     if not name:
         frame = inspect.stack()[1]
         caller_file = os.path.basename(frame.filename)
@@ -32,7 +32,7 @@ def create_logger(name: str = None) -> logging.Logger:
     logs_dir = os.path.join(os.getcwd(), "reports", "logs")
     os.makedirs(logs_dir, exist_ok=True)
 
-    # --- 4. Tên file log ---
+    # --- 4. Tạo tên file log theo ngày ---
     timestamp = datetime.now().strftime("%Y%m%d")
     log_filename = f"mwc_{func_name}_{timestamp}.log"
     log_path = os.path.join(logs_dir, log_filename)
@@ -54,20 +54,32 @@ def create_logger(name: str = None) -> logging.Logger:
 
         logger.addHandler(file_handler)
         logger.addHandler(console_handler)
+
+        # --- Header chung khi khởi tạo ---
         logger.info("=" * 60)
         logger.info(f"=== Logger khởi tạo cho chức năng: {func_name.upper()} ===")
         logger.info(f"Ghi log tại: {log_path}")
+        logger.info("=" * 60)
 
     _LOGGER_CACHE[func_name] = logger
     return logger
 
-# HÀM PHỤ: GHI NGUỒN DỮ LIỆU ĐẦU VÀO TRƯỚC MỖI TESTCASE
-def log_data_source(logger: logging.Logger, data_mode: str):
+
+# =====================================================================
+# HÀM PHỤ: Tự động ghi loại dữ liệu (excel/csv/json) từ pytest option
+# =====================================================================
+def log_data_source_from_pytest(logger, pytestconfig):
     """
-    Ghi dòng thông tin nguồn dữ liệu đầu vào (Excel / CSV / JSON)
-    vào đầu mỗi testcase để dễ theo dõi log.
+    Ghi tự động nguồn dữ liệu đầu vào (excel/csv/json)
+    lấy từ tham số pytest: --data-mode
     """
-    mode = str(data_mode).strip().upper()
+    try:
+        mode = pytestconfig.getoption("--data-mode") or "excel"
+    except Exception:
+        mode = "excel"
+
+    mode = str(mode).strip().upper()
     logger.info("=" * 60)
-    logger.info(f"Nguồn dữ liệu đầu vào: {mode}")
+    logger.info(f"Đang đọc dữ liệu test (mode={mode.lower()})...")
     logger.info("=" * 60)
+    return mode

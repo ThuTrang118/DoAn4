@@ -3,7 +3,7 @@ import pytest
 from datetime import datetime
 from pages.search_page import MWCSearchPage
 from utils.excel_utils import load_data
-from utils.logger_utils import create_logger
+from utils.logger_utils import create_logger, log_data_source_from_pytest
 import allure
 
 logger = create_logger("SearchTest")
@@ -66,7 +66,7 @@ def pytest_generate_tests(metafunc):
 
 # --- HÀM TEST CHÍNH ---
 def test_search_ddt(driver, result_writer, tc, keyword, expected_raw):
-    """Kiểm thử tự động chức năng Tìm kiếm sản phẩm."""
+    """Kiểm thử tự động chức năng Tìm kiếm sản phẩm (bỏ dấu, chỉ cần chứa từ khóa là PASS)."""
     logger.info(f"\n=== BẮT ĐẦU TESTCASE {tc} ===")
     logger.info(f"Input | Keyword='{keyword}' | Expected='{expected_raw}'")
 
@@ -76,30 +76,47 @@ def test_search_ddt(driver, result_writer, tc, keyword, expected_raw):
 
     status, actual = "FAIL", ""
     try:
-        # --- Kiểm tra kết quả tìm kiếm ---
-        found, message = page.check_keyword(keyword)
-        actual = message.strip()
+        # --- Lấy tên sản phẩm đầu tiên ---
+        first_name = (page.get_first_result_text() or "").strip()
+        actual = first_name if first_name else "Không tìm thấy sản phẩm"
+
+        # --- Chuẩn hóa để so sánh KHÔNG DẤU ---
+        keyword_norm  = page.normalize_text(keyword)
+        actual_norm   = page.normalize_text(first_name)
+        expected_norm = page.normalize_text(expected_raw)
 
         # --- Đánh giá kết quả ---
-        expected_low = expected_raw.lower().strip()
-        actual_low = actual.lower().strip()
+        if not keyword:  # từ khóa trống
+            if "vui long nhap" in expected_norm or "trong" in expected_norm:
+                actual = "Từ khóa trống"
+                status = "PASS"
+            else:
+                status = "FAIL"
 
-        if found and keyword.lower() in actual_low:
-            status = "PASS"
-        elif not found and "không tìm thấy" in expected_low and "không tìm thấy" in actual_low:
-            status = "PASS"
-        elif not keyword and ("vui lòng nhập" in expected_low or "trống" in expected_low):
-            actual = "Từ khóa trống"
-            status = "PASS"
+        elif not first_name:  # không có sản phẩm hiển thị
+            if "khong tim thay" in expected_norm:
+                status = "PASS"
+            else:
+                status = "FAIL"
+
         else:
-            status = "FAIL"
+            # chỉ cần từ khóa nằm TRONG tên sản phẩm đầu tiên (bỏ dấu)
+            if keyword_norm in actual_norm:
+                status = "PASS"
+            else:
+                logger.warning(f"Không tìm thấy sản phẩm nào chứa từ khóa '{keyword}'.")
+                actual = "Không tìm thấy sản phẩm"
+                status = "PASS" if "khong tim thay" in expected_norm else "FAIL"
 
-        if not actual:
-            actual = "Không tìm thấy kết quả phù hợp."
+        # --- Ghi lại Expected / Actual / Status ---
+        logger.info(f"Expected: {expected_raw}")
+        logger.info(f"Actual:   {actual}")
+        logger.info(f"Status:   {status}")
 
     except Exception as e:
         actual = f"Lỗi khi chạy testcase: {e}"
         logger.error(actual)
+        status = "FAIL"
 
     # --- Ghi kết quả ra Excel ---
     result_writer.add_row(SHEET, {
@@ -111,5 +128,14 @@ def test_search_ddt(driver, result_writer, tc, keyword, expected_raw):
         "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
     })
 
+    logger.info(f"=== KẾT THÚC TESTCASE {tc} ===")
+
+    # --- Nếu thất bại thì fail pytest ---
     if status == "FAIL":
-        pytest.fail(f"Testcase {tc} thất bại.\nKeyword: '{keyword}'\nExpected: '{expected_raw}'\nActual: '{actual}'",pytrace=False)
+        pytest.fail(
+            f"Testcase {tc} thất bại.\n"
+            f"Keyword: '{keyword}'\n"
+            f"Expected: '{expected_raw}'\n"
+            f"Actual: '{actual}'",
+            pytrace=False
+        )

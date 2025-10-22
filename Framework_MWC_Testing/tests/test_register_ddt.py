@@ -4,9 +4,13 @@ from datetime import datetime
 from pages.register_page import MWCRegisterPage
 from pages.profile_page import ProfilePage
 from utils.excel_utils import load_data
-from utils.logger_utils import create_logger
+from utils.logger_utils import create_logger, log_data_source_from_pytest  # ✅ thêm
 
 logger = create_logger("RegisterTest")
+
+@pytest.fixture(scope="session", autouse=True)
+def _auto_log_data_source(pytestconfig):
+    log_data_source_from_pytest(logger, pytestconfig)
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SHEET = "Register"
@@ -15,13 +19,10 @@ DATA_EXCEL = os.path.join(BASE_DIR, "data", "TestData.xlsx")
 DATA_CSV   = os.path.join(BASE_DIR, "data", "RegisterData.csv")
 DATA_JSON  = os.path.join(BASE_DIR, "data", "RegisterData.json")
 
-# --- Cho phép chọn loại dữ liệu đầu vào ---
 def pytest_addoption(parser):
     parser.addoption("--data-mode", action="store", default="excel", help="excel | csv | json")
 
 def get_test_data(data_mode: str):
-    """Đọc dữ liệu test theo loại file."""
-    logger.info(f"Đang đọc dữ liệu test (mode={data_mode})...")
     if data_mode == "excel":
         return load_data(DATA_EXCEL, sheet_name=SHEET)
     elif data_mode == "csv":
@@ -32,7 +33,6 @@ def get_test_data(data_mode: str):
         raise ValueError("data-mode không hợp lệ")
 
 def pytest_generate_tests(metafunc):
-    """Sinh dữ liệu test tự động (Data-Driven)."""
     if {"tc", "username", "phone", "password", "repass", "expected_raw"}.issubset(metafunc.fixturenames):
         mode = metafunc.config.getoption("--data-mode")
         data = get_test_data(mode)
@@ -64,7 +64,7 @@ def test_register_ddt(driver, result_writer, tc, username, phone, password, repa
 
     status, actual = "FAIL", ""
     try:
-        # --- 1️⃣ HTML5 validation ---
+        # ---HTML5 validation ---
         html5_msgs = []
         for locator in [page.USERNAME, page.PHONE, page.PASSWORD, page.REPASS]:
             msg = page.get_validation_message(locator)
@@ -76,7 +76,7 @@ def test_register_ddt(driver, result_writer, tc, username, phone, password, repa
             if "vui lòng điền" in actual.lower() and "vui lòng điền" in expected_raw.lower():
                 status = "PASS"
 
-        # --- 2️⃣ ALERT lỗi ---
+        # ---ALERT lỗi ---
         elif not html5_msgs:
             alert_text = (page.get_alert_text() or "").strip().lower()
             if alert_text:
@@ -84,7 +84,7 @@ def test_register_ddt(driver, result_writer, tc, username, phone, password, repa
                 if expected_raw.lower() in alert_text:
                     status = "PASS"
 
-        # --- 3️⃣ ĐĂNG KÝ THÀNH CÔNG ---
+        # ---ĐĂNG KÝ THÀNH CÔNG ---
         if status == "FAIL" and page.at_home():
             profile = ProfilePage(driver)
             profile.open_profile()
@@ -97,7 +97,7 @@ def test_register_ddt(driver, result_writer, tc, username, phone, password, repa
             else:
                 actual = "Không hiển thị tên người dùng trong hồ sơ."
 
-        # --- 4️⃣ Trường hợp không xác định ---
+        # ---Trường hợp không xác định ---
         if status == "FAIL" and not actual:
             actual = "Đăng ký không thành công."
 

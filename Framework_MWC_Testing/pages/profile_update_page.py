@@ -4,11 +4,12 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from utils.logger_utils import create_logger
+from pages.base_page import BasePage  
 
 logger = create_logger("ProfileUpdatePage")
 
 
-class MWCProfileUpdatePage:
+class MWCProfileUpdatePage(BasePage):
     """Trang cập nhật thông tin cá nhân — MWC."""
 
     PROFILE_URL = "https://mwc.com.vn/profile"
@@ -38,8 +39,7 @@ class MWCProfileUpdatePage:
     TOAST_SUCCESS = (By.CSS_SELECTOR, ".jq-toast-single.jq-icon-success")
 
     def __init__(self, driver, timeout=15):
-        self.driver = driver
-        self.wait = WebDriverWait(driver, timeout)
+        super().__init__(driver, timeout)
 
     # ------------------ HÀM CHÍNH ------------------
     def open(self):
