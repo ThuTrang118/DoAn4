@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from utils.excel_utils import ResultBook, ensure_dir
 import allure
 
-# --- Đường dẫn thư mục ---
+# ---------------- ĐƯỜNG DẪN CỐ ĐỊNH ----------------
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 REPORTS_DIR = os.path.join(BASE_DIR, "reports")
 SS_DIR = os.path.join(REPORTS_DIR, "screenshots")
@@ -15,8 +15,23 @@ ALLURE_REPORT = os.path.join(REPORTS_DIR, "allure-report")
 for d in [SS_DIR, RES_DIR, ALLURE_RESULTS, ALLURE_REPORT]:
     ensure_dir(d)
 
+# ---------------- KHAI BÁO TÙY CHỌN TOÀN CỤC ----------------
+def pytest_addoption(parser):
+    """Thêm option để chọn loại và file dữ liệu đầu vào."""
+    parser.addoption(
+        "--data-mode",
+        action="store",
+        default="excel",
+        help="Chọn loại dữ liệu: excel | csv | json"
+    )
+    parser.addoption(
+        "--data-file",
+        action="store",
+        default="data/TestData.xlsx",
+        help="Đường dẫn đến file dữ liệu test (mặc định: data/TestData.xlsx)"
+    )
 
-# --- Fixture ghi kết quả ---
+# ---------------- GHI KẾT QUẢ ----------------
 @pytest.fixture(scope="session")
 def result_writer(request):
     writer = ResultBook(out_dir=RES_DIR, file_name="ResultsData.xlsx")
@@ -28,8 +43,7 @@ def result_writer(request):
     request.addfinalizer(finalize)
     return writer
 
-
-# --- Fixture khởi tạo WebDriver ---
+# ---------------- FIXTURE: KHỞI TẠO WEBDRIVER ----------------
 @pytest.fixture
 def driver():
     opts = Options()
@@ -43,15 +57,10 @@ def driver():
     yield driver
     driver.quit()
 
-
-# --- Hook Pytest: Quản lý ảnh chụp khi FAIL ---
+# ---------------- CHỤP ẢNH KHI FAIL + GẮN VÀO ALLURE ----------------
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    """
-    1 Chụp ảnh khi testcase FAIL (và ghi đè ảnh cũ nếu có)
-    2 Xóa ảnh cũ nếu testcase PASS
-    3 Gắn screenshot vào Allure report nếu có.
-    """
+    """Chụp ảnh khi testcase FAIL và attach vào Allure."""
     outcome = yield
     rep = outcome.get_result()
     driver = item.funcargs.get("driver", None)
@@ -61,14 +70,13 @@ def pytest_runtest_makereport(item, call):
     base_name = item.name.replace("[", "_").replace("]", "_")
     img_path = os.path.join(SS_DIR, f"{base_name}.png")
 
-    # --- Nếu FAIL ---
+    # Khi testcase FAIL
     if rep.when == "call" and rep.failed:
         try:
             if os.path.exists(img_path):
                 os.remove(img_path)
             driver.save_screenshot(img_path)
             print(f"\n[SCREENSHOT SAVED]: {img_path}")
-            print(f"[FAIL REASON]: {rep.longreprtext[:300]}...")
             with open(img_path, "rb") as f:
                 allure.attach(
                     f.read(),
@@ -78,7 +86,7 @@ def pytest_runtest_makereport(item, call):
         except Exception as e:
             print(f"[WARN] Không thể chụp ảnh: {e}")
 
-    # --- Nếu PASS ---
+    # Khi testcase PASS: xóa ảnh cũ (nếu có)
     elif rep.when == "call" and rep.passed:
         if os.path.exists(img_path):
             try:
@@ -87,41 +95,44 @@ def pytest_runtest_makereport(item, call):
             except Exception:
                 pass
 
-
-# --- TỰ ĐỘNG SINH + MỞ ALLURE REPORT ---
+# ---------------- TỰ ĐỘNG SINH ALLURE REPORT SAU KHI TEST ----------------
 def pytest_sessionfinish(session, exitstatus):
     """
-    Sau khi chạy xong 1 module test → tự động:
-      - Dọn thư mục Allure cũ
-      - Sinh Allure HTML mới cho từng chức năng
-      - Mở báo cáo trên Chrome
+    Sau khi chạy xong 1 module test:
+      - Xác định đúng thư mục chức năng (login, register, search, order,...)
+      - Giữ lại dữ liệu Allure do pytest ghi
+      - Sinh báo cáo Allure mới
     """
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    # Lấy tên file test đang chạy
-    test_file = session.config.invocation_params.args[0] if session.config.invocation_params.args else "all_tests"
-    func_name = os.path.splitext(os.path.basename(test_file))[0].replace("test_", "")
+    # --- Lấy file test đang chạy ---
+    try:
+        test_file = session.config.invocation_params.args[0]
+    except Exception:
+        test_file = "all_tests"
 
-    # Thư mục kết quả Allure
+    # --- Rút gọn tên chức năng từ file test ---
+    base_name = os.path.basename(test_file)
+    func_name = os.path.splitext(base_name)[0].replace("test_", "")
+    for suffix in ["_ddt", "_bai1", "_bai2"]:
+        if func_name.endswith(suffix):
+            func_name = func_name.replace(suffix, "")
+
+    # --- Đường dẫn đến thư mục Allure ---
     allure_results = os.path.join(ALLURE_RESULTS, func_name)
     allure_report = os.path.join(ALLURE_REPORT, func_name)
 
-    # Dọn dữ liệu cũ (tránh nhân đôi testcases)
-    if os.path.exists(allure_results):
-        shutil.rmtree(allure_results)
-        print(f"[CLEANUP] Đã xóa dữ liệu cũ: {allure_results}")
+    # ⚠️ KHÔNG xóa dữ liệu cũ ở đây nữa, để pytest giữ file .json
     ensure_dir(allure_results)
 
-    # Tạo báo cáo mới
     print(f"\n[ALLURE] Tạo báo cáo cho chức năng: {func_name}")
     try:
         subprocess.run(
             ["allure", "generate", allure_results, "-o", allure_report, "--clean"],
             check=True
         )
-        print(f"[ALLURE] Báo cáo HTML đã tạo tại: {allure_report}/index.html\n")
+        print(f"[ALLURE] Báo cáo HTML đã tạo tại: {allure_report}\\index.html\n")
 
-        # Mở Chrome tự động
         index_path = os.path.abspath(os.path.join(allure_report, "index.html"))
         if os.path.exists(index_path):
             webbrowser.open_new_tab(index_path)
@@ -129,13 +140,3 @@ def pytest_sessionfinish(session, exitstatus):
 
     except Exception as e:
         print(f"[ALLURE] Lỗi khi tạo báo cáo: {e}")
-
-# HỖ TRỢ TRUYỀN THAM SỐ DỮ LIỆU ĐẦU VÀO (excel / csv / json)
-def pytest_addoption(parser):
-    """Thêm option --data-mode để chọn loại file dữ liệu."""
-    parser.addoption(
-        "--data-mode",
-        action="store",
-        default="excel",
-        help="Chọn nguồn dữ liệu: excel | csv | json"
-    )

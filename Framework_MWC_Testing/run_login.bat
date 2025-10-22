@@ -1,23 +1,23 @@
 @echo off
 chcp 65001 >nul
+set PYTHONIOENCODING=utf-8
 title CHẠY TEST: ĐĂNG NHẬP (LOGIN)
 set /p MODE="Nhập loại dữ liệu (excel / csv / json): "
 if "%MODE%"=="" set MODE=excel
-echo -------------------------------------
-echo Sử dụng dữ liệu đầu vào: %MODE%
-echo -------------------------------------
-rmdir /s /q reports\allure-results\login >nul 2>&1
-rmdir /s /q reports\allure-report\login >nul 2>&1
-echo =====================================================
-echo ĐANG CHẠY TEST CHỨC NĂNG: ĐĂNG NHẬP (%MODE%)
-echo =====================================================
-pytest -s -v tests/test_login_ddt.py --data-mode=%MODE% --alluredir=reports/allure-results/login
-echo =====================================================
-echo TẠO BÁO CÁO ALLURE (LOGIN)
-echo =====================================================
+
+if /i "%MODE%"=="excel" (
+    set "FILE=data\TestData.xlsx"
+) else if /i "%MODE%"=="csv" (
+    set "FILE=data\LoginData.csv"
+) else if /i "%MODE%"=="json" (
+    set "FILE=data\LoginData.json"
+) else (
+    echo Loại dữ liệu không hợp lệ.
+    pause
+    exit /b
+)
+pytest -s -v tests\test_login_ddt.py --data-mode=%MODE% --data-file=%FILE% --alluredir=reports/allure-results/login
+
 allure generate reports/allure-results/login -o reports/allure-report/login --clean
-echo =====================================================
-echo MỞ BÁO CÁO TRÊN CHROME
-echo =====================================================
-start "" "%ProgramFiles%\Google\Chrome\Application\chrome.exe" "reports/allure-report/login/index.html"
+start "" reports/allure-report/login/index.html
 pause

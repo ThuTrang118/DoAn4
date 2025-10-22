@@ -11,16 +11,17 @@ logger = create_logger("RegisterTest")
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SHEET = "Register"
 
-# --- Đường dẫn dữ liệu ---
 DATA_EXCEL = os.path.join(BASE_DIR, "data", "TestData.xlsx")
 DATA_CSV   = os.path.join(BASE_DIR, "data", "RegisterData.csv")
 DATA_JSON  = os.path.join(BASE_DIR, "data", "RegisterData.json")
 
+# --- Cho phép chọn loại dữ liệu đầu vào ---
+def pytest_addoption(parser):
+    parser.addoption("--data-mode", action="store", default="excel", help="excel | csv | json")
 
-# --- Lấy dữ liệu theo mode từ conftest.py ---
 def get_test_data(data_mode: str):
-    """Đọc dữ liệu test từ Excel / CSV / JSON."""
-    logger.info(f"Đang đọc dữ liệu test ({data_mode})...")
+    """Đọc dữ liệu test theo loại file."""
+    logger.info(f"Đang đọc dữ liệu test (mode={data_mode})...")
     if data_mode == "excel":
         return load_data(DATA_EXCEL, sheet_name=SHEET)
     elif data_mode == "csv":
@@ -28,69 +29,81 @@ def get_test_data(data_mode: str):
     elif data_mode == "json":
         return load_data(DATA_JSON)
     else:
-        raise ValueError("data-mode không hợp lệ (excel | csv | json)")
+        raise ValueError("data-mode không hợp lệ")
 
-
-# --- Tự động truyền dữ liệu test ---
 def pytest_generate_tests(metafunc):
-    """Lấy --data-mode từ conftest.py và truyền dữ liệu vào test."""
+    """Sinh dữ liệu test tự động (Data-Driven)."""
     if {"tc", "username", "phone", "password", "repass", "expected_raw"}.issubset(metafunc.fixturenames):
         mode = metafunc.config.getoption("--data-mode")
         data = get_test_data(mode)
-        params = [
-            pytest.param(
-                r.get("testcase", ""),
-                r.get("username", ""),
-                r.get("phone", ""),
-                r.get("password", ""),
-                r.get("passwordconfirm", ""),
-                r.get("expected", ""),
-                id=str(r.get("testcase"))
-            )
-            for r in data if r.get("testcase")
-        ]
+        seen, params = set(), []
+        for r in data:
+            tc = str(r.get("testcase", "")).strip()
+            if tc and tc not in seen:
+                params.append(pytest.param(
+                    r.get("testcase", ""),
+                    r.get("username", ""),
+                    r.get("phone", ""),
+                    r.get("password", ""),
+                    r.get("passwordconfirm", ""),
+                    r.get("expected", ""),
+                    id=tc
+                ))
+                seen.add(tc)
         metafunc.parametrize("tc,username,phone,password,repass,expected_raw", params)
-
 
 # --- HÀM TEST CHÍNH ---
 def test_register_ddt(driver, result_writer, tc, username, phone, password, repass, expected_raw):
     logger.info(f"\n=== BẮT ĐẦU TESTCASE {tc} ===")
+    logger.info(f"Input | Username='{username}' | Phone='{phone}' | Password='***' | Expected='{expected_raw}'")
 
     page = MWCRegisterPage(driver)
     page.open()
     page.fill_form(username, phone, password, repass)
     page.click_register()
 
-    # --- Lấy thông tin thực tế ---
-    actual = ""
-    html5_msgs = [page.get_validation_message(x) for x in [page.USERNAME, page.PHONE, page.PASSWORD, page.REPASS] if page.get_validation_message(x)]
-    alert_text = page.get_alert_text().strip().lower()
-    success = page.at_home()
+    status, actual = "FAIL", ""
+    try:
+        # --- 1️⃣ HTML5 validation ---
+        html5_msgs = []
+        for locator in [page.USERNAME, page.PHONE, page.PASSWORD, page.REPASS]:
+            msg = page.get_validation_message(locator)
+            if msg:
+                html5_msgs.append(msg)
 
-    # --- Ưu tiên 1: HTML5 validation ---
-    if html5_msgs:
-        actual = " | ".join(html5_msgs)
-        logger.info(f"HTML5 validation: {actual}")
-        assert "vui lòng điền" in actual.lower(), f"Expected HTML5 validation nhưng nhận được: {actual}"
+        if html5_msgs:
+            actual = " | ".join(html5_msgs)
+            if "vui lòng điền" in actual.lower() and "vui lòng điền" in expected_raw.lower():
+                status = "PASS"
 
-    # --- Ưu tiên 2: Alert lỗi ---
-    elif alert_text:
-        actual = alert_text
-        logger.info(f"Alert hiển thị: {actual}")
-        assert expected_raw.lower() in alert_text, f"Expected: {expected_raw}, Actual: {actual}"
+        # --- 2️⃣ ALERT lỗi ---
+        elif not html5_msgs:
+            alert_text = (page.get_alert_text() or "").strip().lower()
+            if alert_text:
+                actual = alert_text
+                if expected_raw.lower() in alert_text:
+                    status = "PASS"
 
-    # --- Ưu tiên 3: Thành công (về trang chủ) ---
-    elif success:
-        profile = ProfilePage(driver)
-        profile.open_profile()
-        assert profile.profile_username_present(), "Không tìm thấy tên người dùng trong hồ sơ."
-        actual = profile.read_profile_username()
-        assert username.lower() in (actual or "").lower(), f"Tên người dùng khác mong đợi: {actual}"
+        # --- 3️⃣ ĐĂNG KÝ THÀNH CÔNG ---
+        if status == "FAIL" and page.at_home():
+            profile = ProfilePage(driver)
+            profile.open_profile()
+            if profile.profile_username_present():
+                actual = profile.read_profile_username()
+                if username.lower() in (actual or "").lower():
+                    status = "PASS"
+                else:
+                    actual = f"Tên người dùng khác mong đợi: {actual}"
+            else:
+                actual = "Không hiển thị tên người dùng trong hồ sơ."
 
-    # --- Nếu không thuộc các trường hợp trên ---
-    else:
-        actual = "Đăng ký không thành công."
-        pytest.fail(f"Không xác định được kết quả. Expected: {expected_raw}, Actual: {actual}")
+        # --- 4️⃣ Trường hợp không xác định ---
+        if status == "FAIL" and not actual:
+            actual = "Đăng ký không thành công."
+
+    except Exception as e:
+        actual = f"Lỗi khi chạy testcase: {e}"
+        logger.error(actual)
 
     # --- Ghi kết quả ra Excel ---
     result_writer.add_row(SHEET, {
@@ -101,8 +114,17 @@ def test_register_ddt(driver, result_writer, tc, username, phone, password, repa
         "PasswordConfirm": repass,
         "Expected": expected_raw,
         "Actual": actual,
-        "Status": "PASS",
+        "Status": status,
         "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
     })
 
-    logger.info(f"TESTCASE {tc} HOÀN THÀNH THÀNH CÔNG.\n")
+    logger.info(f"Expected: {expected_raw}")
+    logger.info(f"Actual:   {actual}")
+    logger.info(f"Status:   {status}")
+    logger.info(f"=== KẾT THÚC TESTCASE {tc} ===\n")
+
+    if status == "FAIL":
+        pytest.fail(
+            f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'",
+            pytrace=False
+        )

@@ -54,7 +54,7 @@ def create_logger(name: str = None) -> logging.Logger:
 
         logger.addHandler(file_handler)
         logger.addHandler(console_handler)
-
+        logger.info("=" * 60)
         logger.info(f"=== Logger khởi tạo cho chức năng: {func_name.upper()} ===")
         logger.info(f"Ghi log tại: {log_path}")
 
