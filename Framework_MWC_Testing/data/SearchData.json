@@ -29,13 +29,28 @@
         "Keyword":"Giay th",
         "Expected":"Không tìm thấy sản phẩm"
     },
-    {
+        {
         "Testcase":"TK7",
-        "Keyword":"Giay!#$%",
+        "Keyword":"Bánh bao",
+        "Expected":"Không tìm thấy sản phẩm"
+    },
+        {
+        "Testcase":"TK8",
+        "Keyword":"",
         "Expected":"Không tìm thấy sản phẩm"
     },
     {
-        "Testcase":"TK8",
+        "Testcase":"TK9",
+        "Keyword":"Giay!#$%",
+        "Expected":"Không tìm thấy sản phẩm"
+    },
+        {
+        "Testcase":"TK10",
+        "Keyword":"196",
+        "Expected":"Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái."
+    },
+    {
+        "Testcase":"TK11",
         "Keyword":"Màu đen",
         "Expected":"Màu đen"
     }

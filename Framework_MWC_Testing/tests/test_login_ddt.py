@@ -4,7 +4,7 @@ from datetime import datetime
 from pages.login_page import MWCLoginPage
 from pages.profile_page import ProfilePage
 from utils.excel_utils import load_data
-from utils.logger_utils import create_logger, log_data_source_from_pytest  # ✅ thêm
+from utils.logger_utils import create_logger, log_data_source_from_pytest  
 
 logger = create_logger("LoginTest")
 
@@ -74,8 +74,8 @@ def test_login_ddt(driver, result_writer, tc, username, password, expected_raw):
             alert_text = (page.get_alert_text() or "").strip()
             if alert_text:
                 actual = alert_text
-                if "tên đăng nhập hoặc mật khẩu không đúng" in alert_text.lower() and \
-                   "tên đăng nhập hoặc mật khẩu không đúng" in expected_raw.lower():
+                if "Tên đăng nhập hoặc mật khẩu không đúng" in alert_text.lower() and \
+                   "Tên đăng nhập hoặc mật khẩu không đúng" in expected_raw.lower():
                     status = "PASS"
         if status == "FAIL" and page.at_home():
             profile = ProfilePage(driver)
