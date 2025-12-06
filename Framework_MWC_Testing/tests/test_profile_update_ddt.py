@@ -120,7 +120,7 @@ def test_profile_update(driver, result_writer, tc, username, fullname, email, ph
     logger.info(f"Status:   {status}")
 
     if status == "FAIL":
-        ss_path = os.path.join(SS_DIR, f"profile_update_{tc}.png")
+        ss_path = os.path.join(SS_DIR, f"test_profile_update_{tc}.png")
         try:
             driver.save_screenshot(ss_path)
             logger.error(f"Đã chụp ảnh lỗi: {ss_path}")
