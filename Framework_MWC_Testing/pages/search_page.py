@@ -1,8 +1,9 @@
-import unicodedata
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+
 from pages.base_page import BasePage
 from utils.logger_utils import create_logger
+from utils.text_utils import normalize_vi
 
 logger = create_logger("SearchPage")
 
@@ -13,7 +14,10 @@ class MWCSearchPage(BasePage):
     URL = "https://mwc.com.vn/"
     SEARCH_BOX = (By.XPATH, "(//input[@placeholder='Tìm kiếm'])[1]")
     FIRST_RESULT = (By.XPATH, "(//div[@class='product-grid-item'])[1]")
-    PRODUCT_TITLES = (By.CSS_SELECTOR, "a[class='product-grid-info pl-id-5370'] p[class='product-grid-title']")
+    PRODUCT_TITLES = (
+        By.CSS_SELECTOR,
+        "a[class='product-grid-info pl-id-5370'] p[class='product-grid-title']",
+    )
 
     def open(self):
         """Mở trang chủ MWC."""
@@ -40,18 +44,24 @@ class MWCSearchPage(BasePage):
         """Lấy danh sách tiêu đề sản phẩm hiển thị."""
         try:
             self.wait.until(EC.presence_of_all_elements_located(self.PRODUCT_TITLES))
-            return [el.text.strip() for el in self.driver.find_elements(*self.PRODUCT_TITLES) if el.text.strip()]
+            return [
+                el.text.strip()
+                for el in self.driver.find_elements(*self.PRODUCT_TITLES)
+                if el.text.strip()
+            ]
         except Exception:
             logger.warning("Không thể lấy danh sách tiêu đề sản phẩm.")
             return []
 
     def normalize_text(self, text: str) -> str:
         """Chuẩn hóa tiếng Việt (bỏ dấu, viết thường) để so sánh."""
-        text = unicodedata.normalize("NFD", text or "")
-        return text.encode("ascii", "ignore").decode("utf-8").lower().strip()
+        return normalize_vi(text)
 
     def check_keyword(self, keyword: str) -> tuple[bool, str]:
-        """Kiểm tra từ khóa trong danh sách sản phẩm."""
+        """
+        Kiểm tra từ khóa có xuất hiện trong các sản phẩm hiển thị không.
+        Trả về (True, title_matched) hoặc (False, message).
+        """
         keyword_norm = self.normalize_text(keyword)
 
         # Kiểm tra sản phẩm đầu tiên

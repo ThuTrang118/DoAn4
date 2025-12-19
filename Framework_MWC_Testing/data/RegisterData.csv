@@ -1,5 +1,5 @@
-﻿Testcase,Username,Phone,Password,PasswordConfirm,Expected
-DK1,Nguyen_Pham_Nhat_Anh_1,0359693333,Abcde12345,Abcde12345,Nguyen_Pham_Nhat_Anh_1
+Testcase,Username,Phone,Password,PasswordConfirm,Expected
+DK1,Phạm Thị Ánh Ngọc,0359693333,Abcde12345,Abcde12345,Phạm Thị Ánh Ngọc
 DK2,user_demo_2,,Abcde12345,Abcde12345,Vui lòng điền vào trường này.
 DK3,,0912345678,Abcde12345,Abcde12345,Vui lòng điền vào trường này.
 DK4,user_demo_3,0912345678,,Abcde12345,Vui lòng điền vào trường này.
@@ -8,7 +8,7 @@ DK6,user_demo_5,091,Abcde12345,Abcde12345,Số điện thoại không đúng đ�
 DK7,user_demo_6,abc,Abcde12345,Abcde12345,Số điện thoại không đúng định dạng!
 DK8,user_demo_7,03!,Abcde12345,Abcde12345,Số điện thoại không đúng định dạng!
 DK9,user_demo_8,03 45216789,Abcde12345,Abcde12345,Số điện thoại không đúng định dạng!
-DK10,user_demo_9, 03452167891,Abcde12345,Abcde12345,Số điện thoại không đúng định dạng!
+DK10,user_demo_9,03452167891,Abcde12345,Abcde12345,Số điện thoại không đúng định dạng!
 DK11,user_demo_10,0912345678,123,123,Mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
 DK12,user_demo_11,0912345678,1234567890abcdefghiklmno,1234567890abcdefghiklmno,Mật khẩu phải lớn hơn 8 ký tự và nhỏ hơn 20 ký tự!
 DK13,user_demo_12,0912345679,12345678,123,mật khẩu không giống nhau

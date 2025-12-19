@@ -1,13 +1,13 @@
 [
     {
         "Testcase":"TK1",
-        "Keyword":"Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái.",
-        "Expected":"Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái."
+        "Keyword":"Giày Sandal Nữ MWC E196 - Sandal Nữ Hai Quai Ngang Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái, Bền Đẹp.",
+        "Expected":"Giày Sandal Nữ MWC E196 - Sandal Nữ Hai Quai Ngang Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái, Bền Đẹp."
     },
     {
         "Testcase":"TK2",
         "Keyword":"E196",
-        "Expected":"Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái."
+        "Expected":"Giày Sandal Nữ MWC E196 - Sandal Nữ Hai Quai Ngang Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái, Bền Đẹp."
     },
     {
         "Testcase":"TK3",
@@ -47,7 +47,7 @@
         {
         "Testcase":"TK10",
         "Keyword":"196",
-        "Expected":"Giày Sandal Nữ MWC E196 - Sandal Đế Đúc Nguyên Khối, Quai Ngang To Bản Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái."
+        "Expected":"Giày Sandal Nữ MWC E196 - Sandal Nữ Hai Quai Ngang Kết Hợp Quai Dán Tiện Lợi, Cá Tính, Thoải Mái, Bền Đẹp."
     },
     {
         "Testcase":"TK11",

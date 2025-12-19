@@ -117,14 +117,12 @@ def test_register_ddt(driver, result_writer, tc, username, phone, password, repa
         "Status": status,
         "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
     })
-
+    if status == "FAIL":
+        pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
+        
     logger.info(f"Expected: {expected_raw}")
     logger.info(f"Actual:   {actual}")
     logger.info(f"Status:   {status}")
-    logger.info(f"=== KẾT THÚC TESTCASE {tc} ===\n")
-
-    if status == "FAIL":
-        pytest.fail(
-            f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'",
-            pytrace=False
-        )
+    
+    logger.info(f"KẾT THÚC TESTCASE {tc}")
+    logger.info("=" * 80 + "\n")

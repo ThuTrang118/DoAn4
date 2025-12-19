@@ -16,8 +16,16 @@ if /i "%MODE%"=="excel" (
     pause
     exit /b
 )
+if exist reports\allure-results\search (
+    echo Đang xóa thư mục cũ: reports\allure-results\search ...
+    rmdir /s /q reports\allure-results\search
+)
+if exist reports\allure-report\search (
+    echo Đang xóa thư mục cũ: reports\allure-report\search ...
+    rmdir /s /q reports\allure-report\search
+)
+mkdir reports\allure-results\search >nul 2>&1
 pytest -s -v tests\test_search_ddt.py --data-mode=%MODE% --data-file=%FILE% --alluredir=reports/allure-results/search
-
 allure generate reports/allure-results/search -o reports/allure-report/search --clean
-start "" reports/allure-report/search/index.html
+start "" reports/allure-report/search\index.html
 pause

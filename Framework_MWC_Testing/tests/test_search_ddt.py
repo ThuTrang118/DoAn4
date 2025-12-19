@@ -99,7 +99,7 @@ def test_search_ddt(driver, result_writer, tc, keyword, expected_raw):
             else:
                 status = "FAIL"
 
-        else:
+        else:         
             # chỉ cần từ khóa nằm TRONG tên sản phẩm đầu tiên (bỏ dấu)
             if keyword_norm in actual_norm:
                 status = "PASS"
@@ -107,11 +107,6 @@ def test_search_ddt(driver, result_writer, tc, keyword, expected_raw):
                 logger.warning(f"Không tìm thấy sản phẩm nào chứa từ khóa '{keyword}'.")
                 actual = "Không tìm thấy sản phẩm"
                 status = "PASS" if "khong tim thay" in expected_norm else "FAIL"
-
-        # --- Ghi lại Expected / Actual / Status ---
-        logger.info(f"Expected: {expected_raw}")
-        logger.info(f"Actual:   {actual}")
-        logger.info(f"Status:   {status}")
 
     except Exception as e:
         actual = f"Lỗi khi chạy testcase: {e}"
@@ -127,15 +122,12 @@ def test_search_ddt(driver, result_writer, tc, keyword, expected_raw):
         "Status": status,
         "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
     })
-
-    logger.info(f"=== KẾT THÚC TESTCASE {tc} ===")
-
-    # --- Nếu thất bại thì fail pytest ---
     if status == "FAIL":
-        pytest.fail(
-            f"Testcase {tc} thất bại.\n"
-            f"Keyword: '{keyword}'\n"
-            f"Expected: '{expected_raw}'\n"
-            f"Actual: '{actual}'",
-            pytrace=False
-        )
+        pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
+
+    logger.info(f"Expected: {expected_raw}")
+    logger.info(f"Actual:   {actual}")
+    logger.info(f"Status:   {status}")
+    
+    logger.info(f"KẾT THÚC TESTCASE {tc}")
+    logger.info("=" * 80 + "\n")

@@ -16,8 +16,16 @@ if /i "%MODE%"=="excel" (
     pause
     exit /b
 )
+if exist reports\allure-results\profile_update (
+    echo Đang xóa thư mục cũ: reports\allure-results\profile_update ...
+    rmdir /s /q reports\allure-results\profile_update
+)
+if exist reports\allure-report\profile_update (
+    echo Đang xóa thư mục cũ: reports\allure-report\profile_update ...
+    rmdir /s /q reports\allure-report\profile_update
+)
+mkdir reports\allure-results\profile_update >nul 2>&1
 pytest -s -v tests\test_profile_update_ddt.py --data-mode=%MODE% --data-file=%FILE% --alluredir=reports/allure-results/profile_update
-
 allure generate reports/allure-results/profile_update -o reports/allure-report/profile_update --clean
-start "" reports/allure-report/profile_update/index.html
+start "" reports/allure-report/profile_update\index.html
 pause

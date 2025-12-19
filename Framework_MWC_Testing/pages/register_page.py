@@ -4,6 +4,7 @@ from utils.logger_utils import create_logger
 
 logger = create_logger("RegisterPage")
 
+
 class MWCRegisterPage(BasePage):
     URL = "https://mwc.com.vn/login"
     HOME_URL = "https://mwc.com.vn/"
@@ -20,12 +21,14 @@ class MWCRegisterPage(BasePage):
         logger.info("Mở trang đăng ký tài khoản MWC.")
 
     def fill_form(self, username, phone, password, repass):
-        """Điền form đăng ký"""
-        logger.info(f"Điền thông tin: Username='{username}', Phone='{phone}', Password='***', RePass='***'")
-        if username: self.type(self.USERNAME, username)
-        if phone: self.type(self.PHONE, phone)
-        if password: self.type(self.PASSWORD, password)
-        if repass: self.type(self.REPASS, repass)
+        """Điền form đăng ký (luôn clear trước, kể cả khi dữ liệu rỗng)."""
+        logger.info(
+            f"Điền thông tin: Username='{username}', Phone='{phone}', Password='***', RePass='***'"
+        )
+        self.safe_type(self.USERNAME, username)
+        self.safe_type(self.PHONE, phone)
+        self.safe_type(self.PASSWORD, password)
+        self.safe_type(self.REPASS, repass)
 
     def click_register(self):
         """Click nút Đăng ký"""

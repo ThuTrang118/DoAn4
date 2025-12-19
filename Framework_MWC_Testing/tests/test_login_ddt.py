@@ -74,8 +74,8 @@ def test_login_ddt(driver, result_writer, tc, username, password, expected_raw):
             alert_text = (page.get_alert_text() or "").strip()
             if alert_text:
                 actual = alert_text
-                if "Tên đăng nhập hoặc mật khẩu không đúng" in alert_text.lower() and \
-                   "Tên đăng nhập hoặc mật khẩu không đúng" in expected_raw.lower():
+                if "tên đăng nhập hoặc mật khẩu không đúng" in alert_text.lower() and \
+                   "tên đăng nhập hoặc mật khẩu không đúng" in expected_raw.lower():
                     status = "PASS"
         if status == "FAIL" and page.at_home():
             profile = ProfilePage(driver)
@@ -100,3 +100,10 @@ def test_login_ddt(driver, result_writer, tc, username, password, expected_raw):
     })
     if status == "FAIL":
         pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
+    
+    logger.info(f"Expected: {expected_raw}")
+    logger.info(f"Actual:   {actual}")
+    logger.info(f"Status:   {status}")
+    
+    logger.info(f"KẾT THÚC TESTCASE {tc}")
+    logger.info("=" * 80 + "\n")

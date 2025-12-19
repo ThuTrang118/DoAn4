@@ -190,11 +190,12 @@ def test_order_ddt(
         },
     )
 
-    logger.info(f"ORDER {tc} | Expected='{expected_raw}' | Actual='{actual}' | Status={status}")
-    logger.info("===== END ORDER %s =====\n", tc)
-
     if status == "FAIL":
-        pytest.fail(
-            f"TC {tc} FAIL\nExpected='{expected_raw}'\nActual='{actual}'",
-            pytrace=False,
-        )
+        pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
+    
+    logger.info(f"Expected: {expected_raw}")
+    logger.info(f"Actual:   {actual}")
+    logger.info(f"Status:   {status}")
+    
+    logger.info(f"KẾT THÚC TESTCASE {tc}")
+    logger.info("=" * 80 + "\n")
