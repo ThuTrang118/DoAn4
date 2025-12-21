@@ -15,7 +15,7 @@ ALLURE_REPORT = os.path.join(REPORTS_DIR, "allure-report")
 for d in [SS_DIR, RES_DIR, ALLURE_RESULTS, ALLURE_REPORT]:
     ensure_dir(d)
 
-# ---------------- KHAI BÁO TÙY CHỌN TOÀN CỤC ----------------
+# ---------------- KHAI BÁO TÙY CHỌN TOÀN CỤC (CHỈ Ở CONFTST) ----------------
 def pytest_addoption(parser):
     """Thêm option để chọn loại và file dữ liệu đầu vào."""
     parser.addoption(

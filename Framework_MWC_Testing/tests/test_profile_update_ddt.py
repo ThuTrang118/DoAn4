@@ -8,18 +8,12 @@ from pages.profile_update_page import MWCProfileUpdatePage
 from utils.excel_utils import load_data
 from utils.logger_utils import create_logger, log_data_source_from_pytest
 
-# =========================================================
-# LOGGER
-# =========================================================
 logger = create_logger("ProfileUpdateTest")
 
 @pytest.fixture(scope="session", autouse=True)
 def _auto_log_data_source(pytestconfig):
     log_data_source_from_pytest(logger, pytestconfig)
 
-# =========================================================
-# DATA CONFIG (GIỐNG LOGIN / REGISTER)
-# =========================================================
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SHEET = "Profile"
 
@@ -27,25 +21,15 @@ DATA_EXCEL = os.path.join(BASE_DIR, "data", "TestData.xlsx")
 DATA_CSV   = os.path.join(BASE_DIR, "data", "ProfileData.csv")
 DATA_JSON  = os.path.join(BASE_DIR, "data", "ProfileData.json")
 
-SS_DIR = os.path.join(BASE_DIR, "reports", "screenshots")
-os.makedirs(SS_DIR, exist_ok=True)
+def get_test_data(pytestconfig):
+    mode = (pytestconfig.getoption("--data-mode") or "excel").lower()
+    data_file = (pytestconfig.getoption("--data-file") or "").strip()
 
-# =========================================================
-# PYTEST OPTION (GIỐNG LOGIN / REGISTER)
-# =========================================================
-def pytest_addoption(parser):
-    parser.addoption(
-        "--data-mode",
-        action="store",
-        default="excel",
-        help="Chọn loại dữ liệu: excel | csv | json"
-    )
-
-# =========================================================
-# LOAD DATA THEO MODE (GIỐNG LOGIN / REGISTER)
-# =========================================================
-def get_test_data(mode: str):
-    mode = (mode or "excel").lower()
+    if data_file:
+        ext = os.path.splitext(data_file)[1].lower()
+        if ext in [".xlsx", ".xls"]:
+            return load_data(data_file, sheet_name=SHEET)
+        return load_data(data_file)
 
     if mode == "excel":
         return load_data(DATA_EXCEL, sheet_name=SHEET)
@@ -56,9 +40,6 @@ def get_test_data(mode: str):
     else:
         raise ValueError(f"data-mode không hợp lệ: {mode}")
 
-# =========================================================
-# DDT GENERATOR (GIỐNG LOGIN / REGISTER)
-# =========================================================
 def pytest_generate_tests(metafunc):
     required = {
         "tc", "fullname", "email", "phone", "gender",
@@ -66,13 +47,10 @@ def pytest_generate_tests(metafunc):
         "province", "district", "ward", "address",
         "expected_raw"
     }
-
     if not required.issubset(metafunc.fixturenames):
         return
 
-    mode = metafunc.config.getoption("--data-mode")
-    data = get_test_data(mode)
-
+    data = get_test_data(metafunc.config)
     params = []
     seen = set()
 
@@ -105,9 +83,6 @@ def pytest_generate_tests(metafunc):
         params
     )
 
-# =========================================================
-# TESTCASE
-# =========================================================
 def test_profile_update(
     driver, result_writer,
     tc, fullname, email, phone, gender,
@@ -119,7 +94,6 @@ def test_profile_update(
     logger.info(f"BẮT ĐẦU TESTCASE {tc}")
     logger.info(f"Input → Email='{email}', Phone='{phone}', Expected='{expected_raw}'")
 
-    # --- RESET SESSION ---
     try:
         driver.delete_all_cookies()
         driver.execute_script("window.localStorage && window.localStorage.clear();")
@@ -127,14 +101,12 @@ def test_profile_update(
     except Exception:
         pass
 
-    # --- LOGIN ---
     login = MWCLoginPage(driver)
     login.open()
     login.login("Ánh Dương Phạm", "anhduong@123")
     assert login.at_home(), "Không đăng nhập được!"
     logger.info("Đăng nhập thành công.")
 
-    # --- PROFILE UPDATE ---
     page = MWCProfileUpdatePage(driver)
     page.open()
     page.fill_profile(
@@ -155,7 +127,6 @@ def test_profile_update(
     expect_success = ("thanh cong" in exp_norm) or ("success" in exp_norm)
 
     try:
-        # 1. TOAST / ALERT
         toast_msg = page.get_toast_message()
         if toast_msg:
             actual = toast_msg
@@ -165,13 +136,11 @@ def test_profile_update(
             if alert_msg:
                 actual = alert_msg
 
-        # 2. VALIDATION (CASE FAIL)
         if not actual and not expect_success:
             invalid_msg = page.get_first_invalid_validation()
             if invalid_msg:
                 actual = invalid_msg
 
-        # 3. VERIFY PERSIST (CASE SUCCESS)
         if not actual and expect_success:
             page.open()
             persisted = {
@@ -205,7 +174,6 @@ def test_profile_update(
     except Exception as e:
         actual = f"Lỗi khi chạy testcase: {e}"
 
-    # --- GHI RESULT ---
     result_writer.add_row(SHEET, {
         "Testcase": tc,
         "FullName": fullname,
@@ -227,10 +195,9 @@ def test_profile_update(
 
     if status == "FAIL":
         pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
-        
+
     logger.info(f"Expected: {expected_raw}")
     logger.info(f"Actual:   {actual}")
     logger.info(f"Status:   {status}")
-
     logger.info(f"KẾT THÚC TESTCASE {tc}")
     logger.info("=" * 80 + "\n")
