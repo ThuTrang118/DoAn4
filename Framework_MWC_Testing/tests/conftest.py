@@ -122,7 +122,7 @@ def pytest_sessionfinish(session, exitstatus):
     allure_results = os.path.join(ALLURE_RESULTS, func_name)
     allure_report = os.path.join(ALLURE_REPORT, func_name)
 
-    # ⚠️ KHÔNG xóa dữ liệu cũ ở đây nữa, để pytest giữ file .json
+    # KHÔNG xóa dữ liệu cũ ở đây nữa, để pytest giữ file .json
     ensure_dir(allure_results)
 
     print(f"\n[ALLURE] Tạo báo cáo cho chức năng: {func_name}")
