@@ -1,5 +1,6 @@
 import os
 import pytest
+import allure
 from datetime import datetime
 from pages.register_page import MWCRegisterPage
 from pages.profile_page import ProfilePage
@@ -57,68 +58,79 @@ def pytest_generate_tests(metafunc):
                 seen.add(tc)
         metafunc.parametrize("tc,username,phone,password,repass,expected_raw", params)
 
+@allure.feature("Register")
+@allure.story("Đăng ký - DDT")
 def test_register_ddt(driver, result_writer, tc, username, phone, password, repass, expected_raw):
     logger.info(f"\n=== BẮT ĐẦU TESTCASE {tc} ===")
     logger.info(f"Input | Username='{username}' | Phone='{phone}' | Password='***' | Expected='{expected_raw}'")
 
-    page = MWCRegisterPage(driver)
-    page.open()
-    page.fill_form(username, phone, password, repass)
-    page.click_register()
+    with allure.step("Mở trang đăng ký"):
+        page = MWCRegisterPage(driver)
+        page.open()
+
+    with allure.step("Nhập form đăng ký"):
+        page.fill_form(username, phone, password, repass)
+
+    with allure.step("Click nút đăng ký"):
+        page.click_register()
 
     status, actual = "FAIL", ""
     try:
-        html5_msgs = []
-        for locator in [page.USERNAME, page.PHONE, page.PASSWORD, page.REPASS]:
-            msg = page.get_validation_message(locator)
-            if msg:
-                html5_msgs.append(msg)
+        with allure.step("Thu thập HTML5 validation messages"):
+            html5_msgs = []
+            for locator in [page.USERNAME, page.PHONE, page.PASSWORD, page.REPASS]:
+                msg = page.get_validation_message(locator)
+                if msg:
+                    html5_msgs.append(msg)
 
-        if html5_msgs:
-            actual = " | ".join(html5_msgs)
-            if "vui lòng điền" in actual.lower() and "vui lòng điền" in (expected_raw or "").lower():
-                status = "PASS"
-
-        elif not html5_msgs:
-            alert_text = (page.get_alert_text() or "").strip().lower()
-            if alert_text:
-                actual = alert_text
-                if (expected_raw or "").lower() in alert_text:
+        with allure.step("Xử lý kết quả (validation / alert / register success)"):
+            if html5_msgs:
+                actual = " | ".join(html5_msgs)
+                if "vui lòng điền" in actual.lower() and "vui lòng điền" in (expected_raw or "").lower():
                     status = "PASS"
 
-        if status == "FAIL" and page.at_home():
-            profile = ProfilePage(driver)
-            profile.open_profile()
-            if profile.profile_username_present():
-                actual = profile.read_profile_username()
-                if username.lower() in (actual or "").lower():
-                    status = "PASS"
+            elif not html5_msgs:
+                alert_text = (page.get_alert_text() or "").strip().lower()
+                if alert_text:
+                    actual = alert_text
+                    if (expected_raw or "").lower() in alert_text:
+                        status = "PASS"
+
+            if status == "FAIL" and page.at_home():
+                profile = ProfilePage(driver)
+                profile.open_profile()
+                if profile.profile_username_present():
+                    actual = profile.read_profile_username()
+                    if username.lower() in (actual or "").lower():
+                        status = "PASS"
+                    else:
+                        actual = f"Tên người dùng khác mong đợi: {actual}"
                 else:
-                    actual = f"Tên người dùng khác mong đợi: {actual}"
-            else:
-                actual = "Không hiển thị tên người dùng trong hồ sơ."
+                    actual = "Không hiển thị tên người dùng trong hồ sơ."
 
-        if status == "FAIL" and not actual:
-            actual = "Đăng ký không thành công."
+            if status == "FAIL" and not actual:
+                actual = "Đăng ký không thành công."
 
     except Exception as e:
         actual = f"Lỗi khi chạy testcase: {e}"
         logger.error(actual)
 
-    result_writer.add_row(SHEET, {
-        "Testcase": tc,
-        "Username": username,
-        "Phone": phone,
-        "Password": password,
-        "PasswordConfirm": repass,
-        "Expected": expected_raw,
-        "Actual": actual,
-        "Status": status,
-        "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-    })
+    with allure.step("Ghi kết quả ra Excel"):
+        result_writer.add_row(SHEET, {
+            "Testcase": tc,
+            "Username": username,
+            "Phone": phone,
+            "Password": password,
+            "PasswordConfirm": repass,
+            "Expected": expected_raw,
+            "Actual": actual,
+            "Status": status,
+            "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        })
 
     if status == "FAIL":
-        pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
+        with allure.step("Đánh dấu testcase FAIL"):
+            pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
 
     logger.info(f"Expected: {expected_raw}")
     logger.info(f"Actual:   {actual}")

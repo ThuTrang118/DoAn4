@@ -1,5 +1,6 @@
 import os
 import pytest
+import allure
 from datetime import datetime
 import unicodedata
 
@@ -83,6 +84,8 @@ def pytest_generate_tests(metafunc):
         params
     )
 
+@allure.feature("Profile")
+@allure.story("Cập nhật hồ sơ - DDT")
 def test_profile_update(
     driver, result_writer,
     tc, fullname, email, phone, gender,
@@ -94,27 +97,32 @@ def test_profile_update(
     logger.info(f"BẮT ĐẦU TESTCASE {tc}")
     logger.info(f"Input → Email='{email}', Phone='{phone}', Expected='{expected_raw}'")
 
-    try:
-        driver.delete_all_cookies()
-        driver.execute_script("window.localStorage && window.localStorage.clear();")
-        driver.execute_script("window.sessionStorage && window.sessionStorage.clear();")
-    except Exception:
-        pass
+    with allure.step("Reset session (cookies/localStorage/sessionStorage)"):
+        try:
+            driver.delete_all_cookies()
+            driver.execute_script("window.localStorage && window.localStorage.clear();")
+            driver.execute_script("window.sessionStorage && window.sessionStorage.clear();")
+        except Exception:
+            pass
 
-    login = MWCLoginPage(driver)
-    login.open()
-    login.login("Ánh Dương Phạm", "anhduong@123")
-    assert login.at_home(), "Không đăng nhập được!"
-    logger.info("Đăng nhập thành công.")
+    with allure.step("Đăng nhập tài khoản mẫu"):
+        login = MWCLoginPage(driver)
+        login.open()
+        login.login("Ánh Dương Phạm", "anhduong@123")
+        assert login.at_home(), "Không đăng nhập được!"
+        logger.info("Đăng nhập thành công.")
 
-    page = MWCProfileUpdatePage(driver)
-    page.open()
-    page.fill_profile(
-        fullname, email, phone,
-        gender, day, month, year,
-        province, district, ward, address
-    )
-    page.click_save()
+    with allure.step("Mở trang profile và nhập dữ liệu cập nhật"):
+        page = MWCProfileUpdatePage(driver)
+        page.open()
+        page.fill_profile(
+            fullname, email, phone,
+            gender, day, month, year,
+            province, district, ward, address
+        )
+
+    with allure.step("Click Lưu"):
+        page.click_save()
 
     actual = ""
     status = "FAIL"
@@ -127,74 +135,77 @@ def test_profile_update(
     expect_success = ("thanh cong" in exp_norm) or ("success" in exp_norm)
 
     try:
-        toast_msg = page.get_toast_message()
-        if toast_msg:
-            actual = toast_msg
+        with allure.step("Thu thập kết quả (toast/alert/validation/persist)"):
+            toast_msg = page.get_toast_message()
+            if toast_msg:
+                actual = toast_msg
 
-        if not actual:
-            alert_msg = page.get_alert_text()
-            if alert_msg:
-                actual = alert_msg
+            if not actual:
+                alert_msg = page.get_alert_text()
+                if alert_msg:
+                    actual = alert_msg
 
-        if not actual and not expect_success:
-            invalid_msg = page.get_first_invalid_validation()
-            if invalid_msg:
-                actual = invalid_msg
+            if not actual and not expect_success:
+                invalid_msg = page.get_first_invalid_validation()
+                if invalid_msg:
+                    actual = invalid_msg
 
-        if not actual and expect_success:
-            page.open()
-            persisted = {
-                "fullname": page.get_value(page.FULLNAME),
-                "email": page.get_value(page.EMAIL),
-                "phone": page.get_value(page.PHONE),
-                "address": page.get_value(page.ADDRESS),
-            }
+            if not actual and expect_success:
+                page.open()
+                persisted = {
+                    "fullname": page.get_value(page.FULLNAME),
+                    "email": page.get_value(page.EMAIL),
+                    "phone": page.get_value(page.PHONE),
+                    "address": page.get_value(page.ADDRESS),
+                }
 
-            def ok(inp, got):
-                if not inp:
-                    return True
-                return normalize(inp) in normalize(got)
+                def ok(inp, got):
+                    if not inp:
+                        return True
+                    return normalize(inp) in normalize(got)
 
-            if (
-                ok(fullname, persisted["fullname"]) and
-                ok(email, persisted["email"]) and
-                ok(phone, persisted["phone"]) and
-                ok(address, persisted["address"])
-            ):
-                actual = "Cập nhập tài khoản thành công!"
-            else:
-                actual = f"Dữ liệu không lưu sau reload: {persisted}"
+                if (
+                    ok(fullname, persisted["fullname"]) and
+                    ok(email, persisted["email"]) and
+                    ok(phone, persisted["phone"]) and
+                    ok(address, persisted["address"])
+                ):
+                    actual = "Cập nhập tài khoản thành công!"
+                else:
+                    actual = f"Dữ liệu không lưu sau reload: {persisted}"
 
-        if not actual:
-            actual = "Không thấy thông báo sau khi lưu."
+            if not actual:
+                actual = "Không thấy thông báo sau khi lưu."
 
-        if exp_norm and (exp_norm in normalize(actual) or normalize(actual) in exp_norm):
-            status = "PASS"
+            if exp_norm and (exp_norm in normalize(actual) or normalize(actual) in exp_norm):
+                status = "PASS"
 
     except Exception as e:
         actual = f"Lỗi khi chạy testcase: {e}"
 
-    result_writer.add_row(SHEET, {
-        "Testcase": tc,
-        "FullName": fullname,
-        "Email": email,
-        "Phone": phone,
-        "Gender": gender,
-        "Day": day,
-        "Month": month,
-        "Year": year,
-        "Province": province,
-        "District": district,
-        "Ward": ward,
-        "Address": address,
-        "Expected": expected_raw,
-        "Actual": actual,
-        "Status": status,
-        "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    })
+    with allure.step("Ghi kết quả ra Excel"):
+        result_writer.add_row(SHEET, {
+            "Testcase": tc,
+            "FullName": fullname,
+            "Email": email,
+            "Phone": phone,
+            "Gender": gender,
+            "Day": day,
+            "Month": month,
+            "Year": year,
+            "Province": province,
+            "District": district,
+            "Ward": ward,
+            "Address": address,
+            "Expected": expected_raw,
+            "Actual": actual,
+            "Status": status,
+            "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        })
 
     if status == "FAIL":
-        pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
+        with allure.step("Đánh dấu testcase FAIL"):
+            pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
 
     logger.info(f"Expected: {expected_raw}")
     logger.info(f"Actual:   {actual}")

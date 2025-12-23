@@ -1,37 +1,45 @@
-import os, time, pytest, subprocess, datetime, shutil, webbrowser
+import os
+import io
+import sys
+import json
+import shutil
+import pytest
+import allure
+import logging
+import platform
+import datetime
+import subprocess
+import webbrowser
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from utils.excel_utils import ResultBook, ensure_dir
-import allure
 
-# ---------------- ĐƯỜNG DẪN CỐ ĐỊNH ----------------
+# =========================================================
+# PATH CONFIG
+# =========================================================
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 REPORTS_DIR = os.path.join(BASE_DIR, "reports")
+
 SS_DIR = os.path.join(REPORTS_DIR, "screenshots")
 RES_DIR = os.path.join(REPORTS_DIR, "results")
-ALLURE_RESULTS = os.path.join(REPORTS_DIR, "allure-results")
-ALLURE_REPORT = os.path.join(REPORTS_DIR, "allure-report")
+ALLURE_RESULTS_ROOT = os.path.join(REPORTS_DIR, "allure-results")
+ALLURE_REPORT_ROOT  = os.path.join(REPORTS_DIR, "allure-report")
 
-for d in [SS_DIR, RES_DIR, ALLURE_RESULTS, ALLURE_REPORT]:
+for d in [SS_DIR, RES_DIR, ALLURE_RESULTS_ROOT, ALLURE_REPORT_ROOT]:
     ensure_dir(d)
 
-# ---------------- KHAI BÁO TÙY CHỌN TOÀN CỤC (CHỈ Ở CONFTST) ----------------
+# =========================================================
+# PYTEST OPTIONS (CHỈ Ở CONFTST)
+# =========================================================
 def pytest_addoption(parser):
-    """Thêm option để chọn loại và file dữ liệu đầu vào."""
-    parser.addoption(
-        "--data-mode",
-        action="store",
-        default="excel",
-        help="Chọn loại dữ liệu: excel | csv | json"
-    )
-    parser.addoption(
-        "--data-file",
-        action="store",
-        default="data/TestData.xlsx",
-        help="Đường dẫn đến file dữ liệu test (mặc định: data/TestData.xlsx)"
-    )
+    parser.addoption("--data-mode", action="store", default="excel", help="excel | csv | json")
+    parser.addoption("--data-file", action="store", default="data/TestData.xlsx", help="Đường dẫn file dữ liệu test")
 
-# ---------------- GHI KẾT QUẢ ----------------
+
+# =========================================================
+# RESULT WRITER (EXCEL)
+# =========================================================
 @pytest.fixture(scope="session")
 def result_writer(request):
     writer = ResultBook(out_dir=RES_DIR, file_name="ResultsData.xlsx")
@@ -43,7 +51,10 @@ def result_writer(request):
     request.addfinalizer(finalize)
     return writer
 
-# ---------------- FIXTURE: KHỞI TẠO WEBDRIVER ----------------
+
+# =========================================================
+# WEBDRIVER FIXTURE
+# =========================================================
 @pytest.fixture
 def driver():
     opts = Options()
@@ -53,90 +64,250 @@ def driver():
     opts.add_argument("--ignore-certificate-errors")
     opts.add_argument("--ignore-ssl-errors=yes")
 
-    driver = webdriver.Chrome(options=opts)
-    yield driver
-    driver.quit()
+    # Enable browser console log (để attach khi FAIL)
+    opts.set_capability("goog:loggingPrefs", {"browser": "ALL"})
 
-# ---------------- CHỤP ẢNH KHI FAIL + GẮN VÀO ALLURE ----------------
+    drv = webdriver.Chrome(options=opts)
+    yield drv
+    drv.quit()
+
+
+# =========================================================
+# ALLURE – CAPTURE LOGGER OUTPUT (module-level logger)
+# =========================================================
+@pytest.fixture(autouse=True)
+def _capture_logs_for_allure(request):
+    """
+    Capture logger của từng module test (nếu có biến `logger`).
+    Attach log được thực hiện trong pytest_runtest_makereport.
+    """
+    buffer = io.StringIO()
+    handler = logging.StreamHandler(buffer)
+    handler.setLevel(logging.INFO)
+    handler.setFormatter(logging.Formatter("[%(asctime)s] [%(levelname)s] %(message)s"))
+
+    module = getattr(request.node, "module", None)
+    test_logger = getattr(module, "logger", None) if module else None
+    target_logger = test_logger if isinstance(test_logger, logging.Logger) else logging.getLogger()
+
+    target_logger.addHandler(handler)
+
+    request.node._allure_log_buffer = buffer
+    request.node._allure_log_handler = handler
+    request.node._allure_log_target_logger = target_logger
+
+    yield
+
+    try:
+        target_logger.removeHandler(handler)
+    except Exception:
+        pass
+    try:
+        handler.close()
+    except Exception:
+        pass
+
+
+# =========================================================
+# HELPERS: ATTACH
+# =========================================================
+def _attach_text(name: str, text: str):
+    try:
+        if text is None:
+            return
+        text = str(text)
+        if text.strip():
+            allure.attach(text, name=name, attachment_type=allure.attachment_type.TEXT)
+    except Exception as e:
+        print(f"[WARN] Cannot attach text '{name}': {e}")
+
+def _attach_json(name: str, obj):
+    try:
+        allure.attach(
+            json.dumps(obj, ensure_ascii=False, indent=2),
+            name=name,
+            attachment_type=allure.attachment_type.JSON
+        )
+    except Exception as e:
+        print(f"[WARN] Cannot attach json '{name}': {e}")
+
+def _get_ddt_params(item):
+    """Lấy parameters từ DDT (pytest_generate_tests) qua item.callspec.params."""
+    callspec = getattr(item, "callspec", None)
+    if callspec and hasattr(callspec, "params"):
+        return dict(callspec.params)
+    return {}
+
+
+# =========================================================
+# ALLURE HOOK – SCREENSHOT / LOG / PARAMS / PAGE SOURCE
+# =========================================================
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    """Chụp ảnh khi testcase FAIL và attach vào Allure."""
     outcome = yield
     rep = outcome.get_result()
-    driver = item.funcargs.get("driver", None)
-    if not driver:
+
+    if rep.when != "call":
         return
 
-    base_name = item.name.replace("[", "_").replace("]", "_")
-    img_path = os.path.join(SS_DIR, f"{base_name}.png")
+    # ---- Attach DDT parameters ----
+    params = _get_ddt_params(item)
+    if params:
+        _attach_json(f"{item.name}-parameters", params)
 
-    # Khi testcase FAIL
-    if rep.when == "call" and rep.failed:
+    # ---- Attach data-mode / data-file ----
+    try:
+        cfg = item.config
+        dm = cfg.getoption("--data-mode")
+        df = cfg.getoption("--data-file")
+        _attach_text(f"{item.name}-data-source", f"data-mode={dm}\ndata-file={df}")
+    except Exception:
+        pass
+
+    # ---- Attach logger output ----
+    buf = getattr(item, "_allure_log_buffer", None)
+    if buf:
+        _attach_text(f"{item.name}-log", buf.getvalue())
+
+    # ---- Fail artifacts: screenshot + url + source + console ----
+    drv = item.funcargs.get("driver", None)
+    if not drv:
+        return
+
+    safe_name = item.name.replace("[", "_").replace("]", "_")
+    img_path = os.path.join(SS_DIR, f"{safe_name}.png")
+
+    if rep.failed:
+        # Screenshot
         try:
             if os.path.exists(img_path):
                 os.remove(img_path)
-            driver.save_screenshot(img_path)
-            print(f"\n[SCREENSHOT SAVED]: {img_path}")
+            drv.save_screenshot(img_path)
             with open(img_path, "rb") as f:
-                allure.attach(
-                    f.read(),
-                    name=os.path.basename(img_path),
-                    attachment_type=allure.attachment_type.PNG
-                )
+                allure.attach(f.read(), name="screenshot", attachment_type=allure.attachment_type.PNG)
         except Exception as e:
-            print(f"[WARN] Không thể chụp ảnh: {e}")
+            print(f"[WARN] Screenshot failed: {e}")
 
-    # Khi testcase PASS: xóa ảnh cũ (nếu có)
-    elif rep.when == "call" and rep.passed:
+        # URL
+        try:
+            _attach_text("current-url", drv.current_url)
+        except Exception:
+            pass
+
+        # Page source
+        try:
+            _attach_text("page-source", drv.page_source)
+        except Exception as e:
+            print(f"[WARN] Page source attach failed: {e}")
+
+        # Browser console logs
+        try:
+            logs = drv.get_log("browser")
+            _attach_json("browser-console-log", logs)
+        except Exception as e:
+            _attach_text("browser-console-log", f"Cannot read console log: {e}")
+
+    elif rep.passed:
+        # Cleanup old screenshot
         if os.path.exists(img_path):
             try:
                 os.remove(img_path)
-                print(f"[CLEANUP] Xóa ảnh cũ sau khi PASS: {img_path}")
             except Exception:
                 pass
 
-# ---------------- TỰ ĐỘNG SINH ALLURE REPORT SAU KHI TEST ----------------
+
+# =========================================================
+# ALLURE ENVIRONMENT
+# =========================================================
+def _write_allure_environment(results_dir, session):
+    """Ghi environment.properties vào results để Allure hiển thị Environment tab."""
+    try:
+        ensure_dir(results_dir)
+        env_path = os.path.join(results_dir, "environment.properties")
+        cfg = session.config
+
+        lines = [
+            f"os={platform.system()} {platform.release()}",
+            f"os_version={platform.version()}",
+            f"python={sys.version.split()[0]}",
+            f"data_mode={cfg.getoption('--data-mode')}",
+            f"data_file={cfg.getoption('--data-file')}",
+            f"run_time={datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}",
+        ]
+        with open(env_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines))
+    except Exception as e:
+        print(f"[ALLURE] Cannot write environment.properties: {e}")
+
+
+# =========================================================
+# ALLURE HISTORY (PHẦN QUAN TRỌNG)
+# =========================================================
+def _preserve_allure_history(old_report_dir: str, new_results_dir: str):
+    """
+    Copy history từ report cũ -> results mới trước khi generate.
+    Nhờ vậy Allure sẽ có History/Trend sau lần chạy thứ 2 trở đi.
+    """
+    try:
+        src = os.path.join(old_report_dir, "history")
+        dst = os.path.join(new_results_dir, "history")
+
+        if os.path.isdir(src):
+            ensure_dir(new_results_dir)
+            if os.path.isdir(dst):
+                shutil.rmtree(dst, ignore_errors=True)
+            shutil.copytree(src, dst)
+            print(f"[ALLURE] History copied: {src} -> {dst}")
+        else:
+            print(f"[ALLURE] No history to copy (first run or report was deleted): {src}")
+    except Exception as e:
+        print(f"[ALLURE] Cannot preserve history: {e}")
+
+
+# =========================================================
+# SESSION FINISH – GENERATE REPORT + HISTORY
+# =========================================================
 def pytest_sessionfinish(session, exitstatus):
     """
-    Sau khi chạy xong 1 module test:
-      - Xác định đúng thư mục chức năng (login, register, search, order,...)
-      - Giữ lại dữ liệu Allure do pytest ghi
-      - Sinh báo cáo Allure mới
+    Tạo report theo từng chức năng: login/search/order/...
+    - Preserve history trước khi generate
+    - Ghi environment.properties
+    - Generate report với --clean (vẫn OK vì history đã nằm ở results)
     """
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    # --- Lấy file test đang chạy ---
+    # Lấy file test đang chạy
     try:
         test_file = session.config.invocation_params.args[0]
     except Exception:
         test_file = "all_tests"
 
-    # --- Rút gọn tên chức năng từ file test ---
     base_name = os.path.basename(test_file)
     func_name = os.path.splitext(base_name)[0].replace("test_", "")
     for suffix in ["_ddt", "_bai1", "_bai2"]:
         if func_name.endswith(suffix):
             func_name = func_name.replace(suffix, "")
 
-    # --- Đường dẫn đến thư mục Allure ---
-    allure_results = os.path.join(ALLURE_RESULTS, func_name)
-    allure_report = os.path.join(ALLURE_REPORT, func_name)
+    allure_results = os.path.join(ALLURE_RESULTS_ROOT, func_name)
+    allure_report  = os.path.join(ALLURE_REPORT_ROOT, func_name)
 
-    # KHÔNG xóa dữ liệu cũ ở đây nữa, để pytest giữ file .json
     ensure_dir(allure_results)
 
-    print(f"\n[ALLURE] Tạo báo cáo cho chức năng: {func_name}")
+    # (1) Preserve history: report cũ -> results mới
+    _preserve_allure_history(allure_report, allure_results)
+
+    # (2) Environment
+    _write_allure_environment(allure_results, session)
+
+    print(f"\n[ALLURE] Generating report for: {func_name}")
     try:
         subprocess.run(
             ["allure", "generate", allure_results, "-o", allure_report, "--clean"],
             check=True
         )
-        print(f"[ALLURE] Báo cáo HTML đã tạo tại: {allure_report}\\index.html\n")
-
         index_path = os.path.abspath(os.path.join(allure_report, "index.html"))
         if os.path.exists(index_path):
             webbrowser.open_new_tab(index_path)
-            print(f"[OPEN] Mở báo cáo Allure trên Chrome: {index_path}")
-
+            print(f"[ALLURE] Opened: {index_path}")
+        else:
+            print(f"[ALLURE] Report generated but index not found: {index_path}")
     except Exception as e:
-        print(f"[ALLURE] Lỗi khi tạo báo cáo: {e}")
+        print(f"[ALLURE ERROR] {e}")

@@ -1,7 +1,7 @@
 import os
 import pytest
-from datetime import datetime
 import allure
+from datetime import datetime
 
 from pages.order_page import MWCOrderPage
 from utils.excel_utils import load_data
@@ -102,61 +102,73 @@ def test_order_ddt(
     page = MWCOrderPage(driver)
 
     try:
-        page.open()
-        page.search_product(keyword)
-        page.click_first_product()
-        assert page.verify_product_page(), "Không vào đúng trang chi tiết sản phẩm."
+        with allure.step("Mở trang MWC"):
+            page.open()
 
-        page.select_color_and_size(color, size)
-        page.click_buy_now()
-        page.verify_cart_info()
+        with allure.step(f"Tìm kiếm sản phẩm: '{keyword}'"):
+            page.search_product(keyword)
 
-        page.fill_customer_info(fullname, phone, address, province, district, ward)
-        page.click_order()
+        with allure.step("Mở sản phẩm đầu tiên"):
+            page.click_first_product()
+            assert page.verify_product_page(), "Không vào đúng trang chi tiết sản phẩm."
 
-        success_msg = page.get_success_message()
-        alert_msg = "" if success_msg else page.get_alert_message()
+        with allure.step(f"Chọn màu '{color}' và size '{size}', click Mua ngay"):
+            page.select_color_and_size(color, size)
+            page.click_buy_now()
+            page.verify_cart_info()
 
-        if success_msg and "đặt hàng thành công" in success_msg.lower():
-            actual = "Đặt hàng thành công!"
-        elif alert_msg and "bạn chưa nhập thông tin nhận hàng" in alert_msg.lower():
-            actual = "Bạn chưa nhập thông tin nhận hàng!"
-        elif alert_msg:
-            actual = alert_msg.strip()
-        else:
-            actual = "Không có thông báo hiển thị."
+        with allure.step("Nhập thông tin khách hàng và chọn Tỉnh/Huyện/Xã"):
+            page.fill_customer_info(fullname, phone, address, province, district, ward)
 
-        expected_norm = (expected_raw or "").strip().lower()
-        actual_norm = (actual or "").strip().lower()
-        status = "PASS" if expected_norm and expected_norm in actual_norm else "FAIL"
+        with allure.step("Click Đặt hàng"):
+            page.click_order()
+
+        with allure.step("Lấy kết quả hiển thị (success/alert)"):
+            success_msg = page.get_success_message()
+            alert_msg = "" if success_msg else page.get_alert_message()
+
+            if success_msg and "đặt hàng thành công" in success_msg.lower():
+                actual = "Đặt hàng thành công!"
+            elif alert_msg and "bạn chưa nhập thông tin nhận hàng" in alert_msg.lower():
+                actual = "Bạn chưa nhập thông tin nhận hàng!"
+            elif alert_msg:
+                actual = alert_msg.strip()
+            else:
+                actual = "Không có thông báo hiển thị."
+
+            expected_norm = (expected_raw or "").strip().lower()
+            actual_norm = (actual or "").strip().lower()
+            status = "PASS" if expected_norm and expected_norm in actual_norm else "FAIL"
 
     except Exception as e:
         actual = f"Lỗi testcase: {e}"
         status = "FAIL"
         logger.error(actual)
 
-    result_writer.add_row(
-        SHEET,
-        {
-            "Testcase": tc,
-            "Keyword": keyword,
-            "Color": color,
-            "Size": size,
-            "FullName": fullname,
-            "Phone": phone,
-            "Address": address,
-            "Province": province,
-            "District": district,
-            "Ward": ward,
-            "Expected": expected_raw,
-            "Actual": actual,
-            "Status": status,
-            "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-        },
-    )
+    with allure.step("Ghi kết quả ra Excel"):
+        result_writer.add_row(
+            SHEET,
+            {
+                "Testcase": tc,
+                "Keyword": keyword,
+                "Color": color,
+                "Size": size,
+                "FullName": fullname,
+                "Phone": phone,
+                "Address": address,
+                "Province": province,
+                "District": district,
+                "Ward": ward,
+                "Expected": expected_raw,
+                "Actual": actual,
+                "Status": status,
+                "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+            },
+        )
 
     if status == "FAIL":
-        pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
+        with allure.step("Đánh dấu testcase FAIL"):
+            pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
 
     logger.info(f"Expected: {expected_raw}")
     logger.info(f"Actual:   {actual}")

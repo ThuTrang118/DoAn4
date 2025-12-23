@@ -1,5 +1,6 @@
 import os
 import pytest
+import allure
 from datetime import datetime
 
 from pages.product_review_page import MWCProductReviewPage
@@ -62,6 +63,8 @@ def pytest_generate_tests(metafunc):
 
         metafunc.parametrize("tc,fullname,phone,email,title,content,rating,expected_raw", params)
 
+@allure.feature("Product Review")
+@allure.story("Đánh giá sản phẩm - DDT")
 def test_product_review_ddt(driver, result_writer, tc, fullname, phone, email, title, content, rating, expected_raw):
     logger.info(f"\n=== BẮT ĐẦU TESTCASE {tc} ===")
 
@@ -69,34 +72,41 @@ def test_product_review_ddt(driver, result_writer, tc, fullname, phone, email, t
 
     status, actual = "FAIL", ""
     try:
-        page.login_search_open_comment_tab()
-        page.fill_form(fullname=fullname, phone=phone, email=email, title=title, content=content)
+        with allure.step("Login + search + mở tab Bình luận"):
+            page.login_search_open_comment_tab()
 
-        page.select_rating(int(rating) if str(rating).strip() else 0)
+        with allure.step("Nhập form đánh giá (fullname/phone/email/title/content)"):
+            page.fill_form(fullname=fullname, phone=phone, email=email, title=title, content=content)
 
-        page.click_send()
-        actual = page.get_actual_result()
+        with allure.step(f"Chọn số sao rating = {rating}"):
+            page.select_rating(int(rating) if str(rating).strip() else 0)
 
-        if (actual or "").strip().lower() == (expected_raw or "").strip().lower():
-            status = "PASS"
+        with allure.step("Click Gửi và lấy kết quả thực tế"):
+            page.click_send()
+            actual = page.get_actual_result()
+
+        with allure.step("So sánh Expected vs Actual"):
+            if (actual or "").strip().lower() == (expected_raw or "").strip().lower():
+                status = "PASS"
 
     except Exception as e:
         actual = f"Lỗi khi chạy testcase: {e}"
         logger.error(actual)
 
-    result_writer.add_row(SHEET, {
-        "Testcase": tc,
-        "FullName": fullname,
-        "Phone": phone,
-        "Email": email,
-        "Title": title,
-        "Content": content,
-        "Rating": rating,
-        "Expected": expected_raw,
-        "Actual": actual,
-        "Status": status,
-        "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-    })
+    with allure.step("Ghi kết quả ra Excel"):
+        result_writer.add_row(SHEET, {
+            "Testcase": tc,
+            "FullName": fullname,
+            "Phone": phone,
+            "Email": email,
+            "Title": title,
+            "Content": content,
+            "Rating": rating,
+            "Expected": expected_raw,
+            "Actual": actual,
+            "Status": status,
+            "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        })
 
     logger.info(f"Expected: {expected_raw}")
     logger.info(f"Actual:   {actual}")
@@ -105,7 +115,8 @@ def test_product_review_ddt(driver, result_writer, tc, fullname, phone, email, t
     logger.info("=" * 80 + "\n")
 
     if status == "FAIL":
-        pytest.fail(
-            f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'",
-            pytrace=False
-        )
+        with allure.step("Đánh dấu testcase FAIL"):
+            pytest.fail(
+                f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'",
+                pytrace=False
+            )

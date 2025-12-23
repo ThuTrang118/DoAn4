@@ -1,11 +1,11 @@
 [
     {
         "Testcase":"DK1",
-        "Username":"Phạm Dương Ánh Ngọc",
+        "Username":"Pham_Thanh_An",
         "Phone":"0359694533",
         "Password":"Abcde12345",
         "PasswordConfirm":"Abcde12345",
-        "Expected":"Phạm Dương Ánh Ngọc"
+        "Expected":"Pham_Thanh_An"
     },
     {
         "Testcase":"DK2",

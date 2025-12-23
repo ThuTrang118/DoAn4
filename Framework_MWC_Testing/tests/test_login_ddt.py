@@ -1,5 +1,6 @@
 import os
 import pytest
+import allure
 from datetime import datetime
 from pages.login_page import MWCLoginPage
 from pages.profile_page import ProfilePage
@@ -23,14 +24,12 @@ def get_test_data(pytestconfig):
     mode = (pytestconfig.getoption("--data-mode") or "excel").lower()
     data_file = (pytestconfig.getoption("--data-file") or "").strip()
 
-    # Ưu tiên --data-file nếu được truyền
     if data_file:
         ext = os.path.splitext(data_file)[1].lower()
         if ext in [".xlsx", ".xls"]:
             return load_data(data_file, sheet_name=SHEET)
         return load_data(data_file)
 
-    # Giữ nguyên mặc định cũ
     if mode == "excel":
         return load_data(DATA_EXCEL, sheet_name=SHEET)
     elif mode == "csv":
@@ -57,62 +56,78 @@ def pytest_generate_tests(metafunc):
                 seen.add(tc)
         metafunc.parametrize("tc,username,password,expected_raw", params)
 
+@allure.feature("Login")
+@allure.story("Đăng nhập - DDT")
 def test_login_ddt(driver, result_writer, tc, username, password, expected_raw):
+
+    # ===== Allure History ID ổn định theo TC =====
+    tc_id = str(tc).strip()
+    allure.dynamic.id(tc_id)
+    allure.dynamic.title(tc_id)
+    
     logger.info(f"\n=== BẮT ĐẦU TESTCASE {tc} ===")
-    page = MWCLoginPage(driver)
-    page.open()
-    page.clear_input(page.USERNAME)
-    page.clear_input(page.PASSWORD)
-    page.login(username, password)
+    
+    with allure.step("Mở trang đăng nhập"):
+        page = MWCLoginPage(driver)
+        page.open()
+
+    with allure.step("Xóa dữ liệu cũ và thực hiện đăng nhập"):
+        page.clear_input(page.USERNAME)
+        page.clear_input(page.PASSWORD)
+        page.login(username, password)
 
     status, actual = "FAIL", ""
     try:
-        html5_msgs = []
-        for locator in [page.USERNAME, page.PASSWORD]:
-            msg = page.get_validation_message(locator)
-            if msg:
-                html5_msgs.append(msg)
+        with allure.step("Thu thập HTML5 validation messages (nếu có)"):
+            html5_msgs = []
+            for locator in [page.USERNAME, page.PASSWORD]:
+                msg = page.get_validation_message(locator)
+                if msg:
+                    html5_msgs.append(msg)
 
-        if html5_msgs:
-            actual = " | ".join(html5_msgs)
-            if "vui lòng điền" in actual.lower() and "vui lòng điền" in (expected_raw or "").lower():
-                status = "PASS"
-
-        elif not html5_msgs:
-            alert_text = (page.get_alert_text() or "").strip()
-            if alert_text:
-                actual = alert_text
-                if "tên đăng nhập hoặc mật khẩu không đúng" in alert_text.lower() and \
-                   "tên đăng nhập hoặc mật khẩu không đúng" in (expected_raw or "").lower():
+        with allure.step("Xử lý logic kết quả (validation / alert / login success)"):
+            if html5_msgs:
+                actual = " | ".join(html5_msgs)
+                if "vui lòng điền" in actual.lower() and "vui lòng điền" in (expected_raw or "").lower():
                     status = "PASS"
 
-        if status == "FAIL" and page.at_home():
-            profile = ProfilePage(driver)
-            profile.open_profile()
-            if profile.profile_username_present():
-                actual = profile.read_profile_username()
-                if username.lower() in (actual or "").lower():
-                    status = "PASS"
+            elif not html5_msgs:
+                alert_text = (page.get_alert_text() or "").strip()
+                if alert_text:
+                    actual = alert_text
+                    if "tên đăng nhập hoặc mật khẩu không đúng" in alert_text.lower() and \
+                       "tên đăng nhập hoặc mật khẩu không đúng" in (expected_raw or "").lower():
+                        status = "PASS"
+
+            if status == "FAIL" and page.at_home():
+                profile = ProfilePage(driver)
+                profile.open_profile()
+                if profile.profile_username_present():
+                    actual = profile.read_profile_username()
+                    if username.lower() in (actual or "").lower():
+                        status = "PASS"
+                    else:
+                        actual = f"Tên người dùng khác mong đợi: {actual}"
                 else:
-                    actual = f"Tên người dùng khác mong đợi: {actual}"
-            else:
-                actual = "Không hiển thị tên người dùng trong hồ sơ."
+                    actual = "Không hiển thị tên người dùng trong hồ sơ."
 
-        if status == "FAIL" and not actual:
-            actual = "Đăng nhập không thành công."
+            if status == "FAIL" and not actual:
+                actual = "Đăng nhập không thành công."
 
     except Exception as e:
         actual = f"Lỗi khi chạy testcase: {e}"
         logger.error(actual)
 
-    result_writer.add_row(SHEET, {
-        "Testcase": tc, "Username": username, "Password": password,
-        "Expected": expected_raw, "Actual": actual, "Status": status,
-        "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-    })
+    with allure.step("Ghi kết quả ra Excel"):
+        result_writer.add_row(SHEET, {
+            "Testcase": tc, "Username": username, "Password": password,
+            "Expected": expected_raw, "Actual": actual, "Status": status,
+            "Time": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        })
 
     if status == "FAIL":
-        pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
+        with allure.step("Đánh dấu testcase FAIL"):
+            pytest.fail(f"Testcase {tc} thất bại.\nExpected: '{expected_raw}'\nActual: '{actual}'", pytrace=False)
 
     logger.info(f"Expected: {expected_raw}")
     logger.info(f"Actual:   {actual}")
