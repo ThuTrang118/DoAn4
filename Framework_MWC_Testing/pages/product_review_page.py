@@ -1,11 +1,9 @@
 import os
 from datetime import datetime
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 from pages.base_page import BasePage
 from utils.logger_utils import create_logger
 
