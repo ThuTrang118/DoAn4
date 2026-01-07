@@ -1,5 +1,5 @@
 Testcase,Username,Phone,Password,PasswordConfirm,Expected
-DK1,PhamThanhAn,0359693333,Abcde12345,Abcde12345,PhamThanhAn
+DK1,Nguyen_Van_Truong,0359693333,Abcde12345,Abcde12345,Nguyen_Van_Truong
 DK2,user_demo_2,,Abcde12345,Abcde12345,Vui lòng điền vào trường này.
 DK3,,0912345678,Abcde12345,Abcde12345,Vui lòng điền vào trường này.
 DK4,user_demo_3,0912345678,,Abcde12345,Vui lòng điền vào trường này.

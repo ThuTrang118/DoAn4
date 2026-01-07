@@ -27,8 +27,8 @@ class MWCOrderPage(BasePage):
 
     # --- Tìm kiếm & mở sản phẩm ---
     SEARCH_BOX = (By.XPATH, "(//input[@placeholder='Tìm kiếm'])[1]")
-    FIRST_PRODUCT = (By.XPATH, "(//a[@class='product-grid-info pl-id-3893'])[1]")
-    PRODUCT_TITLE = (By.XPATH, "//h1[contains(text(),'Giày Cao Gót MWC 4444')]")
+    FIRST_PRODUCT = (By.XPATH, "(//div[@class='product-grid-info-top'])[1]")
+    PRODUCT_TITLE = (By.XPATH, "//h1[contains(text(),'Giày Cao Gót MWC 4431- Giày Cao Gót Nữ Quai Mảnh C')]")
 
     # --- Màu & size ---
     COLOR_SILVER = (By.ID, "bac")
@@ -38,10 +38,10 @@ class MWCOrderPage(BasePage):
     BTN_BUY_NOW = (By.ID, "btnBuyNow")
 
     # --- Giỏ hàng ---
-    CART_PRODUCT_NAME = (By.XPATH, "(//a[contains(text(),'Giày Cao Gót MWC 4444')])[1]")
+    CART_PRODUCT_NAME = (By.XPATH, "//a[contains(text(),'Giày Cao Gót MWC 4431- Giày Cao Gót Nữ Quai Mảnh C')]")
     CART_PRODUCT_OPTIONS = (
         By.XPATH,
-        "(//div[@class='cart-item-body-item-product-options-name d-none d-lg-block'])[1]"
+        "//div[@class='cart-item-body-item-product-options-name d-none d-lg-block']"
     )
 
     # --- Form thông tin khách hàng ---
@@ -90,7 +90,7 @@ class MWCOrderPage(BasePage):
     def verify_product_page(self) -> bool:
         try:
             title_el = self.wait.until(EC.visibility_of_element_located(self.PRODUCT_TITLE))
-            ok = "Giày Cao Gót MWC 4444" in (title_el.text or "")
+            ok = "Giày Cao Gót MWC 4431" in (title_el.text or "")
             logger.info(f"Kiểm tra trang sản phẩm: {ok} - title='{title_el.text}'")
             return ok
         except Exception:
